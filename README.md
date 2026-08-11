@@ -1,4 +1,3 @@
-# alexemmanuel.github.io
-Chimezie Emmanuel's portfolio
+MY PORTFOLIO.... ALL YOU NEED TO KNOW ABOUT MY PROFESSIONALISM
 
- ALEXEMMANUEL.GITHUB.IO
+[View my live portfolio](https://alexemmanuel.github.io)
