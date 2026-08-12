@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chimezie Emmanuel - AI Engineer Portfolio</title>
+  <title>Emmanuel Chimezie - Portfolio</title>
   <style>
     :root {
       --bg-dark: #0b1329;
@@ -37,80 +37,102 @@
       max-width: 520px;
       display: flex;
       flex-direction: column;
-      gap: 24px;
+      gap: 20px;
     }
 
-    /* Top Navigation Header */
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 0;
-    }
-
-    .brand-name {
-      font-size: 1.3rem;
-      font-weight: 800;
-      color: var(--accent-orange);
-    }
-
-    .brand-name span {
-      color: var(--accent-cyan);
-    }
-
-    /* Top Navigation Buttons (Equal Width Frame Holders) */
-    .action-group {
+    /* ================= PERMANENT TOP HEADER (LOCKED ON ALL SWAPS) ================= */
+    .permanent-header {
+      background-color: var(--card-bg);
+      border-radius: 20px;
+      padding: 28px 20px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.08);
       display: flex;
       flex-direction: column;
+      align-items: center;
       gap: 12px;
-      width: 100%;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
     }
 
-    .btn-nav {
+    /* Picture / Avatar Frame with Background Glow */
+    .profile-picture-frame {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      border: 4px solid var(--accent-orange);
+      background-color: #0f172a;
+      background-image: radial-gradient(circle at center, rgba(6, 182, 212, 0.3), rgba(15, 23, 42, 0.9));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(255, 88, 0, 0.3);
+    }
+
+    .profile-picture-frame img {
       width: 100%;
-      padding: 16px;
-      border-radius: 12px;
-      font-size: 1.1rem;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .avatar-placeholder {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    /* Permanent Name & Subtitle */
+    .profile-name {
+      font-size: 1.8rem;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+
+    .profile-tagline {
+      color: var(--accent-cyan);
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    /* ================= 3-TAB SUB NAVIGATION BAR ================= */
+    .nav-tabs {
+      display: flex;
+      background-color: rgba(30, 41, 59, 0.8);
+      padding: 6px;
+      border-radius: 14px;
+      gap: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 12px 8px;
+      border-radius: 10px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 0.88rem;
       font-weight: 700;
-      border: 2px solid transparent;
       cursor: pointer;
-      text-align: center;
       transition: all 0.25s ease-in-out;
+      text-align: center;
     }
 
-    .btn-nav:active {
-      transform: scale(0.98);
-    }
-
-    .btn-resume {
+    .tab-btn.active-tab {
       background-color: var(--accent-orange);
       color: #ffffff;
-      box-shadow: 0 4px 14px rgba(255, 88, 0, 0.35);
+      box-shadow: 0 4px 12px rgba(255, 88, 0, 0.35);
     }
 
-    .btn-resume.active {
-      border-color: #ffffff;
-      box-shadow: 0 0 18px rgba(255, 88, 0, 0.6);
-    }
-
-    .btn-projects {
-      background-color: var(--accent-cyan);
-      color: #ffffff;
-      box-shadow: 0 4px 14px rgba(6, 182, 212, 0.35);
-    }
-
-    .btn-projects.active {
-      border-color: #ffffff;
-      box-shadow: 0 0 18px rgba(6, 182, 212, 0.6);
-    }
-
-    /* FULL PAGE VIEW CONTAINERS */
+    /* ================= DYNAMIC PAGE VIEW CONTAINERS ================= */
     .page-view {
       display: none;
       flex-direction: column;
-      gap: 24px;
+      gap: 20px;
       opacity: 0;
-      transform: translateY(10px);
+      transform: translateY(8px);
       transition: opacity 0.3s ease, transform 0.3s ease;
     }
 
@@ -120,7 +142,7 @@
       transform: translateY(0);
     }
 
-    /* Quick Facts Box */
+    /* Cards & Section Styling */
     .quick-facts-card {
       background-color: var(--card-bg);
       border-radius: 16px;
@@ -149,10 +171,9 @@
       font-weight: 600;
     }
 
-    /* Headings */
     .section-header {
       text-align: center;
-      margin: 12px 0 6px;
+      margin: 8px 0 4px;
     }
 
     .gradient-title {
@@ -166,80 +187,24 @@
     .section-subtitle {
       color: var(--text-muted);
       font-size: 0.95rem;
-      margin-top: 8px;
+      margin-top: 6px;
       line-height: 1.4;
       text-align: center;
     }
 
-    /* ATS CV Download Section */
-    .download-card {
-      background-color: var(--card-bg);
-      border-radius: 20px;
-      padding: 32px 24px;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .icon-badge {
-      width: 64px;
-      height: 64px;
-      background-color: var(--accent-orange);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px;
-      color: #ffffff;
-    }
-
-    .download-title {
-      font-size: 1.5rem;
-      font-weight: 800;
-    }
-
-    .download-desc {
-      color: var(--text-muted);
-      font-size: 0.92rem;
-      line-height: 1.5;
-    }
-
-    .btn-download {
-      background-color: var(--accent-green);
-      color: #ffffff;
-      width: 100%;
-      max-width: 240px;
-      padding: 14px;
-      border-radius: 10px;
-      font-weight: 600;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: opacity 0.2s;
-    }
-
-    .btn-download:hover {
-      opacity: 0.9;
-    }
-
-    /* Web Application Style Resume Display (White Container) */
+    /* White Background Container */
     .white-section {
       background-color: #f8fafc;
       color: var(--text-dark);
       border-radius: 20px;
-      padding: 28px 20px;
+      padding: 24px 20px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 18px;
     }
 
     .summary-heading {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       font-weight: 800;
       text-align: center;
       color: #0b1329;
@@ -255,19 +220,19 @@
     .content-card {
       background-color: #ffffff;
       border-radius: 16px;
-      padding: 24px;
+      padding: 20px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
     }
 
     .card-icon {
-      font-size: 28px;
+      font-size: 26px;
     }
 
     .card-heading {
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       font-weight: 800;
       color: #0b1329;
     }
@@ -278,18 +243,18 @@
       line-height: 1.5;
     }
 
-    /* Experience & Education Timelines */
+    /* Experience & Education Items */
     .timeline-item {
       border-left: 3px solid var(--accent-cyan);
-      padding-left: 16px;
-      margin-top: 8px;
+      padding-left: 14px;
+      margin-top: 6px;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 4px;
     }
 
     .item-title {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 700;
       color: #0b1329;
     }
@@ -305,22 +270,73 @@
       color: #526072;
     }
 
-    /* Project Cards Structure */
+    /* CV Download Box */
+    .download-card {
+      background-color: var(--card-bg);
+      border-radius: 20px;
+      padding: 28px 20px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .icon-badge {
+      width: 56px;
+      height: 56px;
+      background-color: var(--accent-orange);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #ffffff;
+    }
+
+    .download-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+    }
+
+    .download-desc {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .btn-download {
+      background-color: var(--accent-green);
+      color: #ffffff;
+      width: 100%;
+      max-width: 220px;
+      padding: 12px;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    /* Project Cards */
     .project-card {
       background-color: var(--card-bg);
       border-radius: 18px;
-      padding: 24px;
+      padding: 22px;
       border: 1px solid rgba(255, 255, 255, 0.08);
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
     }
 
     .project-badge {
       display: inline-block;
-      padding: 4px 12px;
+      padding: 4px 10px;
       border-radius: 20px;
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       font-weight: 700;
       background-color: rgba(6, 182, 212, 0.15);
       color: var(--accent-cyan);
@@ -328,27 +344,27 @@
     }
 
     .project-title {
-      font-size: 1.3rem;
+      font-size: 1.25rem;
       font-weight: 800;
     }
 
     .project-desc {
       color: var(--text-muted);
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       line-height: 1.5;
     }
 
     .tech-stack {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 6px;
       margin-top: 4px;
     }
 
     .tech-tag {
       background-color: rgba(255, 255, 255, 0.05);
       color: #ffffff;
-      padding: 4px 10px;
+      padding: 4px 8px;
       border-radius: 6px;
       font-size: 0.8rem;
     }
@@ -357,34 +373,34 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 6px;
       background-color: var(--accent-cyan);
       color: #ffffff;
-      padding: 10px 16px;
+      padding: 10px 14px;
       border-radius: 8px;
       text-decoration: none;
       font-weight: 600;
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       width: fit-content;
-      margin-top: 6px;
+      margin-top: 4px;
     }
 
     /* Metrics Container */
     .metrics-container {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 14px;
     }
 
     .metric-card {
       background-color: var(--card-bg);
       border-radius: 16px;
-      padding: 24px;
+      padding: 20px;
       text-align: center;
     }
 
     .metric-number {
-      font-size: 2.8rem;
+      font-size: 2.5rem;
       font-weight: 800;
       background: linear-gradient(90deg, var(--accent-orange), var(--accent-cyan));
       -webkit-background-clip: text;
@@ -394,13 +410,13 @@
     .metric-label {
       font-weight: 600;
       margin-top: 4px;
-      font-size: 1rem;
+      font-size: 0.95rem;
     }
 
     .metric-subtext {
       color: var(--text-muted);
       font-size: 0.85rem;
-      margin-top: 6px;
+      margin-top: 4px;
     }
   </style>
 </head>
@@ -408,22 +424,27 @@
 
   <div class="container">
 
-    <!-- Header Navigation -->
-    <header class="header">
-      <div class="brand-name">Chimezie <span>Emmanuel</span></div>
-      <div style="font-size: 20px; cursor: pointer;">☰</div>
-    </header>
-
-    <!-- Navigation Buttons (Equal Length Frames) -->
-    <div class="action-group">
-      <button id="btn-resume-nav" class="btn-nav btn-resume active" onclick="showFullPage('resume-page')">View Resume</button>
-      <button id="btn-projects-nav" class="btn-nav btn-projects" onclick="showFullPage('projects-page')">Explore Projects</button>
+    <!-- PERMANENT PROFILE HEADER (NEVER SWAPS, STAYS VISIBLE ON ALL 3 TABS) -->
+    <div class="permanent-header">
+      <div class="profile-picture-frame">
+        <!-- Replace 'your-photo.jpg' with your actual image path -->
+        <img src="your-photo.jpg" alt="Emmanuel Chimezie" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+        <span class="avatar-placeholder" style="display:none;">EC</span>
+      </div>
+      <h1 class="profile-name">EMMANUEL CHIMEZIE</h1>
+      <p class="profile-tagline">AI Systems & Computer Engineer</p>
     </div>
 
-    <!-- ================= PAGE 1: WEB APP RESUME DISPLAY ================= -->
-    <main id="resume-page" class="page-view active-page">
+    <!-- 3-TAB SUB NAVIGATION CONTROLLER -->
+    <div class="nav-tabs">
+      <button id="tab-overview" class="tab-btn active-tab" onclick="switchTab('overview-page', 'tab-overview')">Overview</button>
+      <button id="tab-resume" class="tab-btn" onclick="switchTab('resume-page', 'tab-resume')">View Resume</button>
+      <button id="tab-projects" class="tab-btn" onclick="switchTab('projects-page', 'tab-projects')">Explore Projects</button>
+    </div>
 
-      <!-- Quick Facts Box -->
+    <!-- ================= SUB TAB 1: OVERVIEW (HOME) ================= -->
+    <main id="overview-page" class="page-view active-page">
+
       <div class="quick-facts-card">
         <h3 class="card-title">Quick Facts</h3>
         <div class="fact-row">
@@ -444,38 +465,39 @@
         </div>
       </div>
 
-      <!-- CV Download Section with Link to PDF -->
-      <div class="section-header">
-        <h2 class="gradient-title">Download My Resume</h2>
-        <p class="section-subtitle">Get a detailed overview of my professional experience, skills, and achievements</p>
-      </div>
-
-      <div class="download-card">
-        <div class="icon-badge">📄</div>
-        <h3 class="download-title">Engineer CV</h3>
-        <p class="download-desc">Comprehensive resume built to ATS resume standards, highlighting AI model architecture, LLM engineering, and system optimizations.</p>
-        
-        <!-- Live Download Link to CHIMEZIE-CV.pdf -->
-        <a href="https://alexemmanuel.github.io/CHIMEZIE-CV.pdf" class="btn-download" download="CHIMEZIE-CV.pdf" target="_blank" rel="noopener noreferrer">
-          <span>⬇</span> Download PDF
-        </a>
-      </div>
-
-      <!-- Interactive Web Application Style Resume -->
       <div class="white-section">
         <h2 class="summary-heading">Professional Summary</h2>
         <p class="summary-text">
           Results-driven AI Prompt Engineer and Computer Engineer with expertise in developing intelligent agent systems, machine learning pipelines, and scalable LLM architectures. Demonstrated success in reducing operational overhead by 90% through AI-powered automation and building production-ready web platforms.
         </p>
 
-        <!-- Core Technical Competencies -->
         <div class="content-card">
           <div class="card-icon">🚀</div>
-          <h4 class="card-heading">AI & LLM Orchestration</h4>
+          <h4 class="card-heading">Core Competencies</h4>
           <p class="card-body">Specialized in Prompt Engineering pipelines, multi-agent debate logic, natural language constraints, and generative art asset execution.</p>
         </div>
+      </div>
 
-        <!-- Work Experience Showcase -->
+    </main>
+
+
+    <!-- ================= SUB TAB 2: VIEW RESUME ================= -->
+    <main id="resume-page" class="page-view">
+
+      <!-- ATS CV Download Card -->
+      <div class="download-card">
+        <div class="icon-badge">📄</div>
+        <h3 class="download-title">Download Resume</h3>
+        <p class="download-desc">ATS-compliant CV highlighting AI model architecture, LLM prompt engineering, and system optimizations.</p>
+        <a href="https://alexemmanuel.github.io/CHIMEZIE-CV.pdf" class="btn-download" download="CHIMEZIE-CV.pdf" target="_blank" rel="noopener noreferrer">
+          <span>⬇</span> Download PDF
+        </a>
+      </div>
+
+      <!-- Experience & Education -->
+      <div class="white-section">
+        <h2 class="summary-heading">Work & Education</h2>
+
         <div class="content-card">
           <div class="card-icon">💼</div>
           <h4 class="card-heading">Work Experience</h4>
@@ -487,7 +509,7 @@
             <p class="card-body" style="margin-top: 4px;">Architected full-stack platforms including TrustFarms and generative AI asset pipelines with structured LLM workflows.</p>
           </div>
 
-          <div class="timeline-item" style="margin-top: 14px;">
+          <div class="timeline-item" style="margin-top: 12px;">
             <div class="item-title">Graduate Engineer</div>
             <div class="item-sub">National Youth Service Corps (NYSC)</div>
             <div class="item-date">2023 - 2024</div>
@@ -495,7 +517,6 @@
           </div>
         </div>
 
-        <!-- Education Showcase -->
         <div class="content-card">
           <div class="card-icon">🎓</div>
           <h4 class="card-heading">Education</h4>
@@ -506,15 +527,9 @@
             <p class="card-body" style="margin-top: 4px;">Focused on software engineering, hardware-software interfacing, data structures, and computational intelligence systems.</p>
           </div>
         </div>
-
       </div>
 
-      <!-- Key Achievements & Metrics -->
-      <div class="section-header">
-        <h2 class="gradient-title">Key Achievements & Metrics</h2>
-        <p class="section-subtitle">Measurable impact across AI/ML implementations and system optimizations</p>
-      </div>
-
+      <!-- Key Metrics -->
       <div class="metrics-container">
         <div class="metric-card">
           <div class="metric-number">90%</div>
@@ -532,15 +547,15 @@
     </main>
 
 
-    <!-- ================= PAGE 2: EXPLORE PROJECTS VIEW ================= -->
+    <!-- ================= SUB TAB 3: EXPLORE PROJECTS ================= -->
     <main id="projects-page" class="page-view">
 
       <div class="section-header">
-        <h2 class="gradient-title">Featured Work & Applications</h2>
+        <h2 class="gradient-title">Featured Applications</h2>
         <p class="section-subtitle">Production-ready AI frameworks, Web3 architectures, and generative system pipelines</p>
       </div>
 
-      <!-- Project 1: TrustFarms -->
+      <!-- TrustFarms -->
       <div class="project-card">
         <span class="project-badge">Agricultural Tech Platform</span>
         <h3 class="project-title">TrustFarms</h3>
@@ -556,7 +571,7 @@
         </a>
       </div>
 
-      <!-- Project 2: NFT Forge -->
+      <!-- NFT Forge -->
       <div class="project-card">
         <span class="project-badge">Generative Pipeline</span>
         <h3 class="project-title">NFT Forge</h3>
@@ -565,14 +580,13 @@
           <span class="tech-tag">Generative AI</span>
           <span class="tech-tag">Image-to-Image</span>
           <span class="tech-tag">Canvas Layering</span>
-          <span class="tech-tag">Asset Pipeline</span>
         </div>
         <a href="https://alexemmanuel.github.io" class="project-action-btn" target="_blank" rel="noopener noreferrer">
           View Architecture ↗
         </a>
       </div>
 
-      <!-- Project 3: Multi-Agent Debate Platform -->
+      <!-- Multi-Agent Debate Platform -->
       <div class="project-card">
         <span class="project-badge">LLM Orchestration</span>
         <h3 class="project-title">Multi-Agent Debate & Poetry Engine</h3>
@@ -581,14 +595,13 @@
           <span class="tech-tag">Multi-Agent LLM</span>
           <span class="tech-tag">Prompt Engineering</span>
           <span class="tech-tag">Rule Engine</span>
-          <span class="tech-tag">Context Routing</span>
         </div>
         <a href="https://alexemmanuel.github.io" class="project-action-btn" target="_blank" rel="noopener noreferrer">
           Explore Demo ↗
         </a>
       </div>
 
-      <!-- Project 4: Project 001 Collection -->
+      <!-- Project 001 Collection -->
       <div class="project-card">
         <span class="project-badge">Web3 Commercial Art</span>
         <h3 class="project-title">Project 001 - Gecko Squad</h3>
@@ -607,27 +620,23 @@
 
   </div>
 
-  <!-- JavaScript Full-Page Switcher Logic -->
+  <!-- Sub-Tab Switcher Script -->
   <script>
-    function showFullPage(targetPageId) {
+    function switchTab(targetPageId, targetTabId) {
+      // Hide all sub pages
       const pages = document.querySelectorAll('.page-view');
       pages.forEach(page => page.classList.remove('active-page'));
 
-      document.getElementById('btn-resume-nav').classList.remove('active');
-      document.getElementById('btn-projects-nav').classList.remove('active');
+      // Deactivate all tab buttons
+      const tabs = document.querySelectorAll('.tab-btn');
+      tabs.forEach(tab => tab.classList.remove('active-tab'));
 
+      // Show selected page and activate tab
       const selectedPage = document.getElementById(targetPageId);
-      if (selectedPage) {
-        selectedPage.classList.add('active-page');
-      }
+      const selectedTab = document.getElementById(targetTabId);
 
-      if (targetPageId === 'resume-page') {
-        document.getElementById('btn-resume-nav').classList.add('active');
-      } else if (targetPageId === 'projects-page') {
-        document.getElementById('btn-projects-nav').classList.add('active');
-      }
-
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (selectedPage) selectedPage.classList.add('active-page');
+      if (selectedTab) selectedTab.classList.add('active-tab');
     }
   </script>
 
