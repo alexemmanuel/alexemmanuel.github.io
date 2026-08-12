@@ -637,8 +637,12 @@
     width: 44px; height: 44px; border-radius: 10px;
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
-    transition: transform 0.15s ease, border-color 0.15s ease;
+    transition: transform 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
   }
+  a.contact-icon-badge:hover { transform: scale(1.06); opacity: 0.9; }
   .contact-icon-badge.i-coral { background: var(--coral-tint); color: var(--accent-coral); border: 1px solid var(--accent-coral); }
   .contact-icon-badge.i-teal { background: var(--teal-tint); color: var(--accent-teal); border: 1px solid var(--accent-teal); }
   .contact-icon-badge.i-sky { background: var(--sky-tint); color: var(--accent-sky); border: 1px solid var(--accent-sky); }
@@ -648,22 +652,15 @@
 
   .contact-row-val {
     font-family: var(--mono);
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
     color: var(--ink);
     user-select: all;
     word-break: break-all;
     overflow-wrap: anywhere;
-    white-space: nowrap;
+    min-width: 0;
+    flex: 1;
   }
-  .contact-row-link {
-    font-family: var(--mono);
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--accent-teal);
-    transition: color 0.15s ease;
-  }
-  .contact-row-link:hover { color: var(--accent-coral); }
 
   footer{ padding: 30px 0 44px; text-align: center; font-size: 13px; color: var(--ink-soft); }
 </style>
@@ -928,38 +925,38 @@
         <div class="contact-stacked-list">
           
           <div class="contact-row">
-            <div class="contact-icon-badge i-coral" title="Email">
+            <a href="mailto:alexemmanuelz24@gmail.com" class="contact-icon-badge i-coral" title="Send Email">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            </div>
+            </a>
             <span class="contact-row-val">alexemmanuelz24@gmail.com</span>
           </div>
 
           <div class="contact-row">
-            <div class="contact-icon-badge i-teal" title="Phone">
+            <a href="tel:+2348134328147" class="contact-icon-badge i-teal" title="Call">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            </div>
+            </a>
             <span class="contact-row-val">+234 8134328147</span>
           </div>
 
-          <div class="contact-row">
-            <div class="contact-icon-badge i-sky" title="CV / Resume">
+          <div class="contact-row" style="cursor: pointer;" onclick="showPage('resume')" title="View Resume / Download CV">
+            <a href="javascript:void(0)" onclick="showPage('resume'); event.stopPropagation();" class="contact-icon-badge i-sky" title="View Resume">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M10 12h1v3"/><path d="M10 12h2.5a1.5 1.5 0 0 1 0 3H10"/><path d="M14 12h1.5a1.5 1.5 0 0 1 0 3H14v-3z"/></svg>
-            </div>
-            <a href="CHIMEZIE-CV.pdf" download target="_blank" rel="noopener" class="contact-row-link">DOWNLOAD CV</a>
+            </a>
+            <span class="contact-row-val" style="color: var(--accent-teal); cursor: pointer;">DOWNLOAD CV</span>
           </div>
 
           <div class="contact-row">
-            <div class="contact-icon-badge i-purple" title="LinkedIn">
+            <a href="https://www.linkedin.com/in/emmanuel-uzochukwu-chimezie" target="_blank" rel="noopener" class="contact-icon-badge i-purple" title="Open LinkedIn">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
-            </div>
-            <a href="https://www.linkedin.com/in/emmanuel-uzochukwu-chimezie" target="_blank" rel="noopener" class="contact-row-link">LinkedIn</a>
+            </a>
+            <span class="contact-row-val">https://www.linkedin.com/in/emmanuel-uzochukwu-chimezie</span>
           </div>
 
           <div class="contact-row">
-            <div class="contact-icon-badge i-gold" title="X (Twitter)">
+            <a href="https://x.com/letushholdsome" target="_blank" rel="noopener" class="contact-icon-badge i-gold" title="Open X (Twitter)">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            </div>
-            <a href="https://x.com/letushholdsome" target="_blank" rel="noopener" class="contact-row-link">X (Twitter)</a>
+            </a>
+            <span class="contact-row-val">https://x.com/letushholdsome</span>
           </div>
 
         </div>
