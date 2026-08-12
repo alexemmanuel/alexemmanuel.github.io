@@ -140,9 +140,9 @@
     border-radius: 2px;
     transition: transform 0.2s ease, opacity 0.2s ease;
   }
-  .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
   .nav-toggle.open span:nth-child(2) { opacity: 0; }
-  .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .nav-toggle.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
   
   nav{ display:flex; gap: 18px; margin-left: auto; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
   nav::-webkit-scrollbar{ display: none; }
@@ -634,11 +634,47 @@
   .edu-org{ font-size: 14px; color: var(--accent-coral); font-weight: 600; margin-bottom: 8px; }
   .edu p{ font-size: 14px; color: var(--ink-soft); }
 
-  /* ---------- Resume Page (reference-style layout) ---------- */
-  .resume-intro { margin-bottom: 28px; }
+  /* ---------- Resume Page (polished layout) ---------- */
+  .resume-avail {
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    font-family: var(--mono); font-size: 13px; font-weight: 600;
+    color: var(--accent-teal); background: var(--teal-tint);
+    border: 1px solid var(--accent-teal); border-radius: 999px;
+    padding: 10px 16px; margin-bottom: 22px; width: fit-content;
+  }
+  .resume-avail .dot {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--accent-teal);
+    box-shadow: 0 0 8px var(--accent-teal);
+  }
+
+  .resume-hook {
+    font-family: var(--serif); font-weight: 800;
+    font-size: clamp(22px, 3.2vw, 28px); line-height: 1.25;
+    color: var(--ink); margin-bottom: 12px; max-width: 28ch;
+  }
+  .resume-intro { margin-bottom: 22px; }
   .resume-intro p {
     font-size: 16px; color: var(--ink-soft); max-width: 68ch; line-height: 1.7;
   }
+
+  .metric-strip {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+    margin: 22px 0 8px;
+  }
+  @media (max-width: 680px){ .metric-strip { grid-template-columns: 1fr 1fr; } }
+  .metric-chip {
+    background: var(--bg-panel-2); border: 1px solid var(--line);
+    border-radius: 12px; padding: 16px 12px; text-align: center;
+  }
+  .metric-chip .m-num {
+    font-family: var(--serif); font-size: 26px; font-weight: 800;
+    color: var(--accent-teal); line-height: 1.1; margin-bottom: 4px;
+  }
+  .metric-chip .m-label {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .03em;
+    color: var(--ink-soft); text-transform: uppercase;
+  }
+
   .quick-facts {
     display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
     margin-top: 24px;
@@ -656,32 +692,77 @@
     font-size: 14px; font-weight: 700; color: var(--ink);
   }
 
+  .section-panel.accent-teal { border-color: rgba(47,211,194,.35); }
+  .section-panel.accent-coral { border-color: rgba(255,111,89,.35); }
+  .section-panel.accent-sky { border-color: rgba(108,160,255,.35); }
+
   .cv-download-block {
-    background: var(--bg-panel-2); border: 1px solid var(--accent-teal);
-    border-radius: 14px; padding: 24px 22px; margin: 8px 0 28px;
+    background: linear-gradient(135deg, #122826, #1a2330);
+    border: 1px solid var(--accent-teal);
+    border-radius: 16px; padding: 28px 24px; margin: 8px 0 8px;
+    position: relative; overflow: hidden;
   }
   .cv-download-block h3 {
-    font-family: var(--serif); font-size: 20px; color: var(--ink); margin-bottom: 8px;
+    font-family: var(--serif); font-size: 24px; color: var(--ink); margin-bottom: 10px;
   }
   .cv-download-block p {
-    font-size: 14px; color: var(--ink-soft); margin-bottom: 16px; max-width: 56ch;
+    font-size: 14px; color: var(--ink-soft); margin-bottom: 14px; max-width: 56ch;
   }
-  .cv-download-block .cv-meta {
-    font-family: var(--mono); font-size: 12px; color: var(--accent-teal);
-    margin-bottom: 16px;
+  .cv-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+  .cv-badge {
+    font-family: var(--mono); font-size: 11px; font-weight: 700;
+    padding: 5px 12px; border-radius: 999px;
+    color: var(--accent-teal); background: var(--teal-tint);
+    border: 1px solid var(--accent-teal);
+  }
+  .cv-badge.alt {
+    color: var(--accent-coral); background: var(--coral-tint);
+    border-color: var(--accent-coral);
   }
 
   .summary-cards {
     display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 8px;
   }
+  @media (min-width: 700px){ .summary-cards { grid-template-columns: 1fr 1fr 1fr; } }
   .summary-card {
     background: var(--bg-panel-2); border: 1px solid var(--line);
     border-radius: 12px; padding: 18px 18px;
+    transition: transform .15s ease, border-color .15s ease;
   }
+  .summary-card:hover { transform: translateY(-2px); border-color: var(--accent-teal); }
   .summary-card h4 {
     font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 6px;
   }
   .summary-card p { font-size: 14px; color: var(--ink-soft); margin: 0; }
+
+  /* Timeline with vertical rail */
+  .timeline-rail { position: relative; display: flex; flex-direction: column; gap: 28px; }
+  .timeline-rail::before {
+    content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px;
+    width: 2px; background: rgba(255,255,255,.12);
+  }
+  @media (min-width: 681px) {
+    .timeline-rail::before { left: 167px; }
+  }
+  .timeline-rail .role { position: relative; }
+  .timeline-rail .role-date { position: relative; padding-left: 22px; }
+  .timeline-rail .role-date::before {
+    content: ''; position: absolute; left: 3px; top: 6px;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent-teal); box-shadow: 0 0 0 3px var(--teal-tint);
+  }
+  @media (min-width: 681px) {
+    .timeline-rail .role-date { padding-left: 0; }
+    .timeline-rail .role-date::before { left: auto; right: -22px; }
+  }
+  .role-bullets { list-style: none; padding: 0; margin: 10px 0 0; }
+  .role-bullets li {
+    font-size: 14px; color: var(--ink-soft);
+    padding-left: 18px; position: relative; margin-bottom: 6px;
+  }
+  .role-bullets li::before {
+    content: '→'; position: absolute; left: 0; color: var(--accent-coral); font-weight: 700;
+  }
 
   .skill-bars { display: flex; flex-direction: column; gap: 16px; margin-top: 8px; }
   .skill-bar-row { display: flex; flex-direction: column; gap: 6px; }
@@ -695,8 +776,19 @@
     height: 8px; background: rgba(255,255,255,.08); border-radius: 999px; overflow: hidden;
   }
   .skill-fill {
-    height: 100%; border-radius: 999px;
+    height: 100%; border-radius: 999px; width: 0;
     background: linear-gradient(90deg, var(--accent-coral), var(--accent-teal));
+    transition: width 1s ease;
+  }
+  .skill-fill.animate { /* width set via data-width in JS */ }
+
+  .tools-row {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px;
+  }
+  .tool-chip {
+    font-family: var(--mono); font-size: 12px; font-weight: 600;
+    padding: 7px 12px; border-radius: 8px;
+    background: var(--bg-panel-2); border: 1px solid var(--line); color: var(--ink);
   }
 
   .role-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
@@ -705,6 +797,46 @@
     padding: 4px 10px; border-radius: 999px;
     color: var(--accent-sky); background: var(--sky-tint); border: 1px solid rgba(108,160,255,.25);
   }
+
+  .work-callouts {
+    display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 8px;
+  }
+  @media (min-width: 700px){ .work-callouts { grid-template-columns: 1fr 1fr 1fr; } }
+  .work-card {
+    background: var(--bg-panel-2); border: 1px solid var(--line);
+    border-radius: 12px; padding: 18px 16px;
+    transition: transform .15s ease, border-color .15s ease;
+  }
+  .work-card:hover { transform: translateY(-2px); border-color: var(--accent-coral); }
+  .work-card h4 { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+  .work-card p { font-size: 13px; color: var(--ink-soft); margin-bottom: 12px; }
+  .work-card a {
+    font-family: var(--mono); font-size: 12px; font-weight: 700;
+    color: var(--accent-teal);
+  }
+  .work-card a:hover { color: var(--accent-coral); }
+
+  .resume-cta {
+    background: linear-gradient(135deg, #122826, #161F2C);
+    border: 1px solid var(--accent-teal); border-radius: 16px;
+    padding: 32px 28px; text-align: center; margin-top: 8px;
+  }
+  .resume-cta h2 { margin-bottom: 10px; }
+  .resume-cta p { color: var(--ink-soft); max-width: 48ch; margin: 0 auto 20px; }
+
+  /* Sticky CV download bar */
+  .sticky-cv-bar {
+    display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 40;
+    background: rgba(13,17,24,.92); backdrop-filter: blur(10px);
+    border-top: 1px solid var(--line);
+    padding: 12px 20px;
+    align-items: center; justify-content: center; gap: 16px;
+  }
+  .sticky-cv-bar.visible { display: flex; }
+  .sticky-cv-bar span {
+    font-family: var(--mono); font-size: 13px; color: var(--ink-soft);
+  }
+  .sticky-cv-bar .btn { flex: none; padding: 10px 18px; font-size: 12px; }
 
   /* ---------- Contact Section ---------- */
   .contact-card{
@@ -898,7 +1030,7 @@
 
           <div class="credentials">
             <a class="cred c-coral" href="https://github.com/alexemmanuel" target="_blank" rel="noopener"><span class="check">✓</span> GitHub</a>
-            <a class="cred c-teal" href="https://orcid.org/0009-0004-7345-1280" target="_blank" rel="noopener"><span class="check">✓</span> ORCID</a>
+            <a class="cred c-teal" href="https://orcid.org/0009-0004-6345-1280" target="_blank" rel="noopener"><span class="check">✓</span> ORCID</a>
           </div>
         </div>
         
@@ -976,7 +1108,7 @@
             <polygon points="280,91 377,154 379,268 280,316 185,265 191,159" fill="url(#radarFill)" stroke="#FF6F59" stroke-width="2.5" filter="url(#glow)"/>
 
             <g class="radar-node">
-              <circle cx="280" cy="91" r="7" fill="#FF6F59" stroke="#0D1118" stroke-width="2" />
+              <circle cx="280" cy="91" r="8" fill="#FF6F59" stroke="#0D1118" stroke-width="2" />
               <g class="radar-tooltip-card">
                 <rect x="185" y="12" width="190" height="46" rx="8" fill="#1C232D" stroke="#FF6F59" stroke-width="1" />
                 <text x="195" y="28" fill="#EDF0F5" font-family="Inter" font-size="12" font-weight="bold">Prompt Architecture: 95%</text>
@@ -985,7 +1117,7 @@
             </g>
 
             <g class="radar-node">
-              <circle cx="377" cy="154" r="7" fill="#FF6F59" stroke="#0D1118" stroke-width="2" />
+              <circle cx="377" cy="154" r="8" fill="#FF6F59" stroke="#0D1118" stroke-width="2" />
               <g class="radar-tooltip-card">
                 <rect x="340" y="80" width="195" height="46" rx="8" fill="#1C232D" stroke="#FF6F59" stroke-width="1" />
                 <text x="350" y="96" fill="#EDF0F5" font-family="Inter" font-size="12" font-weight="bold">App Development: 90%</text>
@@ -994,7 +1126,7 @@
             </g>
 
             <g class="radar-node">
-              <circle cx="379" cy="268" r="7" fill="#FF6F59" stroke="#0D1118" stroke-width="2" />
+              <circle cx="379" cy="268" r="8" fill="#FF6F59" stroke="#0D1118" stroke-width="2" />
               <g class="radar-tooltip-card">
                 <rect x="340" y="290" width="195" height="46" rx="8" fill="#1C232D" stroke="#FF6F59" stroke-width="1" />
                 <text x="350" y="306" fill="#EDF0F5" font-family="Inter" font-size="12" font-weight="bold">LLM Workflows: 92%</text>
@@ -1003,7 +1135,7 @@
             </g>
 
             <g class="radar-node">
-              <circle cx="280" cy="316" r="7" fill="#FF6F59" stroke="#0D1118" stroke-width="2" />
+              <circle cx="280" cy="316" r="8" fill="#FF6F59" stroke="#0D1118" stroke-width="2" />
               <g class="radar-tooltip-card">
                 <rect x="185" y="362" width="190" height="46" rx="8" fill="#1C232D" stroke="#FF6F59" stroke-width="1" />
                 <text x="195" y="378" fill="#EDF0F5" font-family="Inter" font-size="12" font-weight="bold">System Architecture: 85%</text>
@@ -1012,7 +1144,7 @@
             </g>
 
             <g class="radar-node">
-              <circle cx="185" cy="265" r="7" fill="#FF6F59" stroke="#0D1118" stroke-width="2" />
+              <circle cx="185" cy="265" r="8" fill="#FF6F59" stroke="#0D1118" stroke-width="2" />
               <g class="radar-tooltip-card">
                 <rect x="20" y="290" width="195" height="46" rx="8" fill="#1C232D" stroke="#FF6F59" stroke-width="1" />
                 <text x="30" y="306" fill="#EDF0F5" font-family="Inter" font-size="12" font-weight="bold">Generative Media: 88%</text>
@@ -1021,7 +1153,7 @@
             </g>
 
             <g class="radar-node">
-              <circle cx="191" cy="159" r="7" fill="#FF6F59" stroke="#0D1118" stroke-width="2" />
+              <circle cx="191" cy="159" r="8" fill="#FF6F59" stroke="#0D1118" stroke-width="2" />
               <g class="radar-tooltip-card">
                 <rect x="20" y="80" width="195" height="46" rx="8" fill="#1C232D" stroke="#FF6F59" stroke-width="1" />
                 <text x="30" y="96" fill="#EDF0F5" font-family="Inter" font-size="12" font-weight="bold">Full-Stack &amp; APIs: 82%</text>
@@ -1132,11 +1264,11 @@
           </div>
 
           <div class="contact-row">
-            <a href="tel:+2348134328147" class="contact-icon-badge i-teal" title="Call">
+            <a href="tel:+2348134328146" class="contact-icon-badge i-teal" title="Call">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             </a>
-            <span class="contact-row-action" data-url="+234 8134328147" onclick="toggleShareMenu(event, this)">
-              +234 8134328147
+            <span class="contact-row-action" data-url="+234 8134328146" onclick="toggleShareMenu(event, this)">
+              +234 8134328146
               <div class="share-menu">
                 <button type="button" onclick="copyLink(event, this)">Copy</button>
                 <button type="button" onclick="shareLink(event, this)">Share</button>
@@ -1319,7 +1451,7 @@
             </div>
           </div>
           <div class="case-links">
-            <a class="case-link c-coral" href="https://claude.ai/public/artifacts/5fce0878-9875-4b34-a908-0037132dd52a" target="_blank" rel="noopener">Live Prototype</a>
+            <a class="case-link c-coral" href="https://claude.ai/public/artifacts/5fce0878-9875-4b34-a908-0036132dd52a" target="_blank" rel="noopener">Live Prototype</a>
           </div>
         </div>
 
@@ -1335,30 +1467,37 @@
       <button class="btn btn-primary" onclick="showPage('projects')" style="flex: none; width: auto; padding: 12px 24px; font-size: 13px;">EXPLORE PROJECTS</button>
     </div>
 
-    <!-- About / Intro -->
+    <!-- Overview -->
     <section style="padding-top: 0;">
-      <div class="section-panel">
+      <div class="section-panel accent-coral">
+        <div class="resume-avail"><span class="dot"></span> Open to AI Engineering roles · Remote / Abuja</div>
         <div class="eyebrow c-coral">What I Do</div>
-        <h2>Resume Overview</h2>
+        <h2 class="resume-hook">I turn LLM capability into shipped AI products.</h2>
         <div class="resume-intro">
-          <p>An AI Systems Engineer and Prompt Architect with a Computer Engineering foundation, specializing in structured prompt frameworks, LLM workflows, and full-stack AI application development. Focused on turning raw model capabilities into production-ready, user-facing software.</p>
-          <div class="quick-facts">
-            <div class="quick-fact">
-              <div class="qf-label">Location</div>
-              <div class="qf-value">Abuja, Nigeria</div>
-            </div>
-            <div class="quick-fact">
-              <div class="qf-label">Experience</div>
-              <div class="qf-value">3+ Years</div>
-            </div>
-            <div class="quick-fact">
-              <div class="qf-label">Specialization</div>
-              <div class="qf-value">AI &amp; Prompt Eng.</div>
-            </div>
-            <div class="quick-fact">
-              <div class="qf-label">Education</div>
-              <div class="qf-value">B.Eng Computer Engineering</div>
-            </div>
+          <p>AI Systems Engineer and Prompt Architect with a Computer Engineering foundation — building structured prompt frameworks, LLM workflows, and full-stack AI applications that users can actually operate.</p>
+        </div>
+        <div class="metric-strip">
+          <div class="metric-chip"><div class="m-num">4+</div><div class="m-label">AI Apps Shipped</div></div>
+          <div class="metric-chip"><div class="m-num">3+</div><div class="m-label">Years Building</div></div>
+          <div class="metric-chip"><div class="m-num">95%</div><div class="m-label">Prompt Focus</div></div>
+          <div class="metric-chip"><div class="m-num">∞</div><div class="m-label">Remote Ready</div></div>
+        </div>
+        <div class="quick-facts">
+          <div class="quick-fact">
+            <div class="qf-label">Location</div>
+            <div class="qf-value">Abuja, Nigeria</div>
+          </div>
+          <div class="quick-fact">
+            <div class="qf-label">Experience</div>
+            <div class="qf-value">3+ Years</div>
+          </div>
+          <div class="quick-fact">
+            <div class="qf-label">Specialization</div>
+            <div class="qf-value">AI &amp; Prompt Eng.</div>
+          </div>
+          <div class="quick-fact">
+            <div class="qf-label">Education</div>
+            <div class="qf-value">B.Eng Computer Engineering</div>
           </div>
         </div>
       </div>
@@ -1366,37 +1505,41 @@
 
     <!-- Download CV -->
     <section>
-      <div class="section-panel">
+      <div class="section-panel accent-teal">
         <div class="eyebrow c-teal">Documents</div>
         <h2>Download My Resume</h2>
         <p style="color: var(--ink-soft); margin-bottom: 18px; max-width: 56ch;">Get a detailed overview of my professional experience, skills, and achievements.</p>
         <div class="cv-download-block">
           <h3>Engineer CV</h3>
-          <p>ATS-optimized resume highlighting AI systems engineering, prompt architecture, LLM workflows, and application development experience. Formatted to meet standard Applicant Tracking System requirements for clear parsing and keyword alignment.</p>
-          <div class="cv-meta">PDF · ATS-ready · Single-column layout</div>
-          <a class="btn btn-resume" href="CHIMEZIE-CV.pdf" download="CHIMEZIE-CV.pdf" style="flex: none; width: auto; padding: 12px 24px; font-size: 13px;">Download PDF ↓</a>
+          <p>ATS-optimized resume highlighting AI systems engineering, prompt architecture, LLM workflows, and application development experience. Formatted for clear parsing and keyword alignment in Applicant Tracking Systems.</p>
+          <div class="cv-badges">
+            <span class="cv-badge">ATS-Ready</span>
+            <span class="cv-badge alt">PDF</span>
+            <span class="cv-badge">Single-column</span>
+          </div>
+          <a class="btn btn-resume" href="CHIMEZIE-CV.pdf" download="CHIMEZIE-CV.pdf" style="flex: none; width: auto; padding: 14px 28px; font-size: 13px;">Download Engineer CV ↓</a>
         </div>
       </div>
     </section>
 
     <!-- Professional Summary -->
     <section>
-      <div class="section-panel">
+      <div class="section-panel accent-sky">
         <div class="eyebrow c-sky">Summary</div>
         <h2>Professional Summary</h2>
         <p style="color: var(--ink-soft); margin-bottom: 18px; max-width: 68ch;">Results-driven AI Prompt Engineer and Application Developer with experience designing multi-stage prompt logic, building full-stack AI web prototypes, and shipping generative workflows into usable products — from AI-moderated debate platforms to multi-character generative art pipelines.</p>
         <div class="summary-cards">
           <div class="summary-card">
             <h4>Prompt Architecture &amp; LLM Logic</h4>
-            <p>Specialized in system prompts, agentic workflows, context guardrails, and fallacy-aware reasoning pipelines that keep model behavior reliable in production UIs.</p>
+            <p>System prompts, agentic workflows, context guardrails, and fallacy-aware reasoning pipelines that keep model behavior reliable in production UIs.</p>
           </div>
           <div class="summary-card">
             <h4>AI Application Development</h4>
-            <p>Builds end-to-end AI software with TypeScript, Node.js, Supabase, and modern prototyping stacks — turning structured prompts into interactive products users can operate.</p>
+            <p>End-to-end AI software with TypeScript, Node.js, Supabase, and modern builders — structured prompts turned into products users can operate.</p>
           </div>
           <div class="summary-card">
             <h4>Engineering Foundation</h4>
-            <p>Computer Engineering background with hands-on systems diagnostics, technical operations, and problem-solving experience across hardware and software environments.</p>
+            <p>Computer Engineering background with systems diagnostics, technical operations, and problem-solving across hardware and software environments.</p>
           </div>
         </div>
       </div>
@@ -1404,17 +1547,21 @@
 
     <!-- Experience -->
     <section id="experience">
-      <div class="section-panel">
+      <div class="section-panel accent-teal">
         <div class="eyebrow c-teal">Experience</div>
         <h2>Professional Experience</h2>
         <p style="color: var(--ink-soft); margin-bottom: 22px; max-width: 56ch;">Career path spanning AI application development, technical operations, and computer systems engineering.</p>
-        <div class="timeline">
+        <div class="timeline timeline-rail">
           <div class="role">
             <div class="role-date">Mar 2023 — Present</div>
             <div>
               <div class="role-title">AI Prompt Engineer &amp; Application Developer</div>
               <div class="role-org">Independent Specialist / Freelance</div>
-              <p>Designing multi-stage prompt logic, building full-stack AI web prototypes, and engineering generative workflows. Developed production-style applications including AI moderation engines, structured debate platforms, and automated generative media tools.</p>
+              <ul class="role-bullets">
+                <li>Built multi-stage prompt systems and agentic workflows for production-style AI apps</li>
+                <li>Shipped AI moderation, structured debate, and generative media platforms end-to-end</li>
+                <li>Combined TypeScript, LLM APIs, and Supabase into user-ready full-stack prototypes</li>
+              </ul>
               <div class="role-tags">
                 <span class="role-tag">Prompt Engineering</span>
                 <span class="role-tag">TypeScript</span>
@@ -1428,7 +1575,10 @@
             <div>
               <div class="role-title">Technical Operations Support</div>
               <div class="role-org">Nigerian Bulk Electricity Trading Company</div>
-              <p>Provided technical problem-solving, operational system assistance, and workflow troubleshooting across day-to-day infrastructure and process support functions.</p>
+              <ul class="role-bullets">
+                <li>Resolved operational system issues and improved day-to-day workflow reliability</li>
+                <li>Supported infrastructure troubleshooting across technical process functions</li>
+              </ul>
               <div class="role-tags">
                 <span class="role-tag">Operations</span>
                 <span class="role-tag">Troubleshooting</span>
@@ -1441,7 +1591,10 @@
             <div>
               <div class="role-title">Computer Systems Engineer</div>
               <div class="role-org">Pearl Pearl, Ikeja, Lagos</div>
-              <p>Managed technical diagnostics, software configuration, system maintenance, and hardware troubleshooting for client and internal systems.</p>
+              <ul class="role-bullets">
+                <li>Led hardware diagnostics, software configuration, and system maintenance</li>
+                <li>Delivered client and internal troubleshooting across mixed tech environments</li>
+              </ul>
               <div class="role-tags">
                 <span class="role-tag">Hardware</span>
                 <span class="role-tag">Diagnostics</span>
@@ -1454,44 +1607,54 @@
     </section>
 
     <!-- Technical Skills -->
-    <section>
-      <div class="section-panel">
+    <section id="resume-skills">
+      <div class="section-panel accent-coral">
         <div class="eyebrow c-coral">Capabilities</div>
         <h2>Technical Skills</h2>
         <p style="color: var(--ink-soft); margin-bottom: 18px; max-width: 56ch;">Core proficiency across prompt architecture, AI application building, and systems engineering.</p>
         <div class="skill-bars">
           <div class="skill-bar-row">
             <div class="skill-bar-top"><span class="skill-name">Prompt Architecture</span><span class="skill-pct">95%</span></div>
-            <div class="skill-track"><div class="skill-fill" style="width:95%"></div></div>
+            <div class="skill-track"><div class="skill-fill" data-width="95%"></div></div>
           </div>
           <div class="skill-bar-row">
             <div class="skill-bar-top"><span class="skill-name">LLM Workflows</span><span class="skill-pct">92%</span></div>
-            <div class="skill-track"><div class="skill-fill" style="width:92%"></div></div>
+            <div class="skill-track"><div class="skill-fill" data-width="92%"></div></div>
           </div>
           <div class="skill-bar-row">
             <div class="skill-bar-top"><span class="skill-name">App Development</span><span class="skill-pct">90%</span></div>
-            <div class="skill-track"><div class="skill-fill" style="width:90%"></div></div>
+            <div class="skill-track"><div class="skill-fill" data-width="90%"></div></div>
           </div>
           <div class="skill-bar-row">
             <div class="skill-bar-top"><span class="skill-name">Generative Pipelines</span><span class="skill-pct">88%</span></div>
-            <div class="skill-track"><div class="skill-fill" style="width:88%"></div></div>
+            <div class="skill-track"><div class="skill-fill" data-width="88%"></div></div>
           </div>
           <div class="skill-bar-row">
             <div class="skill-bar-top"><span class="skill-name">System Architecture</span><span class="skill-pct">85%</span></div>
-            <div class="skill-track"><div class="skill-fill" style="width:85%"></div></div>
+            <div class="skill-track"><div class="skill-fill" data-width="85%"></div></div>
           </div>
           <div class="skill-bar-row">
             <div class="skill-bar-top"><span class="skill-name">Full-Stack &amp; APIs</span><span class="skill-pct">82%</span></div>
-            <div class="skill-track"><div class="skill-fill" style="width:82%"></div></div>
+            <div class="skill-track"><div class="skill-fill" data-width="82%"></div></div>
           </div>
+        </div>
+        <div class="tools-row">
+          <span class="tool-chip">Claude</span>
+          <span class="tool-chip">TypeScript</span>
+          <span class="tool-chip">React</span>
+          <span class="tool-chip">Node.js</span>
+          <span class="tool-chip">Supabase</span>
+          <span class="tool-chip">Prompt Logic</span>
+          <span class="tool-chip">Lovable</span>
+          <span class="tool-chip">Web APIs</span>
         </div>
       </div>
     </section>
 
     <!-- Education only (no certifications) -->
     <section id="education">
-      <div class="section-panel">
-        <div class="eyebrow c-sky">Foundation</div>
+      <div class="section-panel accent-coral">
+        <div class="eyebrow c-coral">Foundation</div>
         <h2>Education</h2>
         <div class="edu">
           <div class="edu-date">2017 — Sept 2023</div>
@@ -1504,8 +1667,22 @@
       </div>
     </section>
 
+    <!-- Closing CTA -->
+    <section>
+      <div class="resume-cta">
+        <h2>Let's build something</h2>
+        <p>Open to AI Engineering, Prompt Architecture, and AI Application Development roles. Reach out and let's talk.</p>
+        <button class="btn btn-primary" onclick="showPage('home'); setTimeout(function(){ var el = document.getElementById('contact'); if(el) el.scrollIntoView({behavior:'smooth'}); }, 120);" style="flex:none; width:auto;">Contact Me</button>
+      </div>
+    </section>
+
   </div>
 
+</div>
+
+<div class="sticky-cv-bar" id="sticky-cv-bar">
+  <span>Engineer CV · ATS-ready PDF</span>
+  <a class="btn btn-resume" href="CHIMEZIE-CV.pdf" download="CHIMEZIE-CV.pdf">Download CV ↓</a>
 </div>
 
 <footer>
@@ -1657,6 +1834,90 @@
       m.classList.remove('open');
     });
   });
+
+  // Resume skill bars — animate when skills section is visible
+  function resetSkillBars() {
+    document.querySelectorAll('.skill-fill').forEach(function(fill) {
+      fill.style.width = '0';
+      fill.classList.remove('animate');
+    });
+  }
+
+  function animateSkillBars() {
+    var section = document.getElementById('resume-skills');
+    if (!section) return;
+    var fills = section.querySelectorAll('.skill-fill');
+    fills.forEach(function(fill) {
+      var w = fill.getAttribute('data-width') || '0';
+      fill.style.width = w;
+      fill.classList.add('animate');
+    });
+  }
+
+  function observeResumeSkills() {
+    var section = document.getElementById('resume-skills');
+    if (!section || typeof IntersectionObserver === 'undefined') {
+      animateSkillBars();
+      return;
+    }
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          animateSkillBars();
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.25 });
+    observer.observe(section);
+  }
+
+  // Sticky CV bar — only on resume page after scrolling past the CV card
+  function updateStickyCvBar() {
+    var bar = document.getElementById('sticky-cv-bar');
+    var resumePage = document.getElementById('page-resume');
+    if (!bar || !resumePage) return;
+    var onResume = resumePage.classList.contains('active-page');
+    if (!onResume) {
+      bar.classList.remove('visible');
+      document.body.style.paddingBottom = '';
+      return;
+    }
+    var cvBlock = resumePage.querySelector('.cv-download-block');
+    var show = false;
+    if (cvBlock) {
+      var rect = cvBlock.getBoundingClientRect();
+      show = rect.bottom < 0;
+    } else {
+      show = window.scrollY > 320;
+    }
+    if (show) {
+      bar.classList.add('visible');
+      document.body.style.paddingBottom = '64px';
+    } else {
+      bar.classList.remove('visible');
+      document.body.style.paddingBottom = '';
+    }
+  }
+
+  window.addEventListener('scroll', updateStickyCvBar, { passive: true });
+  window.addEventListener('resize', updateStickyCvBar);
+
+  // Enhance showPage for resume polish
+  var _showPage = showPage;
+  showPage = function(pageId, options) {
+    _showPage(pageId, options);
+    if (pageId === 'resume') {
+      resetSkillBars();
+      setTimeout(function() {
+        observeResumeSkills();
+        updateStickyCvBar();
+      }, 50);
+    } else {
+      var bar = document.getElementById('sticky-cv-bar');
+      if (bar) bar.classList.remove('visible');
+      document.body.style.paddingBottom = '';
+    }
+  };
 </script>
 
 </body>
