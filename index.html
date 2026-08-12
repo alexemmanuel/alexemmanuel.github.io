@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Emmanuel Chimezie - Portfolio</title>
+  <title>Chimezie Emmanuel - Portfolio</title>
   <style>
     :root {
       --bg-dark: #0b1329;
@@ -28,23 +28,41 @@
       color: var(--text-main);
       display: flex;
       justify-content: center;
-      padding: 20px;
+      padding: 20px 12px;
       min-height: 100vh;
     }
 
     .container {
       width: 100%;
-      max-width: 520px;
+      max-width: 480px;
       display: flex;
       flex-direction: column;
       gap: 20px;
     }
 
-    /* ================= PERMANENT TOP HEADER (LOCKED ON ALL SWAPS) ================= */
+    /* ================= HEADER BRANDING ================= */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 4px;
+    }
+
+    .brand-name {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--accent-orange);
+    }
+
+    .brand-name span {
+      color: var(--accent-cyan);
+    }
+
+    /* ================= PERMANENT PROFILE HEADER ================= */
     .permanent-header {
       background-color: var(--card-bg);
       border-radius: 20px;
-      padding: 28px 20px;
+      padding: 24px 20px;
       text-align: center;
       border: 1px solid rgba(255, 255, 255, 0.08);
       display: flex;
@@ -54,12 +72,11 @@
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
     }
 
-    /* Picture / Avatar Frame with Background Glow */
     .profile-picture-frame {
-      width: 110px;
-      height: 110px;
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
-      border: 4px solid var(--accent-orange);
+      border: 3px solid var(--accent-orange);
       background-color: #0f172a;
       background-image: radial-gradient(circle at center, rgba(6, 182, 212, 0.3), rgba(15, 23, 42, 0.9));
       display: flex;
@@ -76,14 +93,13 @@
     }
 
     .avatar-placeholder {
-      font-size: 2.2rem;
+      font-size: 2rem;
       font-weight: 800;
       color: var(--text-main);
     }
 
-    /* Permanent Name & Subtitle */
     .profile-name {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       font-weight: 900;
       letter-spacing: 0.5px;
       color: #ffffff;
@@ -92,11 +108,11 @@
 
     .profile-tagline {
       color: var(--accent-cyan);
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 600;
     }
 
-    /* ================= 3-TAB SUB NAVIGATION BAR ================= */
+    /* ================= SUB NAVIGATION CONTROLLER ================= */
     .nav-tabs {
       display: flex;
       background-color: rgba(30, 41, 59, 0.8);
@@ -108,7 +124,7 @@
 
     .tab-btn {
       flex: 1;
-      padding: 12px 8px;
+      padding: 14px 6px;
       border-radius: 10px;
       border: none;
       background: transparent;
@@ -120,13 +136,24 @@
       text-align: center;
     }
 
-    .tab-btn.active-tab {
+    .tab-btn.btn-resume.active-tab {
       background-color: var(--accent-orange);
       color: #ffffff;
-      box-shadow: 0 4px 12px rgba(255, 88, 0, 0.35);
+      box-shadow: 0 4px 14px rgba(255, 88, 0, 0.4);
     }
 
-    /* ================= DYNAMIC PAGE VIEW CONTAINERS ================= */
+    .tab-btn.btn-projects.active-tab {
+      background-color: var(--accent-cyan);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(6, 182, 212, 0.4);
+    }
+
+    .tab-btn.btn-overview.active-tab {
+      background-color: #334155;
+      color: #ffffff;
+    }
+
+    /* ================= DYNAMIC PAGE VIEWS ================= */
     .page-view {
       display: none;
       flex-direction: column;
@@ -142,10 +169,10 @@
       transform: translateY(0);
     }
 
-    /* Cards & Section Styling */
+    /* ================= QUICK FACTS CARD ================= */
     .quick-facts-card {
       background-color: var(--card-bg);
-      border-radius: 16px;
+      border-radius: 18px;
       padding: 24px;
       border: 1px solid rgba(255, 255, 255, 0.05);
     }
@@ -154,6 +181,7 @@
       font-size: 1.35rem;
       font-weight: 800;
       margin-bottom: 20px;
+      color: #ffffff;
     }
 
     .fact-row {
@@ -169,140 +197,156 @@
 
     .fact-value {
       font-weight: 600;
+      color: #ffffff;
     }
 
+    /* ================= HEADINGS ================= */
     .section-header {
       text-align: center;
-      margin: 8px 0 4px;
+      margin: 10px 0 4px;
     }
 
     .gradient-title {
-      font-size: 1.8rem;
+      font-size: 1.75rem;
       font-weight: 800;
-      background: linear-gradient(90deg, var(--accent-orange), var(--accent-cyan));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    }
+
+    .gradient-title .orange-text {
+      color: var(--accent-orange);
+    }
+
+    .gradient-title .cyan-text {
+      color: var(--accent-cyan);
     }
 
     .section-subtitle {
       color: var(--text-muted);
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       margin-top: 6px;
       line-height: 1.4;
       text-align: center;
     }
 
-    /* White Background Container */
+    /* ================= CV CONTAINER (WHITE CARD DESIGN) ================= */
     .white-section {
-      background-color: #f8fafc;
+      background-color: #ffffff;
       color: var(--text-dark);
-      border-radius: 20px;
-      padding: 24px 20px;
+      border-radius: 24px;
+      padding: 28px 20px;
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     }
 
-    .summary-heading {
-      font-size: 1.6rem;
+    .section-main-heading {
+      font-size: 1.5rem;
       font-weight: 800;
-      text-align: center;
       color: #0b1329;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 8px;
+      margin-bottom: 4px;
     }
 
     .summary-text {
-      text-align: center;
       color: #334155;
       line-height: 1.6;
       font-size: 0.95rem;
     }
 
-    .content-card {
-      background-color: #ffffff;
-      border-radius: 16px;
-      padding: 20px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .card-icon {
-      font-size: 26px;
-    }
-
-    .card-heading {
-      font-size: 1.2rem;
-      font-weight: 800;
-      color: #0b1329;
-    }
-
-    .card-body {
-      color: #526072;
-      font-size: 0.9rem;
-      line-height: 1.5;
-    }
-
-    /* Experience & Education Items */
+    /* Timeline Items (Matches Screenshot left cyan border) */
     .timeline-item {
-      border-left: 3px solid var(--accent-cyan);
-      padding-left: 14px;
-      margin-top: 6px;
+      border-left: 3.5 solid var(--accent-cyan);
+      padding-left: 16px;
+      margin-bottom: 18px;
       display: flex;
       flex-direction: column;
       gap: 4px;
     }
 
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
     .item-title {
-      font-size: 1.05rem;
-      font-weight: 700;
+      font-size: 1.15rem;
+      font-weight: 800;
       color: #0b1329;
+      line-height: 1.3;
     }
 
     .item-sub {
-      font-size: 0.88rem;
+      font-size: 0.92rem;
       color: var(--accent-orange);
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .item-date {
       font-size: 0.82rem;
-      color: #526072;
+      color: #64748b;
+      font-weight: 600;
     }
 
-    /* CV Download Box */
+    .item-desc {
+      color: #475569;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-top: 4px;
+    }
+
+    /* Skills Grid inside White Section */
+    .skills-tag-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .skill-chip {
+      background-color: #f1f5f9;
+      color: #0b1329;
+      font-weight: 700;
+      font-size: 0.82rem;
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+    }
+
+    /* ================= DOWNLOAD RESUME CARD ================= */
     .download-card {
       background-color: var(--card-bg);
       border-radius: 20px;
-      padding: 28px 20px;
+      padding: 32px 20px;
       text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 14px;
+      gap: 16px;
       border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .icon-badge {
-      width: 56px;
-      height: 56px;
+      width: 64px;
+      height: 64px;
       background-color: var(--accent-orange);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
+      font-size: 28px;
       color: #ffffff;
+      box-shadow: 0 4px 16px rgba(255, 88, 0, 0.4);
     }
 
     .download-title {
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       font-weight: 800;
+      color: #ffffff;
     }
 
     .download-desc {
       color: var(--text-muted);
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       line-height: 1.5;
     }
 
@@ -310,22 +354,60 @@
       background-color: var(--accent-green);
       color: #ffffff;
       width: 100%;
-      max-width: 220px;
-      padding: 12px;
-      border-radius: 10px;
-      font-weight: 600;
+      max-width: 240px;
+      padding: 14px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1rem;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
     }
 
-    /* Project Cards */
+    /* ================= KEY ACHIEVEMENTS & METRICS ================= */
+    .metrics-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .metric-card {
+      background-color: var(--card-bg);
+      border-radius: 20px;
+      padding: 28px 20px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .metric-number {
+      font-size: 3rem;
+      font-weight: 900;
+      background: linear-gradient(90deg, var(--accent-orange), var(--accent-cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .metric-label {
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: #ffffff;
+      margin-top: 6px;
+    }
+
+    .metric-subtext {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      margin-top: 4px;
+    }
+
+    /* ================= PROJECT CARDS ================= */
     .project-card {
       background-color: var(--card-bg);
-      border-radius: 18px;
-      padding: 22px;
+      border-radius: 20px;
+      padding: 24px;
       border: 1px solid rgba(255, 255, 255, 0.08);
       display: flex;
       flex-direction: column;
@@ -334,9 +416,9 @@
 
     .project-badge {
       display: inline-block;
-      padding: 4px 10px;
+      padding: 4px 12px;
       border-radius: 20px;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 700;
       background-color: rgba(6, 182, 212, 0.15);
       color: var(--accent-cyan);
@@ -344,13 +426,14 @@
     }
 
     .project-title {
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       font-weight: 800;
+      color: #ffffff;
     }
 
     .project-desc {
       color: var(--text-muted);
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       line-height: 1.5;
     }
 
@@ -364,7 +447,7 @@
     .tech-tag {
       background-color: rgba(255, 255, 255, 0.05);
       color: #ffffff;
-      padding: 4px 8px;
+      padding: 4px 10px;
       border-radius: 6px;
       font-size: 0.8rem;
     }
@@ -376,47 +459,13 @@
       gap: 6px;
       background-color: var(--accent-cyan);
       color: #ffffff;
-      padding: 10px 14px;
-      border-radius: 8px;
+      padding: 10px 16px;
+      border-radius: 10px;
       text-decoration: none;
-      font-weight: 600;
-      font-size: 0.85rem;
+      font-weight: 700;
+      font-size: 0.88rem;
       width: fit-content;
-      margin-top: 4px;
-    }
-
-    /* Metrics Container */
-    .metrics-container {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .metric-card {
-      background-color: var(--card-bg);
-      border-radius: 16px;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .metric-number {
-      font-size: 2.5rem;
-      font-weight: 800;
-      background: linear-gradient(90deg, var(--accent-orange), var(--accent-cyan));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .metric-label {
-      font-weight: 600;
-      margin-top: 4px;
-      font-size: 0.95rem;
-    }
-
-    .metric-subtext {
-      color: var(--text-muted);
-      font-size: 0.85rem;
-      margin-top: 4px;
+      margin-top: 6px;
     }
   </style>
 </head>
@@ -424,10 +473,15 @@
 
   <div class="container">
 
-    <!-- PERMANENT PROFILE HEADER (NEVER SWAPS, STAYS VISIBLE ON ALL 3 TABS) -->
+    <!-- TOP BRANDING HEADER -->
+    <header class="header">
+      <div class="brand-name">Chimezie <span>Emmanuel</span></div>
+      <div style="font-size: 20px; cursor: pointer;">☰</div>
+    </header>
+
+    <!-- PERMANENT PROFILE CARD (LOCKED IN ALL SWAPS) -->
     <div class="permanent-header">
       <div class="profile-picture-frame">
-        <!-- Replace 'your-photo.jpg' with your actual image path -->
         <img src="your-photo.jpg" alt="Emmanuel Chimezie" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
         <span class="avatar-placeholder" style="display:none;">EC</span>
       </div>
@@ -435,16 +489,40 @@
       <p class="profile-tagline">AI Systems & Computer Engineer</p>
     </div>
 
-    <!-- 3-TAB SUB NAVIGATION CONTROLLER -->
+    <!-- 3-PAGE SUB TABS NAVIGATION -->
     <div class="nav-tabs">
-      <button id="tab-overview" class="tab-btn active-tab" onclick="switchTab('overview-page', 'tab-overview')">Overview</button>
-      <button id="tab-resume" class="tab-btn" onclick="switchTab('resume-page', 'tab-resume')">View Resume</button>
-      <button id="tab-projects" class="tab-btn" onclick="switchTab('projects-page', 'tab-projects')">Explore Projects</button>
+      <button id="tab-overview" class="tab-btn btn-overview" onclick="switchTab('overview-page', 'tab-overview')">Overview</button>
+      <button id="tab-resume" class="tab-btn btn-resume active-tab" onclick="switchTab('resume-page', 'tab-resume')">View Resume</button>
+      <button id="tab-projects" class="tab-btn btn-projects" onclick="switchTab('projects-page', 'tab-projects')">Explore Projects</button>
     </div>
 
-    <!-- ================= SUB TAB 1: OVERVIEW (HOME) ================= -->
-    <main id="overview-page" class="page-view active-page">
+    <!-- ================= TAB 1: OVERVIEW ================= -->
+    <main id="overview-page" class="page-view">
+      <div class="quick-facts-card">
+        <h3 class="card-title">Quick Facts</h3>
+        <div class="fact-row">
+          <span class="fact-label">Location:</span>
+          <span class="fact-value">FCT, Nigeria</span>
+        </div>
+        <div class="fact-row">
+          <span class="fact-label">Experience:</span>
+          <span class="fact-value">3+ Years</span>
+        </div>
+        <div class="fact-row">
+          <span class="fact-label">Specialization:</span>
+          <span class="fact-value">AI/ML & Prompt Engineering</span>
+        </div>
+        <div class="fact-row">
+          <span class="fact-label">Education:</span>
+          <span class="fact-value">B.Eng Computer Engineering</span>
+        </div>
+      </div>
+    </main>
 
+    <!-- ================= TAB 2: VIEW RESUME (FULL CV REDESIGN) ================= -->
+    <main id="resume-page" class="page-view active-page">
+
+      <!-- Quick Facts Card -->
       <div class="quick-facts-card">
         <h3 class="card-title">Quick Facts</h3>
         <div class="fact-row">
@@ -465,26 +543,12 @@
         </div>
       </div>
 
-      <div class="white-section">
-        <h2 class="summary-heading">Professional Summary</h2>
-        <p class="summary-text">
-          Results-driven AI Prompt Engineer and Computer Engineer with expertise in developing intelligent agent systems, machine learning pipelines, and scalable LLM architectures. Demonstrated success in reducing operational overhead by 90% through AI-powered automation and building production-ready web platforms.
-        </p>
-
-        <div class="content-card">
-          <div class="card-icon">🚀</div>
-          <h4 class="card-heading">Core Competencies</h4>
-          <p class="card-body">Specialized in Prompt Engineering pipelines, multi-agent debate logic, natural language constraints, and generative art asset execution.</p>
-        </div>
+      <!-- CV Download Section -->
+      <div class="section-header">
+        <h2 class="gradient-title"><span class="orange-text">Download</span> <span class="cyan-text">My Resume</span></h2>
+        <p class="section-subtitle">Get a detailed overview of my professional experience, skills, and achievements</p>
       </div>
 
-    </main>
-
-
-    <!-- ================= SUB TAB 2: VIEW RESUME ================= -->
-    <main id="resume-page" class="page-view">
-
-      <!-- ATS CV Download Card -->
       <div class="download-card">
         <div class="icon-badge">📄</div>
         <h3 class="download-title">Download Resume</h3>
@@ -494,42 +558,84 @@
         </a>
       </div>
 
-      <!-- Experience & Education -->
+      <!-- Complete CV Details (Styled inside White Container as requested) -->
       <div class="white-section">
-        <h2 class="summary-heading">Work & Education</h2>
+        
+        <!-- Professional Summary -->
+        <div>
+          <h3 class="section-main-heading">Professional Summary</h3>
+          <p class="summary-text" style="margin-top: 10px;">
+            Results-driven AI Prompt Engineer and Computer Engineer with expertise in developing intelligent agent systems, machine learning pipelines, and scalable LLM architectures. Demonstrated success in reducing operational overhead by 90% through AI-powered automation and building production-ready web platforms.
+          </p>
+        </div>
 
-        <div class="content-card">
-          <div class="card-icon">💼</div>
-          <h4 class="card-heading">Work Experience</h4>
-          
-          <div class="timeline-item">
-            <div class="item-title">AI Systems & Prompt Engineer</div>
-            <div class="item-sub">Autonomous Builds & Platforms</div>
-            <div class="item-date">2024 - Present</div>
-            <p class="card-body" style="margin-top: 4px;">Architected full-stack platforms including TrustFarms and generative AI asset pipelines with structured LLM workflows.</p>
-          </div>
+        <!-- Work Experience -->
+        <div>
+          <h3 class="section-main-heading">Work Experience</h3>
+          <div style="margin-top: 14px;">
+            
+            <div class="timeline-item">
+              <div class="item-title">AI Systems & Prompt Engineer</div>
+              <div class="item-sub">Autonomous Builds & Platforms</div>
+              <div class="item-date">2024 – Present</div>
+              <p class="item-desc">Architected full-stack platforms including TrustFarms and generative AI asset pipelines with structured LLM workflows and multi-agent execution engines.</p>
+            </div>
 
-          <div class="timeline-item" style="margin-top: 12px;">
-            <div class="item-title">Graduate Engineer</div>
-            <div class="item-sub">National Youth Service Corps (NYSC)</div>
-            <div class="item-date">2023 - 2024</div>
-            <p class="card-body" style="margin-top: 4px;">Executed technical operations, software documentation, and deployment workflows for institutional technology infrastructure.</p>
+            <div class="timeline-item">
+              <div class="item-title">Graduate Engineer</div>
+              <div class="item-sub">National Youth Service Corps (NYSC)</div>
+              <div class="item-date">October 2023 – October 2024</div>
+              <p class="item-desc">Executed technical operations, software documentation, and deployment workflows for institutional technology infrastructure during national service.</p>
+            </div>
+
           </div>
         </div>
 
-        <div class="content-card">
-          <div class="card-icon">🎓</div>
-          <h4 class="card-heading">Education</h4>
-          
-          <div class="timeline-item">
-            <div class="item-title">Bachelor of Engineering (B.Eng)</div>
-            <div class="item-sub">Computer Engineering</div>
-            <p class="card-body" style="margin-top: 4px;">Focused on software engineering, hardware-software interfacing, data structures, and computational intelligence systems.</p>
+        <!-- Education -->
+        <div>
+          <h3 class="section-main-heading">Education</h3>
+          <div style="margin-top: 14px;">
+            
+            <div class="timeline-item">
+              <div class="item-title">Bachelor of Engineering (B.Eng)</div>
+              <div class="item-sub">Computer Engineering</div>
+              <div class="item-date">August 2017 – September 2023</div>
+              <p class="item-desc">Focused on software engineering, hardware-software interfacing, data structures, and computational intelligence systems.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="item-title">Senior Secondary School Certificate (SSCE)</div>
+              <div class="item-sub">High School Education</div>
+              <div class="item-date">September 2007 – July 2013</div>
+              <p class="item-desc">Completed secondary education with focused studies in mathematics, physics, and computer science fundamentals.</p>
+            </div>
+
           </div>
         </div>
+
+        <!-- Technical Competencies -->
+        <div>
+          <h3 class="section-main-heading">Technical Competencies</h3>
+          <div class="skills-tag-grid" style="margin-top: 12px;">
+            <span class="skill-chip">Prompt Engineering</span>
+            <span class="skill-chip">LLM Orchestration</span>
+            <span class="skill-chip">Multi-Agent Systems</span>
+            <span class="skill-chip">Python</span>
+            <span class="skill-chip">Web3 Architectures</span>
+            <span class="skill-chip">Generative Pipelines</span>
+            <span class="skill-chip">Computer Engineering</span>
+            <span class="skill-chip">ATS Resume Optimization</span>
+          </div>
+        </div>
+
       </div>
 
-      <!-- Key Metrics -->
+      <!-- Key Achievements & Metrics (Matching Image 110054.jpg) -->
+      <div class="section-header">
+        <h2 class="gradient-title"><span class="orange-text">Key Achievements &</span> <span class="cyan-text">Metrics</span></h2>
+        <p class="section-subtitle">Measurable impact across AI/ML implementations and system optimizations</p>
+      </div>
+
       <div class="metrics-container">
         <div class="metric-card">
           <div class="metric-number">90%</div>
@@ -546,12 +652,11 @@
 
     </main>
 
-
-    <!-- ================= SUB TAB 3: EXPLORE PROJECTS ================= -->
+    <!-- ================= TAB 3: EXPLORE PROJECTS ================= -->
     <main id="projects-page" class="page-view">
 
       <div class="section-header">
-        <h2 class="gradient-title">Featured Applications</h2>
+        <h2 class="gradient-title"><span class="orange-text">Featured</span> <span class="cyan-text">Applications</span></h2>
         <p class="section-subtitle">Production-ready AI frameworks, Web3 architectures, and generative system pipelines</p>
       </div>
 
@@ -620,23 +725,22 @@
 
   </div>
 
-  <!-- Sub-Tab Switcher Script -->
+  <!-- JavaScript Navigation Tab Controller -->
   <script>
     function switchTab(targetPageId, targetTabId) {
-      // Hide all sub pages
       const pages = document.querySelectorAll('.page-view');
       pages.forEach(page => page.classList.remove('active-page'));
 
-      // Deactivate all tab buttons
       const tabs = document.querySelectorAll('.tab-btn');
       tabs.forEach(tab => tab.classList.remove('active-tab'));
 
-      // Show selected page and activate tab
       const selectedPage = document.getElementById(targetPageId);
       const selectedTab = document.getElementById(targetTabId);
 
       if (selectedPage) selectedPage.classList.add('active-page');
       if (selectedTab) selectedTab.classList.add('active-tab');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   </script>
 
