@@ -662,6 +662,50 @@
     flex: 1;
   }
 
+  .contact-row-action {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent-teal);
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    transition: color 0.15s ease;
+  }
+  .contact-row-action:hover { color: var(--accent-coral); }
+
+  .share-menu {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: calc(100% + 8px);
+    background: var(--bg-panel-2);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 6px;
+    z-index: 100;
+    min-width: 140px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  }
+  .share-menu.open { display: flex; flex-direction: column; gap: 4px; }
+  .share-menu button {
+    background: transparent;
+    border: none;
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 10px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .share-menu button:hover {
+    background: var(--teal-tint);
+    color: var(--accent-teal);
+  }
+
   footer{ padding: 30px 0 44px; text-align: center; font-size: 13px; color: var(--ink-soft); }
 </style>
 </head>
@@ -946,17 +990,29 @@
           </div>
 
           <div class="contact-row">
-            <a href="https://www.linkedin.com/in/emmanuel-uzochukwu-chimezie" target="_blank" rel="noopener" class="contact-icon-badge i-purple" title="Open LinkedIn">
+            <a href="https://www.linkedin.com/in/emmanuel-uzochukwu-chimezie-371a0b1b3" target="_blank" rel="noopener" class="contact-icon-badge i-purple" title="Open LinkedIn">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
             </a>
-            <span class="contact-row-val">https://www.linkedin.com/in/emmanuel-uzochukwu-chimezie</span>
+            <span class="contact-row-action" data-url="https://www.linkedin.com/in/emmanuel-uzochukwu-chimezie-371a0b1b3" onclick="toggleShareMenu(event, this)">
+              LinkedIn
+              <div class="share-menu">
+                <button type="button" onclick="copyLink(event, this)">Copy link</button>
+                <button type="button" onclick="shareLink(event, this)">Share link</button>
+              </div>
+            </span>
           </div>
 
           <div class="contact-row">
-            <a href="https://x.com/letushholdsome" target="_blank" rel="noopener" class="contact-icon-badge i-gold" title="Open X (Twitter)">
+            <a href="https://x.com/letusholdsome" target="_blank" rel="noopener" class="contact-icon-badge i-gold" title="Open X (Twitter)">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
             </a>
-            <span class="contact-row-val">https://x.com/letushholdsome</span>
+            <span class="contact-row-action" data-url="https://x.com/letusholdsome" onclick="toggleShareMenu(event, this)">
+              X (Twitter)
+              <div class="share-menu">
+                <button type="button" onclick="copyLink(event, this)">Copy link</button>
+                <button type="button" onclick="shareLink(event, this)">Share link</button>
+              </div>
+            </span>
           </div>
 
         </div>
@@ -1222,6 +1278,53 @@
       }, 4000);
     }
   })();
+
+  // LinkedIn / X share menu helpers
+  function toggleShareMenu(event, el) {
+    event.stopPropagation();
+    document.querySelectorAll('.share-menu.open').forEach(function(m) {
+      if (m !== el.querySelector('.share-menu')) m.classList.remove('open');
+    });
+    var menu = el.querySelector('.share-menu');
+    if (menu) menu.classList.toggle('open');
+  }
+
+  function copyLink(event, btn) {
+    event.stopPropagation();
+    var url = btn.closest('.contact-row-action').getAttribute('data-url');
+    navigator.clipboard.writeText(url).then(function() {
+      btn.textContent = 'Copied!';
+      setTimeout(function() { btn.textContent = 'Copy link'; }, 1500);
+    }).catch(function() {
+      var ta = document.createElement('textarea');
+      ta.value = url;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      btn.textContent = 'Copied!';
+      setTimeout(function() { btn.textContent = 'Copy link'; }, 1500);
+    });
+  }
+
+  function shareLink(event, btn) {
+    event.stopPropagation();
+    var url = btn.closest('.contact-row-action').getAttribute('data-url');
+    if (navigator.share) {
+      navigator.share({ url: url }).catch(function() {});
+    } else {
+      navigator.clipboard.writeText(url).then(function() {
+        btn.textContent = 'Link copied!';
+        setTimeout(function() { btn.textContent = 'Share link'; }, 1500);
+      });
+    }
+  }
+
+  document.addEventListener('click', function() {
+    document.querySelectorAll('.share-menu.open').forEach(function(m) {
+      m.classList.remove('open');
+    });
+  });
 </script>
 
 </body>
