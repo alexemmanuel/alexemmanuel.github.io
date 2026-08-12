@@ -1,1167 +1,635 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EMMANUEL CHIMEZIE — AI & Prompt Engineer | Full-Stack Application Developer</title>
-<meta name="description" content="Portfolio of Emmanuel Chimezie — AI Engineer, Prompt Architecture Specialist, and Full-Stack Application Developer.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chimezie Emmanuel - AI Engineer Portfolio</title>
+  <style>
+    :root {
+      --bg-dark: #0b1329;
+      --card-bg: #1e293b;
+      --accent-orange: #ff5800;
+      --accent-cyan: #06b6d4;
+      --accent-green: #10b981;
+      --text-main: #f8fafc;
+      --text-dark: #0b1329;
+      --text-muted: #94a3b8;
+    }
 
-<!-- Open Graph / Social Preview Tags -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://alexemmanuel.github.io/">
-<meta property="og:title" content="EMMANUEL CHIMEZIE — AI & Prompt Engineer">
-<meta property="og:description" content="AI Systems Engineer & Full-Stack Developer specializing in prompt architecture, LLM workflows, and generative applications.">
-<meta property="og:image" content="https://alexemmanuel.github.io/potriat.png">
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
 
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@letusholdsome">
-<meta name="twitter:title" content="EMMANUEL CHIMEZIE — AI & Prompt Engineer">
-<meta name="twitter:description" content="Building AI software applications, structured prompt logic, and generative tools.">
-<meta name="twitter:image" content="https://alexemmanuel.github.io/potriat.png">
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+      min-height: 100vh;
+    }
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230D1118'/%3E%3Ctext x='50' y='68' font-size='58' font-family='Georgia,serif' font-weight='800' fill='%232FD3C2' text-anchor='middle'%3EC%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,800&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+    .container {
+      width: 100%;
+      max-width: 520px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
 
-<style>
-  :root{
-    --bg: #0D1118;
-    --bg-panel: #161B22;
-    --bg-panel-2: #1C232D;
-    --ink: #EDF0F5;
-    --ink-soft: #A2B0C6;
-    --line: rgba(255,255,255,.12);
+    /* Top Navigation Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+    }
 
-    /* Strict 3-Color Accent System + Theme Extras */
-    --accent-teal: #2FD3C2;
-    --teal-tint: rgba(47,211,194,.16);
-    
-    --accent-coral: #FF6F59;
-    --coral-tint: rgba(255,111,89,.16);
-    
-    --accent-sky: #6CA0FF;
-    --sky-tint: rgba(108,160,255,.16);
+    .brand-name {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--accent-orange);
+    }
 
-    --purple: #B89CE8;
-    --purple-tint: rgba(184,156,232,.16);
-    --gold: #F0B95C;
+    .brand-name span {
+      color: var(--accent-cyan);
+    }
 
-    --serif: 'Fraunces', serif;
-    --sans: 'Inter', sans-serif;
-    --mono: 'IBM Plex Mono', monospace;
-  }
+    /* Top Navigation Buttons (Equal Width Frame Holders) */
+    .action-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+    }
 
-  *{ box-sizing:border-box; margin:0; padding:0; }
-  html{ scroll-behavior:smooth; }
-  @media (prefers-reduced-motion: reduce){
-    html{ scroll-behavior:auto; }
-    *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; }
-  }
+    .btn-nav {
+      width: 100%;
+      padding: 16px;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border: 2px solid transparent;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.25s ease-in-out;
+    }
 
-  body{
-    background: var(--bg);
-    color: var(--ink);
-    font-family: var(--sans);
-    line-height: 1.65;
-    font-size: 16px;
-    -webkit-font-smoothing: antialiased;
-  }
+    .btn-nav:active {
+      transform: scale(0.98);
+    }
 
-  a{ color:inherit; text-decoration:none; }
-  ::selection{ background: var(--accent-teal); color: var(--bg); }
-  :focus-visible{ outline: 2px solid var(--accent-teal); outline-offset: 3px; }
+    .btn-resume {
+      background-color: var(--accent-orange);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(255, 88, 0, 0.35);
+    }
 
-  .wrap{ max-width: 900px; margin: 0 auto; padding: 0 24px; }
+    .btn-resume.active {
+      border-color: #ffffff;
+      box-shadow: 0 0 18px rgba(255, 88, 0, 0.6);
+    }
 
-  /* ---------- Header ---------- */
-  header{
-    background: var(--bg-panel);
-    border-bottom: 1px solid var(--line);
-    position: sticky; top:0; z-index: 50;
-  }
-  .header-inner{
-    max-width: 900px; margin: 0 auto; padding: 20px 24px;
-    display:flex; align-items:center; gap: 16px;
-  }
-  .wordmark{
-    font-family: var(--mono);
-    font-weight: 800;
-    font-size: 18px;
-    letter-spacing: 0.05em;
-    color: var(--ink);
-    text-transform: uppercase;
-    white-space: nowrap;
-    cursor: pointer;
-    user-select: none;
-    text-decoration: none;
-    transition: opacity .15s ease;
-  }
-  .wordmark:hover{ opacity: 0.85; }
-  
-  nav{ display:flex; gap: 22px; margin-left: auto; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
-  nav::-webkit-scrollbar{ display: none; }
-  nav a{
-    white-space: nowrap;
-    font-size: 14px; font-weight: 600; color: var(--ink-soft);
-    transition: color .15s ease;
-  }
-  nav a:hover{ color: var(--accent-teal); }
+    .btn-projects {
+      background-color: var(--accent-cyan);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(6, 182, 212, 0.35);
+    }
 
-  /* ---------- Hero Section ---------- */
-  .hero{ padding: 60px 0 48px; }
-  .hero-grid{
-    display: grid;
-    grid-template-columns: 1fr 260px;
-    gap: 40px;
-    align-items: start;
-  }
-  @media (max-width: 760px){
-    .hero-grid{ grid-template-columns: 1fr; }
-    .hero-portrait{ order: -1; max-width: 220px; margin: 0 auto 12px; }
-  }
-  .hero-portrait{
-    position: relative;
-    border-radius: 16px;
-    overflow: hidden;
-    border: 1px solid var(--line);
-    background: var(--bg-panel);
-    box-shadow: 8px 8px 0 var(--accent-coral);
-    aspect-ratio: 1 / 1;
-  }
-  .hero-portrait img{
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top center;
-  }
+    .btn-projects.active {
+      border-color: #ffffff;
+      box-shadow: 0 0 18px rgba(6, 182, 212, 0.6);
+    }
 
-  /* Swapping Headline Status */
-  .status{
-    display:inline-flex; align-items:center; gap:10px;
-    font-family: var(--mono); 
-    font-size: 14px; 
-    letter-spacing:.02em; 
-    font-weight: 600;
-    color: var(--accent-teal);
-    background: var(--teal-tint);
-    border: 1px solid var(--accent-teal);
-    padding: 10px 18px; 
-    border-radius: 999px;
-    margin-bottom: 24px;
-    min-height: 46px;
-  }
-  .status .dot{ width:10px; height:10px; border-radius:50%; background: var(--accent-teal); flex-shrink: 0; box-shadow: 0 0 10px var(--accent-teal); }
-  .status-text {
-    transition: opacity 0.4s ease, transform 0.4s ease;
-    display: inline-block;
-  }
-  .status-text.fade-out {
-    opacity: 0;
-    transform: translateY(-4px);
-  }
+    /* FULL PAGE VIEW CONTAINERS */
+    .page-view {
+      display: none;
+      flex-direction: column;
+      gap: 24px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
 
-  h1{
-    font-family: var(--serif);
-    font-weight: 800;
-    font-size: clamp(32px, 5.2vw, 48px);
-    line-height: 1.1;
-    color: var(--ink);
-    letter-spacing: -0.01em;
-  }
+    .page-view.active-page {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-  .role-line{
-    margin-top: 18px;
-    font-size: clamp(15px, 2vw, 19px);
-    color: var(--accent-coral);
-    font-weight: 600;
-  }
-  .role-line .sep{ color: var(--line); margin: 0 8px; }
+    /* Quick Facts Box */
+    .quick-facts-card {
+      background-color: var(--card-bg);
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
 
-  .summary{
-    margin-top: 22px;
-    font-size: 17px;
-    color: var(--ink-soft);
-    max-width: 64ch;
-  }
+    .card-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
 
-  /* Hero Actions */
-  .hero-ctas{ margin-top: 28px; display:flex; gap: 14px; flex-wrap: wrap; }
-  .btn{
-    font-size: 14px; font-weight: 700;
-    padding: 14px 24px; border-radius: 8px;
-    border: 1px solid transparent;
-    display:inline-flex; align-items:center; gap:8px;
-    transition: transform .15s ease, opacity .15s ease, border-color .15s ease;
-    cursor: pointer;
-  }
-  .btn-primary{ background: var(--accent-teal); color: #06201C; }
-  .btn-primary:hover{ transform: translateY(-2px); opacity:.92; }
-  .btn-outline{ color: var(--ink); background: var(--bg-panel); border-color: var(--line); letter-spacing: 0.04em; text-transform: uppercase; }
-  .btn-outline:hover{ border-color: var(--accent-coral); color: var(--accent-coral); transform: translateY(-2px); }
+    .fact-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      font-size: 0.95rem;
+    }
 
-  /* Credential Links */
-  .credentials{ margin-top: 32px; display:flex; flex-wrap: wrap; gap: 10px; }
-  .cred{
-    display:inline-flex; align-items:center; gap:6px;
-    font-family: var(--mono); font-size: 13px; font-weight: 600;
-    color: var(--ink-soft);
-    background: var(--bg-panel);
-    border: 1px solid var(--line);
-    padding: 8px 14px; border-radius: 999px;
-    transition: border-color .15s ease, color .15s ease;
-  }
-  .cred.c-teal:hover{ border-color: var(--accent-teal); color: var(--accent-teal); }
-  .cred.c-coral:hover{ border-color: var(--accent-coral); color: var(--accent-coral); }
-  .cred.c-sky:hover{ border-color: var(--accent-sky); color: var(--accent-sky); }
-  .cred .check{ color: var(--accent-teal); font-weight: bold; }
+    .fact-label {
+      color: var(--text-muted);
+    }
 
-  /* ---------- Section Shared ---------- */
-  section{ padding: 56px 0; }
-  .section-panel{
-    background: var(--bg-panel);
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    padding: 38px 32px;
-  }
-  .eyebrow{
-    font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: .06em;
-    font-weight: bold;
-    margin-bottom: 12px;
-    text-transform: uppercase;
-    display: inline-block;
-    padding: 4px 12px;
-    border-radius: 999px;
-  }
-  .eyebrow.c-teal{ color: var(--accent-teal); background: var(--teal-tint); }
-  .eyebrow.c-coral{ color: var(--accent-coral); background: var(--coral-tint); }
-  .eyebrow.c-sky{ color: var(--accent-sky); background: var(--sky-tint); }
+    .fact-value {
+      font-weight: 600;
+    }
 
-  h2{
-    font-family: var(--serif);
-    font-weight: bold;
-    font-size: clamp(24px, 3.2vw, 30px);
-    color: var(--ink);
-    margin-bottom: 28px;
-  }
+    /* Headings */
+    .section-header {
+      text-align: center;
+      margin: 12px 0 6px;
+    }
 
-  /* ---------- About ---------- */
-  .about-text p{
-    font-size: 16.5px;
-    color: var(--ink-soft);
-    max-width: 68ch;
-    margin-bottom: 18px;
-  }
-  .about-text p:last-child{ margin-bottom: 0; }
+    .gradient-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--accent-orange), var(--accent-cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-  .location-card {
-    margin-top: 28px;
-    background: var(--bg-panel-2);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 20px 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-  .location-info { display: flex; align-items: center; gap: 14px; }
-  .location-pin {
-    width: 42px; height: 42px;
-    border-radius: 10px;
-    background: var(--coral-tint);
-    color: var(--accent-coral);
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
-  .location-details h4 { font-size: 16px; font-weight: 700; color: var(--ink); }
-  .location-details p { font-size: 13px; color: var(--ink-soft); font-family: var(--mono); }
-  .location-badge {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--accent-teal);
-    background: var(--teal-tint);
-    border: 1px solid var(--accent-teal);
-    padding: 6px 14px;
-    border-radius: 999px;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-  }
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-top: 8px;
+      line-height: 1.4;
+      text-align: center;
+    }
 
-  /* ---------- Skills Pyramid Cards ---------- */
-  .pyramid-container {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-bottom: 36px;
-  }
-  .pyramid-card {
-    background: var(--bg-panel-2);
-    border-radius: 14px;
-    padding: 22px 20px;
-    text-align: center;
-    border: 1px solid var(--line);
-    transition: transform 0.15s ease, border-color 0.15s ease;
-  }
-  .pyramid-card:hover { transform: translateY(-2px); }
-  
-  .pyramid-card.p-teal { border-color: var(--accent-teal); }
-  .pyramid-card.p-sky { border-color: var(--accent-sky); }
-  .pyramid-card.p-purple { border-color: var(--purple); }
+    /* ATS CV Download Section */
+    .download-card {
+      background-color: var(--card-bg);
+      border-radius: 20px;
+      padding: 32px 24px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
 
-  .pyramid-card h3 {
-    font-family: var(--mono);
-    font-size: 13px;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
-  .pyramid-card.p-teal h3 { color: var(--accent-teal); }
-  .pyramid-card.p-sky h3 { color: var(--accent-sky); }
-  .pyramid-card.p-purple h3 { color: var(--purple); }
+    .icon-badge {
+      width: 64px;
+      height: 64px;
+      background-color: var(--accent-orange);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      color: #ffffff;
+    }
 
-  .pyramid-card p {
-    font-size: 15.5px;
-    font-weight: 600;
-    color: var(--ink);
-    line-height: 1.5;
-  }
+    .download-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+    }
 
-  /* ---------- Radar Chart & Technical Expertise ---------- */
-  .radar-container {
-    width: 100%;
-    max-width: 580px;
-    margin: 0 auto 36px auto;
-    background: var(--bg-panel-2);
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    padding: 24px 16px 16px;
-    text-align: center;
-  }
-  .radar-title {
-    font-family: var(--serif);
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--ink);
-    margin-bottom: 6px;
-  }
-  .radar-subtitle {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--accent-teal);
-    margin-bottom: 20px;
-  }
+    .download-desc {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
 
-  /* SVG Radar Interactive Tooltips */
-  .radar-svg { width: 100%; height: auto; overflow: visible; }
-  .radar-node { cursor: pointer; }
-  .radar-node circle { transition: r 0.2s ease, fill 0.2s ease; }
-  .radar-node:hover circle { r: 8; fill: #FFFFFF; }
-  
-  .radar-tooltip-card {
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.2s ease, visibility 0.2s ease;
-    pointer-events: none;
-  }
-  .radar-node:hover .radar-tooltip-card {
-    opacity: 1;
-    visibility: visible;
-  }
+    .btn-download {
+      background-color: var(--accent-green);
+      color: #ffffff;
+      width: 100%;
+      max-width: 240px;
+      padding: 14px;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: opacity 0.2s;
+    }
 
-  /* Matrix Row Skill Breakdown */
-  .matrix{ display:flex; flex-direction: column; gap: 20px; margin-top: 24px; }
-  .matrix-row{
-    display:grid; grid-template-columns: 220px 1fr;
-    gap: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px dashed var(--line);
-  }
-  .matrix-row:last-child{ border-bottom: none; padding-bottom: 0; }
-  @media (max-width: 680px){ .matrix-row{ grid-template-columns: 1fr; gap: 10px; } }
-  .matrix-label{
-    font-family: var(--mono);
-    font-size: 13px;
-    color: var(--ink);
-    font-weight: bold;
-    padding-top: 4px;
-  }
-  .matrix-items{ display:flex; flex-wrap: wrap; gap: 8px; }
-  .chip{
-    font-size: 13.5px;
-    font-weight: 600;
-    padding: 6px 14px;
-    border-radius: 999px;
-  }
-  .chip.c-teal{ color: var(--accent-teal); background: var(--teal-tint); border: 1px solid rgba(47,211,194,0.3); }
-  .chip.c-coral{ color: var(--accent-coral); background: var(--coral-tint); border: 1px solid rgba(255,111,89,0.3); }
-  .chip.c-sky{ color: var(--accent-sky); background: var(--sky-tint); border: 1px solid rgba(108,160,255,0.3); }
+    .btn-download:hover {
+      opacity: 0.9;
+    }
 
-  /* ---------- Projects & Framework Tags ---------- */
-  .cases{ display:flex; flex-direction: column; gap: 28px; }
-  .case{
-    background: var(--bg-panel);
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    padding: 28px 24px;
-    transition: transform .15s ease, border-color .15s ease;
-  }
-  .case:hover{ transform: translateY(-3px); border-color: var(--accent-teal); }
-  .case-top{
-    display:flex; align-items:center; justify-content: space-between;
-    margin-bottom: 14px; gap: 12px; flex-wrap: wrap;
-  }
-  .case h3{ font-family: var(--serif); font-weight: bold; font-size: 20px; color: var(--ink); }
-  .case-badge{
-    font-family: var(--mono);
-    font-size: 11px; letter-spacing: .04em; font-weight: bold;
-    padding: 4px 12px; border-radius: 999px;
-    white-space: nowrap;
-  }
-  .case-badge.c-teal{ color: var(--accent-teal); background: var(--teal-tint); }
-  .case-badge.c-coral{ color: var(--accent-coral); background: var(--coral-tint); }
-  .case-badge.c-sky{ color: var(--accent-sky); background: var(--sky-tint); }
+    /* Web Application Style Resume Display (White Container) */
+    .white-section {
+      background-color: #f8fafc;
+      color: var(--text-dark);
+      border-radius: 20px;
+      padding: 28px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
 
-  .case ul{ list-style: none; padding: 0; }
-  .case li{
-    font-size: 15px; color: var(--ink-soft);
-    padding-left: 20px; position: relative; margin-bottom: 8px;
-  }
-  .case li::before{
-    content: '→'; position: absolute; left: 0; color: var(--accent-coral); font-weight: bold;
-  }
-  
-  .tech-frameworks {
-    margin-top: 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-  .tech-label {
-    font-family: var(--mono);
-    font-size: 11px;
-    text-transform: uppercase;
-    color: var(--accent-teal);
-    font-weight: 700;
-  }
-  .tech-pill {
-    font-family: var(--mono);
-    font-size: 11.5px;
-    background: var(--bg-panel-2);
-    border: 1px solid var(--line);
-    color: var(--ink);
-    padding: 4px 10px;
-    border-radius: 6px;
-  }
+    .summary-heading {
+      font-size: 1.8rem;
+      font-weight: 800;
+      text-align: center;
+      color: #0b1329;
+    }
 
-  .case-impact{
-    margin-top: 16px;
-    padding: 14px 16px;
-    background: var(--bg-panel-2);
-    border-radius: 8px;
-    font-size: 14px;
-    color: var(--ink);
-    border-left: 3px solid var(--accent-teal);
-  }
-  .case-impact strong{
-    color: var(--accent-teal);
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: .04em;
-    text-transform: uppercase;
-    display: block;
-    margin-bottom: 4px;
-  }
-  
-  .case-proof{ margin-top: 18px; }
-  .case-proof-label{
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: .04em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    margin-bottom: 10px;
-  }
-  .case-proof-row{ display: flex; gap: 12px; overflow-x: auto; }
-  .case-proof-row img{
-    width: 116px; height: 116px;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    object-position: top center;
-    border-radius: 8px;
-    border: 1px solid var(--line);
-    flex-shrink: 0;
-  }
+    .summary-text {
+      text-align: center;
+      color: #334155;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
 
-  .case-links{ display:flex; gap:18px; flex-wrap:wrap; margin-top: 16px; }
-  .case-link{
-    display: inline-flex; align-items: center; gap: 6px;
-    font-family: var(--mono); font-size: 13px; font-weight: bold;
-    transition: color .15s ease;
-  }
-  .case-link.c-teal{ color: var(--accent-teal); }
-  .case-link.c-coral{ color: var(--accent-coral); }
-  .case-link.c-sky{ color: var(--accent-sky); }
-  .case-link:hover{ opacity: 0.8; }
-  .case-link::after{ content: '→'; transition: transform .15s ease; }
-  .case-link:hover::after{ transform: translateX(3px); }
+    .content-card {
+      background-color: #ffffff;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
 
-  /* ---------- Experience ---------- */
-  .timeline{ display:flex; flex-direction: column; gap: 28px; }
-  .role{ display:grid; grid-template-columns: 160px 1fr; gap: 18px; }
-  @media (max-width: 680px){ .role{ grid-template-columns: 1fr; gap: 6px; } }
-  .role-date{ font-family: var(--mono); font-size: 13px; font-weight: bold; color: var(--accent-sky); padding-top: 2px; }
-  .role-title{ font-weight: bold; font-size: 16.5px; color: var(--ink); margin-bottom: 4px; }
-  .role-org{ font-size: 14px; color: var(--accent-coral); font-weight: 600; margin-bottom: 10px; }
-  .role p{ font-size: 15px; color: var(--ink-soft); }
+    .card-icon {
+      font-size: 28px;
+    }
 
-  /* ---------- Education ---------- */
-  .edu{ display:grid; grid-template-columns: 160px 1fr; gap: 18px; }
-  @media (max-width: 680px){ .edu{ grid-template-columns: 1fr; gap: 6px; } }
-  .edu-date{ font-family: var(--mono); font-size: 13px; font-weight: bold; color: var(--accent-sky); padding-top: 2px; }
-  .edu-title{ font-weight: bold; font-size: 16.5px; color: var(--ink); margin-bottom: 4px; }
-  .edu-org{ font-size: 14px; color: var(--accent-coral); font-weight: 600; margin-bottom: 8px; }
-  .edu p{ font-size: 14.5px; color: var(--ink-soft); }
+    .card-heading {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #0b1329;
+    }
 
-  /* ---------- Contact Section ---------- */
-  .contact-card{
-    background: linear-gradient(135deg, #122826, #161F2C);
-    border-radius: 18px;
-    padding: 42px 34px;
-    color: var(--ink);
-    border: 1px solid var(--accent-teal);
-  }
-  .contact-card h2{ color: var(--ink); margin-bottom: 12px; }
-  .contact-card p{ color: var(--ink-soft); max-width: 54ch; margin-bottom: 28px; font-size: 16px; }
+    .card-body {
+      color: #526072;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
 
-  .contact-form { display: flex; flex-direction: column; gap: 18px; margin-bottom: 36px; max-width: 600px; }
-  .form-group { display: flex; flex-direction: column; gap: 6px; }
-  .form-group label {
-    font-family: var(--mono); font-size: 12.5px;
-    color: var(--accent-teal); font-weight: 600;
-    letter-spacing: 0.04em; text-transform: uppercase;
-  }
-  .form-group input, .form-group textarea {
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid var(--line); border-radius: 8px;
-    padding: 13px 16px; color: var(--ink);
-    font-family: var(--sans); font-size: 15px;
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
-  }
-  .form-group input:focus, .form-group textarea:focus {
-    outline: none; border-color: var(--accent-teal); box-shadow: 0 0 0 3px var(--teal-tint);
-  }
-  .form-group textarea { resize: vertical; min-height: 120px; }
-  .form-submit-btn { cursor: pointer; align-self: flex-start; border: none; }
+    /* Experience & Education Timelines */
+    .timeline-item {
+      border-left: 3px solid var(--accent-cyan);
+      padding-left: 16px;
+      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
 
-  /* Linear Stacked Contact List */
-  .contact-stacked-list {
-    display: flex; flex-direction: column; gap: 16px;
-    padding-top: 10px; border-top: 1px solid var(--line);
-  }
-  .contact-row {
-    display: flex; align-items: center; gap: 16px;
-    padding: 12px 16px; background: var(--bg-panel);
-    border: 1px solid var(--line); border-radius: 12px;
-    transition: border-color 0.15s ease;
-  }
-  .contact-row:hover { border-color: var(--accent-teal); }
-  
-  .contact-icon-badge {
-    width: 44px; height: 44px; border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
-  .contact-icon-badge.i-coral { background: var(--coral-tint); color: var(--accent-coral); border: 1px solid var(--accent-coral); }
-  .contact-icon-badge.i-teal { background: var(--teal-tint); color: var(--accent-teal); border: 1px solid var(--accent-teal); }
-  .contact-icon-badge.i-sky { background: var(--sky-tint); color: var(--accent-sky); border: 1px solid var(--accent-sky); }
-  .contact-icon-badge.i-purple { background: var(--purple-tint); color: var(--purple); border: 1px solid var(--purple); }
-  .contact-icon-badge.i-gold { background: rgba(240,185,92,0.16); color: var(--gold); border: 1px solid var(--gold); }
-  .contact-icon-badge svg { width: 22px; height: 22px; }
+    .item-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #0b1329;
+    }
 
-  .contact-row-content { display: flex; flex-direction: column; gap: 2px; }
-  .contact-row-label { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-soft); }
-  .contact-row-val { font-family: var(--mono); font-size: 14px; font-weight: 600; color: var(--ink); user-select: all; }
-  .contact-row-link { font-family: var(--mono); font-size: 14px; font-weight: 600; color: var(--accent-teal); transition: color 0.15s ease; }
-  .contact-row-link:hover { color: var(--accent-coral); }
+    .item-sub {
+      font-size: 0.88rem;
+      color: var(--accent-orange);
+      font-weight: 600;
+    }
 
-  footer{ padding: 30px 0 44px; text-align: center; font-size: 13px; color: var(--ink-soft); }
-</style>
+    .item-date {
+      font-size: 0.82rem;
+      color: #526072;
+    }
+
+    /* Project Cards Structure */
+    .project-card {
+      background-color: var(--card-bg);
+      border-radius: 18px;
+      padding: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .project-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      background-color: rgba(6, 182, 212, 0.15);
+      color: var(--accent-cyan);
+      width: fit-content;
+    }
+
+    .project-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+    }
+
+    .project-desc {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .tech-tag {
+      background-color: rgba(255, 255, 255, 0.05);
+      color: #ffffff;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+    }
+
+    .project-action-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background-color: var(--accent-cyan);
+      color: #ffffff;
+      padding: 10px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.88rem;
+      width: fit-content;
+      margin-top: 6px;
+    }
+
+    /* Metrics Container */
+    .metrics-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .metric-card {
+      background-color: var(--card-bg);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .metric-number {
+      font-size: 2.8rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--accent-orange), var(--accent-cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .metric-label {
+      font-weight: 600;
+      margin-top: 4px;
+      font-size: 1rem;
+    }
+
+    .metric-subtext {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-top: 6px;
+    }
+  </style>
 </head>
 <body>
 
-<header>
-  <div class="header-inner">
-    <a href="#" onclick="window.scrollTo({top: 0, behavior: 'instant'}); return false;" class="wordmark" title="Return to top">
-      EMMANUEL CHIMEZIE
-    </a>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Applications</a>
-      <a href="#experience">Experience</a>
-      <a href="#education">Education</a>
-      <a href="#contact">Contact</a>
-    </nav>
+  <div class="container">
+
+    <!-- Header Navigation -->
+    <header class="header">
+      <div class="brand-name">Chimezie <span>Emmanuel</span></div>
+      <div style="font-size: 20px; cursor: pointer;">☰</div>
+    </header>
+
+    <!-- Navigation Buttons (Equal Length Frames) -->
+    <div class="action-group">
+      <button id="btn-resume-nav" class="btn-nav btn-resume active" onclick="showFullPage('resume-page')">View Resume</button>
+      <button id="btn-projects-nav" class="btn-nav btn-projects" onclick="showFullPage('projects-page')">Explore Projects</button>
+    </div>
+
+    <!-- ================= PAGE 1: WEB APP RESUME DISPLAY ================= -->
+    <main id="resume-page" class="page-view active-page">
+
+      <!-- Quick Facts Box -->
+      <div class="quick-facts-card">
+        <h3 class="card-title">Quick Facts</h3>
+        <div class="fact-row">
+          <span class="fact-label">Location:</span>
+          <span class="fact-value">FCT, Nigeria</span>
+        </div>
+        <div class="fact-row">
+          <span class="fact-label">Experience:</span>
+          <span class="fact-value">3+ Years</span>
+        </div>
+        <div class="fact-row">
+          <span class="fact-label">Specialization:</span>
+          <span class="fact-value">AI/ML & Prompt Engineering</span>
+        </div>
+        <div class="fact-row">
+          <span class="fact-label">Education:</span>
+          <span class="fact-value">B.Eng Computer Engineering</span>
+        </div>
+      </div>
+
+      <!-- CV Download Section with Link to PDF -->
+      <div class="section-header">
+        <h2 class="gradient-title">Download My Resume</h2>
+        <p class="section-subtitle">Get a detailed overview of my professional experience, skills, and achievements</p>
+      </div>
+
+      <div class="download-card">
+        <div class="icon-badge">📄</div>
+        <h3 class="download-title">Engineer CV</h3>
+        <p class="download-desc">Comprehensive resume built to ATS resume standards, highlighting AI model architecture, LLM engineering, and system optimizations.</p>
+        
+        <!-- Live Download Link to CHIMEZIE-CV.pdf -->
+        <a href="https://alexemmanuel.github.io/CHIMEZIE-CV.pdf" class="btn-download" download="CHIMEZIE-CV.pdf" target="_blank" rel="noopener noreferrer">
+          <span>⬇</span> Download PDF
+        </a>
+      </div>
+
+      <!-- Interactive Web Application Style Resume -->
+      <div class="white-section">
+        <h2 class="summary-heading">Professional Summary</h2>
+        <p class="summary-text">
+          Results-driven AI Prompt Engineer and Computer Engineer with expertise in developing intelligent agent systems, machine learning pipelines, and scalable LLM architectures. Demonstrated success in reducing operational overhead by 90% through AI-powered automation and building production-ready web platforms.
+        </p>
+
+        <!-- Core Technical Competencies -->
+        <div class="content-card">
+          <div class="card-icon">🚀</div>
+          <h4 class="card-heading">AI & LLM Orchestration</h4>
+          <p class="card-body">Specialized in Prompt Engineering pipelines, multi-agent debate logic, natural language constraints, and generative art asset execution.</p>
+        </div>
+
+        <!-- Work Experience Showcase -->
+        <div class="content-card">
+          <div class="card-icon">💼</div>
+          <h4 class="card-heading">Work Experience</h4>
+          
+          <div class="timeline-item">
+            <div class="item-title">AI Systems & Prompt Engineer</div>
+            <div class="item-sub">Autonomous Builds & Platforms</div>
+            <div class="item-date">2024 - Present</div>
+            <p class="card-body" style="margin-top: 4px;">Architected full-stack platforms including TrustFarms and generative AI asset pipelines with structured LLM workflows.</p>
+          </div>
+
+          <div class="timeline-item" style="margin-top: 14px;">
+            <div class="item-title">Graduate Engineer</div>
+            <div class="item-sub">National Youth Service Corps (NYSC)</div>
+            <div class="item-date">2023 - 2024</div>
+            <p class="card-body" style="margin-top: 4px;">Executed technical operations, software documentation, and deployment workflows for institutional technology infrastructure.</p>
+          </div>
+        </div>
+
+        <!-- Education Showcase -->
+        <div class="content-card">
+          <div class="card-icon">🎓</div>
+          <h4 class="card-heading">Education</h4>
+          
+          <div class="timeline-item">
+            <div class="item-title">Bachelor of Engineering (B.Eng)</div>
+            <div class="item-sub">Computer Engineering</div>
+            <p class="card-body" style="margin-top: 4px;">Focused on software engineering, hardware-software interfacing, data structures, and computational intelligence systems.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Key Achievements & Metrics -->
+      <div class="section-header">
+        <h2 class="gradient-title">Key Achievements & Metrics</h2>
+        <p class="section-subtitle">Measurable impact across AI/ML implementations and system optimizations</p>
+      </div>
+
+      <div class="metrics-container">
+        <div class="metric-card">
+          <div class="metric-number">90%</div>
+          <div class="metric-label">Automation Rate</div>
+          <div class="metric-subtext">Reduced manual processing time</div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-number">94%</div>
+          <div class="metric-label">ML Accuracy</div>
+          <div class="metric-subtext">High precision classification models</div>
+        </div>
+      </div>
+
+    </main>
+
+
+    <!-- ================= PAGE 2: EXPLORE PROJECTS VIEW ================= -->
+    <main id="projects-page" class="page-view">
+
+      <div class="section-header">
+        <h2 class="gradient-title">Featured Work & Applications</h2>
+        <p class="section-subtitle">Production-ready AI frameworks, Web3 architectures, and generative system pipelines</p>
+      </div>
+
+      <!-- Project 1: TrustFarms -->
+      <div class="project-card">
+        <span class="project-badge">Agricultural Tech Platform</span>
+        <h3 class="project-title">TrustFarms</h3>
+        <p class="project-desc">Agricultural web application designed to empower small-scale crop farmers with provenance tracking, regional weather modules, multilingual options, and digital supply management tools.</p>
+        <div class="tech-stack">
+          <span class="tech-tag">Web Application</span>
+          <span class="tech-tag">Provenance Tracking</span>
+          <span class="tech-tag">Weather Module</span>
+          <span class="tech-tag">Multilingual</span>
+        </div>
+        <a href="https://alexemmanuel.github.io" class="project-action-btn" target="_blank" rel="noopener noreferrer">
+          Launch Application ↗
+        </a>
+      </div>
+
+      <!-- Project 2: NFT Forge -->
+      <div class="project-card">
+        <span class="project-badge">Generative Pipeline</span>
+        <h3 class="project-title">NFT Forge</h3>
+        <p class="project-desc">Automated image-to-image asset pipeline combining generative AI models with canvas layering logic for modular visual collection generation.</p>
+        <div class="tech-stack">
+          <span class="tech-tag">Generative AI</span>
+          <span class="tech-tag">Image-to-Image</span>
+          <span class="tech-tag">Canvas Layering</span>
+          <span class="tech-tag">Asset Pipeline</span>
+        </div>
+        <a href="https://alexemmanuel.github.io" class="project-action-btn" target="_blank" rel="noopener noreferrer">
+          View Architecture ↗
+        </a>
+      </div>
+
+      <!-- Project 3: Multi-Agent Debate Platform -->
+      <div class="project-card">
+        <span class="project-badge">LLM Orchestration</span>
+        <h3 class="project-title">Multi-Agent Debate & Poetry Engine</h3>
+        <p class="project-desc">Interactive multi-agent debate and creative engine featuring custom context handling, rule-based constraints, and real-time persona orchestration.</p>
+        <div class="tech-stack">
+          <span class="tech-tag">Multi-Agent LLM</span>
+          <span class="tech-tag">Prompt Engineering</span>
+          <span class="tech-tag">Rule Engine</span>
+          <span class="tech-tag">Context Routing</span>
+        </div>
+        <a href="https://alexemmanuel.github.io" class="project-action-btn" target="_blank" rel="noopener noreferrer">
+          Explore Demo ↗
+        </a>
+      </div>
+
+      <!-- Project 4: Project 001 Collection -->
+      <div class="project-card">
+        <span class="project-badge">Web3 Commercial Art</span>
+        <h3 class="project-title">Project 001 - Gecko Squad</h3>
+        <p class="project-desc">Commercial digital asset collection featuring 20 unique humanoid gecko character portraits with custom visual attributes and trait distribution logic.</p>
+        <div class="tech-stack">
+          <span class="tech-tag">Digital Art</span>
+          <span class="tech-tag">20 Unique Portraits</span>
+          <span class="tech-tag">Web3 Pipeline</span>
+        </div>
+        <a href="https://alexemmanuel.github.io" class="project-action-btn" target="_blank" rel="noopener noreferrer">
+          View Collection ↗
+        </a>
+      </div>
+
+    </main>
+
   </div>
-</header>
 
-<div class="wrap">
+  <!-- JavaScript Full-Page Switcher Logic -->
+  <script>
+    function showFullPage(targetPageId) {
+      const pages = document.querySelectorAll('.page-view');
+      pages.forEach(page => page.classList.remove('active-page'));
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-grid">
-      <div>
-        <!-- Swapping Status Text -->
-        <div class="status">
-          <span class="dot"></span>
-          <span id="hero-status-text" class="status-text">Open to AI Engineering &amp; App Development roles</span>
-        </div>
+      document.getElementById('btn-resume-nav').classList.remove('active');
+      document.getElementById('btn-projects-nav').classList.remove('active');
 
-        <h1>Chimezie Emmanuel Uzochukwu</h1>
-        <div class="role-line">AI Systems Engineer<span class="sep">·</span>Prompt Architect<span class="sep">·</span>Full-Stack Developer</div>
-        <p class="summary">I specialize in engineering structured prompt frameworks and building full-stack AI software applications. By combining computer engineering fundamentals with advanced generative workflows, I turn raw model capabilities into intuitive, user-ready applications.</p>
-        
-        <!-- Hero CTAs -->
-        <div class="hero-ctas">
-          <a class="btn btn-primary" href="#projects">EXPLORE PROJECTS</a>
-          <a class="btn btn-outline" href="CHIMEZIE-CV.pdf" target="_blank" rel="noopener">VIEW RESUME</a>
-        </div>
+      const selectedPage = document.getElementById(targetPageId);
+      if (selectedPage) {
+        selectedPage.classList.add('active-page');
+      }
 
-        <div class="credentials">
-          <a class="cred c-teal" href="https://www.linkedin.com/in/emmanuel-uzochukwu-chimezie" target="_blank" rel="noopener"><span class="check">✓</span> LinkedIn</a>
-          <a class="cred c-coral" href="https://github.com/alexemmanuel" target="_blank" rel="noopener"><span class="check">✓</span> GitHub</a>
-          <a class="cred c-sky" href="https://x.com/letusholdsome" target="_blank" rel="noopener"><span class="check">✓</span> X (Twitter)</a>
-          <a class="cred c-teal" href="https://orcid.org/0009-0004-7345-1280" target="_blank" rel="noopener"><span class="check">✓</span> ORCID</a>
-        </div>
-      </div>
-      
-      <div class="hero-portrait">
-        <img src="potriat.png" alt="Portrait of Chimezie Emmanuel Uzochukwu">
-      </div>
-    </div>
-  </section>
+      if (targetPageId === 'resume-page') {
+        document.getElementById('btn-resume-nav').classList.add('active');
+      } else if (targetPageId === 'projects-page') {
+        document.getElementById('btn-projects-nav').classList.add('active');
+      }
 
-  <!-- About Section -->
-  <section id="about">
-    <div class="section-panel">
-      <div class="eyebrow c-coral">Focus Area</div>
-      <h2>About Me</h2>
-      <div class="about-text">
-        <p>Holding a B.Eng. in Computer Engineering from Oduduwa University, I specialize in prompt engineering, LLM logic design, and full-stack AI application development. My work centers on translating functional user needs into precise system prompts, agentic workflows, and production software applications.</p>
-        <p>From AI-moderated social debate software to multi-agent generative visual pipelines and multi-service aggregator apps, I use modern vibe coding, structured frameworks, and rapid prototyping tools to turn abstract ideas into fully operational digital products.</p>
-      </div>
-
-      <!-- Location Badge -->
-      <div class="location-card">
-        <div class="location-info">
-          <div class="location-pin">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          </div>
-          <div class="location-details">
-            <h4>Location &amp; Availability</h4>
-            <p>Abuja, Nigeria (WAT / GMT+1) · Global Remote</p>
-          </div>
-        </div>
-        <div class="location-badge">
-          <span style="width:8px; height:8px; border-radius:50%; background:var(--accent-teal);"></span> Active &amp; Available
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Technical Expertise Section -->
-  <section id="skills">
-    <div class="section-panel">
-      <div class="eyebrow c-teal">Capabilities</div>
-      <h2>Technical Expertise</h2>
-
-      <!-- Hexagonal Skills Radar Chart Diagram -->
-      <div class="radar-container">
-        <div class="radar-title">Technical Skills Proficiency</div>
-        <div class="radar-subtitle">Hover or tap any point to inspect proficiency level &amp; tech stack</div>
-
-        <svg class="radar-svg" viewBox="0 0 540 420" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="radarFill" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#FF6F59" stop-opacity="0.45" />
-              <stop offset="100%" stop-color="#2FD3C2" stop-opacity="0.25" />
-            </linearGradient>
-            <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-              <feGaussianBlur stdDeviation="3" result="blur" />
-              <feComposite in="SourceGraphic" in2="blur" operator="over" />
-            </filter>
-          </defs>
-
-          <!-- Hexagonal Grid Concentric Circles/Levels -->
-          <polygon points="270,85 378.25,147.5 378.25,272.5 270,335 161.75,272.5 161.75,147.5" fill="none" stroke="#2FD3C2" stroke-opacity="0.3" stroke-width="1.5"/>
-          <polygon points="270,110 356.6,160 356.6,260 270,310 183.4,260 183.4,160" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
-          <polygon points="270,135 334.95,172.5 334.95,247.5 270,285 205.05,247.5 205.05,172.5" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
-          <polygon points="270,160 313.3,185 313.3,235 270,260 226.7,235 226.7,185" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
-          <polygon points="270,185 291.65,197.5 291.65,222.5 270,235 248.35,222.5 248.35,197.5" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
-
-          <!-- Radar Spokes / Axes -->
-          <line x1="270" y1="210" x2="270" y2="85" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-          <line x1="270" y1="210" x2="378.25" y2="147.5" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-          <line x1="270" y1="210" x2="378.25" y2="272.5" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-          <line x1="270" y1="210" x2="270" y2="335" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-          <line x1="270" y1="210" x2="161.75" y2="272.5" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-          <line x1="270" y1="210" x2="161.75" y2="147.5" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-
-          <!-- Axis Labels -->
-          <text x="270" y="65" fill="#EDF0F5" font-family="IBM Plex Mono" font-size="13" font-weight="600" text-anchor="middle">Prompt Architecture</text>
-          <text x="392" y="142" fill="#EDF0F5" font-family="IBM Plex Mono" font-size="12" font-weight="600" text-anchor="start">App Development</text>
-          <text x="392" y="280" fill="#EDF0F5" font-family="IBM Plex Mono" font-size="12" font-weight="600" text-anchor="start">LLM Workflows</text>
-          <text x="270" y="358" fill="#EDF0F5" font-family="IBM Plex Mono" font-size="13" font-weight="600" text-anchor="middle">System Architecture</text>
-          <text x="148" y="280" fill="#EDF0F5" font-family="IBM Plex Mono" font-size="12" font-weight="600" text-anchor="end">Generative Pipelines</text>
-          <text x="148" y="142" fill="#EDF0F5" font-family="IBM Plex Mono" font-size="12" font-weight="600" text-anchor="end">Full-Stack &amp; APIs</text>
-
-          <!-- Skill Polygon Area -->
-          <polygon points="270,91.25 367.4,153.75 369.6,267.5 270,316.25 174.7,265 181.2,158.75" fill="url(#radarFill)" stroke="#FF6F59" stroke-width="2.5" filter="url(#glow)"/>
-
-          <!-- Interactive Node 1: Prompt Architecture -->
-          <g class="radar-node">
-            <circle cx="270" cy="91.25" r="5" fill="#FF6F59" stroke="#0D1118" stroke-width="2" />
-            <g class="radar-tooltip-card">
-              <rect x="175" y="12" width="190" height="46" rx="8" fill="#1C232D" stroke="#FF6F59" stroke-width="1" />
-              <text x="185" y="28" fill="#EDF0F5" font-family="Inter" font-size="12" font-weight="bold">Prompt Architecture: 95%</text>
-              <text x="185" y="44" fill="#2FD3C2" font-family="IBM Plex Mono" font-size="10">System Prompts, Logic Chains</text>
-            </g>
-          </g>
-
-          <!-- Interactive Node 2: App Development -->
-          <g class="radar-node">
-            <circle cx="367.4" cy="153.75" r="5" fill="#FF6F59" stroke="#0D1118" stroke-width="2" />
-            <g class="radar-tooltip-card">
-              <rect x="330" y="80" width="195" height="46" rx="8" fill="#1C232D" stroke="#FF6F59" stroke-width="1" />
-              <text x="340" y="96" fill="#EDF0F5" font-family="Inter" font-size="12" font-weight="bold">App Development: 90%</text>
-              <text x="340" y="112" fill="#2FD3C2" font-family="IBM Plex Mono" font-size="10">React, TypeScript, Next.js</text>
-            </g>
-          </g>
-
-          <!-- Interactive Node 3: LLM Workflows -->
-          <g class="radar-node">
-            <circle cx="369.6" cy="267.5" r="5" fill="#FF6F59" stroke="#0D1118" stroke-width="2" />
-            <g class="radar-tooltip-card">
-              <rect x="330" y="290" width="195" height="46" rx="8" fill="#1C232D" stroke="#FF6F59" stroke-width="1" />
-              <text x="340" y="306" fill="#EDF0F5" font-family="Inter" font-size="12" font-weight="bold">LLM Workflows: 92%</text>
-              <text x="340" y="322" fill="#2FD3C2" font-family="IBM Plex Mono" font-size="10">Claude API, Logic Guardrails</text>
-            </g>
-          </g>
-
-          <!-- Interactive Node 4: System Architecture -->
-          <g class="radar-node">
-            <circle cx="270" cy="316.25" r="5" fill="#FF6F59" stroke="#0D1118" stroke-width="2" />
-            <g class="radar-tooltip-card">
-              <rect x="175" y="362" width="190" height="46" rx="8" fill="#1C232D" stroke="#FF6F59" stroke-width="1" />
-              <text x="185" y="378" fill="#EDF0F5" font-family="Inter" font-size="12" font-weight="bold">System Architecture: 85%</text>
-              <text x="185" y="394" fill="#2FD3C2" font-family="IBM Plex Mono" font-size="10">Computer Eng, UI/UX Logic</text>
-            </g>
-          </g>
-
-          <!-- Interactive Node 5: Generative Pipelines -->
-          <g class="radar-node">
-            <circle cx="174.7" cy="265" r="5" fill="#FF6F59" stroke="#0D1118" stroke-width="2" />
-            <g class="radar-tooltip-card">
-              <rect x="15" y="290" width="195" height="46" rx="8" fill="#1C232D" stroke="#FF6F59" stroke-width="1" />
-              <text x="25" y="306" fill="#EDF0F5" font-family="Inter" font-size="12" font-weight="bold">Generative Media: 88%</text>
-              <text x="25" y="322" fill="#2FD3C2" font-family="IBM Plex Mono" font-size="10">Image Gen APIs, NFT Pipelines</text>
-            </g>
-          </g>
-
-          <!-- Interactive Node 6: Full-Stack & APIs -->
-          <g class="radar-node">
-            <circle cx="181.2" cy="158.75" r="5" fill="#FF6F59" stroke="#0D1118" stroke-width="2" />
-            <g class="radar-tooltip-card">
-              <rect x="15" y="80" width="195" height="46" rx="8" fill="#1C232D" stroke="#FF6F59" stroke-width="1" />
-              <text x="25" y="96" fill="#EDF0F5" font-family="Inter" font-size="12" font-weight="bold">Full-Stack &amp; APIs: 82%</text>
-              <text x="25" y="112" fill="#2FD3C2" font-family="IBM Plex Mono" font-size="10">Node.js, Supabase, Web APIs</text>
-            </g>
-          </g>
-        </svg>
-      </div>
-
-      <!-- Restored Skills Pyramid Cards -->
-      <div class="pyramid-container">
-        <div class="pyramid-card p-teal">
-          <h3>APEX — SYSTEM PROMPT ARCHITECTURE &amp; INTELLIGENCE</h3>
-          <p>System Prompts · Agentic Workflows · Context Guardrails · Fallacy Logic</p>
-        </div>
-        <div class="pyramid-card p-sky">
-          <h3>CORE — AI APPLICATION DEVELOPMENT &amp; FULL-STACK</h3>
-          <p>TypeScript · Node.js · Vibe Coding · Supabase · Modern Web Backends</p>
-        </div>
-        <div class="pyramid-card p-purple">
-          <h3>FOUNDATION — COMPUTER ENGINEERING &amp; SYSTEMS</h3>
-          <p>Hardware Diagnostics · Technical Operations · Data Networks · Problem Solving</p>
-        </div>
-      </div>
-
-      <!-- Skills Category Rows -->
-      <div class="matrix">
-        <div class="matrix-row">
-          <div class="matrix-label">Prompt Architecture &amp; LLMs</div>
-          <div class="matrix-items">
-            <span class="chip c-teal">Advanced Prompt Engineering</span>
-            <span class="chip c-teal">System Prompt Design</span>
-            <span class="chip c-teal">Multi-Stage Reasoning Pipelines</span>
-            <span class="chip c-teal">Fallacy Detection Logic</span>
-            <span class="chip c-teal">Model Guardrails &amp; Context Control</span>
-          </div>
-        </div>
-        <div class="matrix-row">
-          <div class="matrix-label">Software Application Building</div>
-          <div class="matrix-items">
-            <span class="chip c-sky">TypeScript / JavaScript</span>
-            <span class="chip c-sky">Node.js</span>
-            <span class="chip c-sky">Full-Stack Prototyping</span>
-            <span class="chip c-sky">Database &amp; API Integration</span>
-            <span class="chip c-sky">Supabase &amp; Modern Backends</span>
-          </div>
-        </div>
-        <div class="matrix-row">
-          <div class="matrix-label">AI Workflows &amp; Prototyping</div>
-          <div class="matrix-items">
-            <span class="chip c-coral">Vibe Coding Workflows</span>
-            <span class="chip c-coral">Claude Artifacts &amp; Rapid Builders</span>
-            <span class="chip c-coral">Lovable Prototyping</span>
-            <span class="chip c-coral">Generative Media Pipelines</span>
-          </div>
-        </div>
-        <div class="matrix-row">
-          <div class="matrix-label">System Design &amp; Product</div>
-          <div class="matrix-items">
-            <span class="chip c-teal">UI/UX Logic Structuring</span>
-            <span class="chip c-teal">Workflow Automation</span>
-            <span class="chip c-teal">Technical Problem Solving</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects Section -->
-  <section id="projects">
-    <div class="eyebrow c-sky">Software Builds</div>
-    <h2>Featured AI Applications</h2>
-    <div class="cases">
-
-      <!-- Project 1 -->
-      <div class="case">
-        <div class="case-top">
-          <h3>NFTForge — Generative AI Art Platform</h3>
-          <span class="case-badge c-teal">LIVE APPLICATION</span>
-        </div>
-        <ul>
-          <li>Engineered structured text-to-image prompt pipelines that generate consistent multi-character sets and digital artwork directly through modern UI components.</li>
-          <li>Constructed front-end web workflows that handle multi-round prompt adjustments, artwork generation, and direct asset deployment.</li>
-        </ul>
-        
-        <div class="tech-frameworks">
-          <span class="tech-label">Frameworks:</span>
-          <span class="tech-pill">TypeScript</span>
-          <span class="tech-pill">React</span>
-          <span class="tech-pill">Lovable</span>
-          <span class="tech-pill">Image Gen API</span>
-          <span class="tech-pill">Tailwind CSS</span>
-        </div>
-
-        <div class="case-impact"><strong>Key Outcome</strong>Automates high-quality generative art production through guided prompt templates, letting creators generate thematic digital assets without technical manual effort.</div>
-        
-        <div class="case-proof">
-          <div class="case-proof-label">Application Proof</div>
-          <div class="case-proof-row">
-            <img src="proof/nftforge-1.jpg" alt="NFTForge landing interface" loading="lazy">
-            <img src="proof/nftforge-2.jpg" alt="NFTForge prompt generator" loading="lazy">
-            <img src="proof/nftforge-3.jpg" alt="NFTForge generated output" loading="lazy">
-          </div>
-        </div>
-        <div class="case-links">
-          <a class="case-link c-teal" href="https://lovable.dev/projects/62693973-e624-4f7d-959a-31686f661516" target="_blank" rel="noopener">Live Prototype</a>
-          <a class="case-link c-sky" href="https://github.com/alexemmanuel/nftgen" target="_blank" rel="noopener">Source Code</a>
-        </div>
-      </div>
-
-      <!-- Project 2 -->
-      <div class="case">
-        <div class="case-top">
-          <h3>Debate — AI-Moderated Structured Argument Platform</h3>
-          <span class="case-badge c-teal">LIVE APPLICATION</span>
-        </div>
-        <ul>
-          <li>Designed specialized system prompts that parse user arguments in real time to detect logical fallacies and maintain reasoned dialogue.</li>
-          <li>Implemented interactive UI components that feature AI fallacy tags, community voting panels, and argument scoring mechanics.</li>
-        </ul>
-        
-        <div class="tech-frameworks">
-          <span class="tech-label">Frameworks:</span>
-          <span class="tech-pill">Claude LLM API</span>
-          <span class="tech-pill">TypeScript</span>
-          <span class="tech-pill">Node.js</span>
-          <span class="tech-pill">Supabase</span>
-        </div>
-
-        <div class="case-impact"><strong>Key Outcome</strong>Demonstrates practical LLM integration within web applications, transforming continuous text into structured, moderated community discussions.</div>
-        
-        <div class="case-proof">
-          <div class="case-proof-label">Application Proof</div>
-          <div class="case-proof-row">
-            <img src="proof/debate-1.jpg" alt="Debate application arena overview" loading="lazy">
-            <img src="proof/debate-2.jpg" alt="AI fallacy analysis breakdown" loading="lazy">
-            <img src="proof/debate-3.jpg" alt="Debate topic list" loading="lazy">
-          </div>
-        </div>
-        <div class="case-links">
-          <a class="case-link c-teal" href="https://thedebate.lovable.app/" target="_blank" rel="noopener">Live App</a>
-        </div>
-      </div>
-
-      <!-- Project 3 -->
-      <div class="case">
-        <div class="case-top">
-          <h3>Lazy App — Multi-Service Aggregator Software</h3>
-          <span class="case-badge c-sky">PROTOTYPE</span>
-        </div>
-        <ul>
-          <li>Architected application logic for a multi-utility aggregator app, incorporating automated service comparison workflows and QR-based item lookup.</li>
-          <li>Integrated prompt-assisted meal planning features ("Lazy Cook") that take available kitchen ingredients and construct step-by-step recipes on demand.</li>
-        </ul>
-        
-        <div class="tech-frameworks">
-          <span class="tech-label">Frameworks:</span>
-          <span class="tech-pill">React</span>
-          <span class="tech-pill">Structured Prompting</span>
-          <span class="tech-pill">Web APIs</span>
-        </div>
-
-        <div class="case-impact"><strong>Key Outcome</strong>Combines everyday web utility logic with generative AI assistance to create a cohesive multi-tool software application.</div>
-        
-        <div class="case-proof">
-          <div class="case-proof-label">Application Proof</div>
-          <div class="case-proof-row">
-            <img src="proof/lazyapp-1.jpg" alt="Lazy App ingredient input screen" loading="lazy">
-            <img src="proof/lazyapp-2.jpg" alt="Lazy App generated recipe output" loading="lazy">
-            <img src="proof/lazyapp-3.jpg" alt="Lazy App service comparison view" loading="lazy">
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 4 -->
-      <div class="case">
-        <div class="case-top">
-          <h3>Chain Story — Collaborative AI Storytelling Platform</h3>
-          <span class="case-badge c-coral">IN DEVELOPMENT</span>
-        </div>
-        <ul>
-          <li>Engineered turn-based story contribution logic where writers collaborate line-by-line under contextual guidelines.</li>
-          <li>Structured prompt frameworks that summarize ongoing narratives, enforce genre rules, and format text for script export.</li>
-        </ul>
-        
-        <div class="tech-frameworks">
-          <span class="tech-label">Frameworks:</span>
-          <span class="tech-pill">Claude Artifacts</span>
-          <span class="tech-pill">Prompt Logic</span>
-          <span class="tech-pill">JavaScript</span>
-        </div>
-
-        <div class="case-impact"><strong>Key Outcome</strong>Applies contextual LLM parsing to keep multi-user creative writing projects structured and focused.</div>
-        
-        <div class="case-proof">
-          <div class="case-proof-label">Application Proof</div>
-          <div class="case-proof-row">
-            <img src="proof/chainstory-1.jpg" alt="Chain Story new story screen" loading="lazy">
-            <img src="proof/chainstory-2.jpg" alt="Chain Story active line entry" loading="lazy">
-            <img src="proof/chainstory-3.jpg" alt="Chain Story export screen" loading="lazy">
-          </div>
-        </div>
-        <div class="case-links">
-          <a class="case-link c-coral" href="https://claude.ai/public/artifacts/5fce0878-9875-4b34-a908-0037132dd52a" target="_blank" rel="noopener">Live Prototype</a>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Experience Section -->
-  <section id="experience">
-    <div class="section-panel">
-      <div class="eyebrow c-teal">Experience</div>
-      <h2>Work Experience</h2>
-      <div class="timeline">
-        <div class="role">
-          <div class="role-date">Jun 2025 — Present</div>
-          <div>
-            <div class="role-title">AI Prompt Engineer &amp; Application Developer</div>
-            <div class="role-org">Independent Specialist / Freelance</div>
-            <p>Designing multi-stage prompt logic, building full-stack AI web prototypes, and engineering generative workflows. Developed full applications including AI moderation engines and automated generative media platforms.</p>
-          </div>
-        </div>
-        <div class="role">
-          <div class="role-date">Oct 2023 — Oct 2024</div>
-          <div>
-            <div class="role-title">Technical Operations Support</div>
-            <div class="role-org">Nigerian Bulk Electricity Trading Company</div>
-            <p>Provided technical problem-solving, operational system assistance, and workflow troubleshooting.</p>
-          </div>
-        </div>
-        <div class="role">
-          <div class="role-date">Jun 2019 — Aug 2021</div>
-          <div>
-            <div class="role-title">Computer Systems Engineer</div>
-            <div class="role-org">Pearl Pearl, Ikeja, Lagos</div>
-            <p>Managed technical diagnostics, software configuration, system maintenance, and hardware troubleshooting.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Education Section -->
-  <section id="education">
-    <div class="section-panel">
-      <div class="eyebrow c-coral">Foundation</div>
-      <h2>Education</h2>
-      <div class="edu">
-        <div class="edu-date">2018 — 2023</div>
-        <div>
-          <div class="edu-title">B.Eng. Computer Engineering — Second Class Upper</div>
-          <div class="edu-org">Oduduwa University, Ipetu Modu, Osun State</div>
-          <p>Key Recognition: Speaker for Computer Engineering; Most Resourceful Student Award; Mathematics Challenge Winner.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" style="padding-bottom: 64px;">
-    <div class="contact-card">
-      <h2>Let's build something together</h2>
-      <p>Open to AI Engineering, Prompt Architecture, and AI Application Development roles. Send a direct message below:</p>
-
-      <!-- Web3Forms Contact Form -->
-      <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
-        <input type="hidden" name="access_key" value="Cd90067b-c052-4cba-8a86-b5827a6f379d">
-        <input type="hidden" name="subject" value="New Portfolio Contact Message from Website">
-        <input type="checkbox" name="botcheck" style="display:none;">
-
-        <div class="form-group">
-          <label for="name">Your Name</label>
-          <input type="text" id="name" name="name" placeholder="John Doe" required>
-        </div>
-
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" placeholder="john@example.com" required>
-        </div>
-
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="5" placeholder="Tell me about your project, team, or opportunity..." required></textarea>
-        </div>
-
-        <button type="submit" class="btn btn-primary form-submit-btn">Send Message</button>
-      </form>
-
-      <!-- Stacked Contact Information & Colored Icons -->
-      <div class="contact-stacked-list">
-        
-        <!-- Email Row -->
-        <div class="contact-row">
-          <div class="contact-icon-badge i-coral" title="Email">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          </div>
-          <div class="contact-row-content">
-            <span class="contact-row-label">Direct Email (Copyable)</span>
-            <span class="contact-row-val">alexemmanuelz24@gmail.com</span>
-          </div>
-        </div>
-
-        <!-- Phone Row -->
-        <div class="contact-row">
-          <div class="contact-icon-badge i-teal" title="Phone">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          </div>
-          <div class="contact-row-content">
-            <span class="contact-row-label">Phone Number (Copyable)</span>
-            <span class="contact-row-val">+2348134328147</span>
-          </div>
-        </div>
-
-        <!-- PDF Resume View/Download Row -->
-        <div class="contact-row">
-          <div class="contact-icon-badge i-sky" title="PDF Resume">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M10 12h1v3"/><path d="M10 12h2.5a1.5 1.5 0 0 1 0 3H10"/><path d="M14 12h1.5a1.5 1.5 0 0 1 0 3H14v-3z"/></svg>
-          </div>
-          <div class="contact-row-content">
-            <span class="contact-row-label">Curriculum Vitae</span>
-            <a href="CHIMEZIE-CV.pdf" target="_blank" class="contact-row-link">View / Download CHIMEZIE-CV.pdf →</a>
-          </div>
-        </div>
-
-        <!-- Social Links Row -->
-        <div class="contact-row">
-          <div class="contact-icon-badge i-purple" title="LinkedIn">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
-          </div>
-          <div class="contact-row-content">
-            <span class="contact-row-label">Professional Profile</span>
-            <a href="https://www.linkedin.com/in/emmanuel-uzochukwu-chimezie" target="_blank" rel="noopener" class="contact-row-link">LinkedIn Profile →</a>
-          </div>
-        </div>
-
-        <!-- X (Twitter) Row -->
-        <div class="contact-row">
-          <div class="contact-icon-badge i-gold" title="X Twitter">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          </div>
-          <div class="contact-row-content">
-            <span class="contact-row-label">Social Channel</span>
-            <a href="https://x.com/letushholdsome" target="_blank" rel="noopener" class="contact-row-link">@letushholdsome on X →</a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-</div>
-
-<footer>
-  © 2026 EMMANUEL CHIMEZIE · Abuja, Nigeria
-</footer>
-
-<!-- JavaScript for Hero Headline Text Swapping -->
-<script>
-  (function() {
-    const headlines = [
-      "Open to AI Engineering & App Development roles",
-      "Lets build the future of Automation one precise prompt at a time...",
-      "Maximizing AI Efficiency through Strategic Engineering..."
-    ];
-    
-    let currentIndex = 0;
-    const textElement = document.getElementById("hero-status-text");
-
-    if (textElement) {
-      setInterval(() => {
-        textElement.classList.add("fade-out");
-        setTimeout(() => {
-          currentIndex = (currentIndex + 1) % headlines.length;
-          textElement.textContent = headlines[currentIndex];
-          textElement.classList.remove("fade-out");
-        }, 400);
-      }, 4000);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-  })();
-</script>
+  </script>
 
 </body>
 </html>
