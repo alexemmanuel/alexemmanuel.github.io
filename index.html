@@ -634,6 +634,78 @@
   .edu-org{ font-size: 14px; color: var(--accent-coral); font-weight: 600; margin-bottom: 8px; }
   .edu p{ font-size: 14px; color: var(--ink-soft); }
 
+  /* ---------- Resume Page (reference-style layout) ---------- */
+  .resume-intro { margin-bottom: 28px; }
+  .resume-intro p {
+    font-size: 16px; color: var(--ink-soft); max-width: 68ch; line-height: 1.7;
+  }
+  .quick-facts {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+    margin-top: 24px;
+  }
+  @media (max-width: 680px){ .quick-facts { grid-template-columns: 1fr 1fr; } }
+  .quick-fact {
+    background: var(--bg-panel-2); border: 1px solid var(--line);
+    border-radius: 12px; padding: 16px 14px; text-align: center;
+  }
+  .quick-fact .qf-label {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .04em;
+    text-transform: uppercase; color: var(--ink-soft); margin-bottom: 6px;
+  }
+  .quick-fact .qf-value {
+    font-size: 14px; font-weight: 700; color: var(--ink);
+  }
+
+  .cv-download-block {
+    background: var(--bg-panel-2); border: 1px solid var(--accent-teal);
+    border-radius: 14px; padding: 24px 22px; margin: 8px 0 28px;
+  }
+  .cv-download-block h3 {
+    font-family: var(--serif); font-size: 20px; color: var(--ink); margin-bottom: 8px;
+  }
+  .cv-download-block p {
+    font-size: 14px; color: var(--ink-soft); margin-bottom: 16px; max-width: 56ch;
+  }
+  .cv-download-block .cv-meta {
+    font-family: var(--mono); font-size: 12px; color: var(--accent-teal);
+    margin-bottom: 16px;
+  }
+
+  .summary-cards {
+    display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 8px;
+  }
+  .summary-card {
+    background: var(--bg-panel-2); border: 1px solid var(--line);
+    border-radius: 12px; padding: 18px 18px;
+  }
+  .summary-card h4 {
+    font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 6px;
+  }
+  .summary-card p { font-size: 14px; color: var(--ink-soft); margin: 0; }
+
+  .skill-bars { display: flex; flex-direction: column; gap: 16px; margin-top: 8px; }
+  .skill-bar-row { display: flex; flex-direction: column; gap: 6px; }
+  .skill-bar-top {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 13px; font-weight: 600;
+  }
+  .skill-bar-top .skill-name { color: var(--ink); }
+  .skill-bar-top .skill-pct { font-family: var(--mono); color: var(--accent-teal); font-size: 12px; }
+  .skill-track {
+    height: 8px; background: rgba(255,255,255,.08); border-radius: 999px; overflow: hidden;
+  }
+  .skill-fill {
+    height: 100%; border-radius: 999px;
+    background: linear-gradient(90deg, var(--accent-coral), var(--accent-teal));
+  }
+
+  .role-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .role-tag {
+    font-family: var(--mono); font-size: 11px; font-weight: 600;
+    padding: 4px 10px; border-radius: 999px;
+    color: var(--accent-sky); background: var(--sky-tint); border: 1px solid rgba(108,160,255,.25);
+  }
+
   /* ---------- Contact Section ---------- */
   .contact-card{
     background: linear-gradient(135deg, #122826, #161F2C);
@@ -1261,20 +1333,94 @@
     
     <div class="subpage-bar">
       <button class="btn btn-primary" onclick="showPage('projects')" style="flex: none; width: auto; padding: 12px 24px; font-size: 13px;">EXPLORE PROJECTS</button>
-      <a class="btn btn-resume" href="CHIMEZIE-CV.pdf" download="CHIMEZIE-CV.pdf" style="flex: none; width: auto; padding: 12px 24px; font-size: 13px;">Download PDF CV ↓</a>
     </div>
 
-    <section id="experience" style="padding-top: 0;">
+    <!-- About / Intro -->
+    <section style="padding-top: 0;">
+      <div class="section-panel">
+        <div class="eyebrow c-coral">About Me</div>
+        <h2>Resume Overview</h2>
+        <div class="resume-intro">
+          <p>An AI Systems Engineer and Prompt Architect with a Computer Engineering foundation, specializing in structured prompt frameworks, LLM workflows, and full-stack AI application development. Focused on turning raw model capabilities into production-ready, user-facing software.</p>
+          <div class="quick-facts">
+            <div class="quick-fact">
+              <div class="qf-label">Location</div>
+              <div class="qf-value">Abuja, Nigeria</div>
+            </div>
+            <div class="quick-fact">
+              <div class="qf-label">Experience</div>
+              <div class="qf-value">4+ Years</div>
+            </div>
+            <div class="quick-fact">
+              <div class="qf-label">Specialization</div>
+              <div class="qf-value">AI &amp; Prompt Eng.</div>
+            </div>
+            <div class="quick-fact">
+              <div class="qf-label">Education</div>
+              <div class="qf-value">B.Eng Computer</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Download CV -->
+    <section>
+      <div class="section-panel">
+        <div class="eyebrow c-teal">Documents</div>
+        <h2>Download My Resume</h2>
+        <p style="color: var(--ink-soft); margin-bottom: 18px; max-width: 56ch;">Get a detailed overview of my professional experience, skills, and achievements.</p>
+        <div class="cv-download-block">
+          <h3>Engineer CV</h3>
+          <p>ATS-optimized resume highlighting AI systems engineering, prompt architecture, LLM workflows, and application development experience. Formatted to meet standard Applicant Tracking System requirements for clear parsing and keyword alignment.</p>
+          <div class="cv-meta">PDF · ATS-ready · Single-column layout</div>
+          <a class="btn btn-resume" href="CHIMEZIE-CV.pdf" download="CHIMEZIE-CV.pdf" style="flex: none; width: auto; padding: 12px 24px; font-size: 13px;">Download PDF ↓</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Professional Summary -->
+    <section>
+      <div class="section-panel">
+        <div class="eyebrow c-sky">Summary</div>
+        <h2>Professional Summary</h2>
+        <p style="color: var(--ink-soft); margin-bottom: 18px; max-width: 68ch;">Results-driven AI Prompt Engineer and Application Developer with experience designing multi-stage prompt logic, building full-stack AI web prototypes, and shipping generative workflows into usable products — from AI-moderated debate platforms to multi-character generative art pipelines.</p>
+        <div class="summary-cards">
+          <div class="summary-card">
+            <h4>Prompt Architecture &amp; LLM Logic</h4>
+            <p>Specialized in system prompts, agentic workflows, context guardrails, and fallacy-aware reasoning pipelines that keep model behavior reliable in production UIs.</p>
+          </div>
+          <div class="summary-card">
+            <h4>AI Application Development</h4>
+            <p>Builds end-to-end AI software with TypeScript, Node.js, Supabase, and modern prototyping stacks — turning structured prompts into interactive products users can operate.</p>
+          </div>
+          <div class="summary-card">
+            <h4>Engineering Foundation</h4>
+            <p>Computer Engineering background with hands-on systems diagnostics, technical operations, and problem-solving experience across hardware and software environments.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience">
       <div class="section-panel">
         <div class="eyebrow c-teal">Experience</div>
-        <h2>Work Experience</h2>
+        <h2>Professional Experience</h2>
+        <p style="color: var(--ink-soft); margin-bottom: 22px; max-width: 56ch;">Career path spanning AI application development, technical operations, and computer systems engineering.</p>
         <div class="timeline">
           <div class="role">
             <div class="role-date">Jun 2025 — Present</div>
             <div>
               <div class="role-title">AI Prompt Engineer &amp; Application Developer</div>
               <div class="role-org">Independent Specialist / Freelance</div>
-              <p>Designing multi-stage prompt logic, building full-stack AI web prototypes, and engineering generative workflows. Developed full applications including AI moderation engines and automated generative media platforms.</p>
+              <p>Designing multi-stage prompt logic, building full-stack AI web prototypes, and engineering generative workflows. Developed production-style applications including AI moderation engines, structured debate platforms, and automated generative media tools.</p>
+              <div class="role-tags">
+                <span class="role-tag">Prompt Engineering</span>
+                <span class="role-tag">TypeScript</span>
+                <span class="role-tag">LLM APIs</span>
+                <span class="role-tag">Supabase</span>
+              </div>
             </div>
           </div>
           <div class="role">
@@ -1282,7 +1428,12 @@
             <div>
               <div class="role-title">Technical Operations Support</div>
               <div class="role-org">Nigerian Bulk Electricity Trading Company</div>
-              <p>Provided technical problem-solving, operational system assistance, and workflow troubleshooting.</p>
+              <p>Provided technical problem-solving, operational system assistance, and workflow troubleshooting across day-to-day infrastructure and process support functions.</p>
+              <div class="role-tags">
+                <span class="role-tag">Operations</span>
+                <span class="role-tag">Troubleshooting</span>
+                <span class="role-tag">Systems Support</span>
+              </div>
             </div>
           </div>
           <div class="role">
@@ -1290,16 +1441,57 @@
             <div>
               <div class="role-title">Computer Systems Engineer</div>
               <div class="role-org">Pearl Pearl, Ikeja, Lagos</div>
-              <p>Managed technical diagnostics, software configuration, system maintenance, and hardware troubleshooting.</p>
+              <p>Managed technical diagnostics, software configuration, system maintenance, and hardware troubleshooting for client and internal systems.</p>
+              <div class="role-tags">
+                <span class="role-tag">Hardware</span>
+                <span class="role-tag">Diagnostics</span>
+                <span class="role-tag">System Config</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- Technical Skills -->
+    <section>
+      <div class="section-panel">
+        <div class="eyebrow c-coral">Capabilities</div>
+        <h2>Technical Skills</h2>
+        <p style="color: var(--ink-soft); margin-bottom: 18px; max-width: 56ch;">Core proficiency across prompt architecture, AI application building, and systems engineering.</p>
+        <div class="skill-bars">
+          <div class="skill-bar-row">
+            <div class="skill-bar-top"><span class="skill-name">Prompt Architecture</span><span class="skill-pct">95%</span></div>
+            <div class="skill-track"><div class="skill-fill" style="width:95%"></div></div>
+          </div>
+          <div class="skill-bar-row">
+            <div class="skill-bar-top"><span class="skill-name">LLM Workflows</span><span class="skill-pct">92%</span></div>
+            <div class="skill-track"><div class="skill-fill" style="width:92%"></div></div>
+          </div>
+          <div class="skill-bar-row">
+            <div class="skill-bar-top"><span class="skill-name">App Development</span><span class="skill-pct">90%</span></div>
+            <div class="skill-track"><div class="skill-fill" style="width:90%"></div></div>
+          </div>
+          <div class="skill-bar-row">
+            <div class="skill-bar-top"><span class="skill-name">Generative Pipelines</span><span class="skill-pct">88%</span></div>
+            <div class="skill-track"><div class="skill-fill" style="width:88%"></div></div>
+          </div>
+          <div class="skill-bar-row">
+            <div class="skill-bar-top"><span class="skill-name">System Architecture</span><span class="skill-pct">85%</span></div>
+            <div class="skill-track"><div class="skill-fill" style="width:85%"></div></div>
+          </div>
+          <div class="skill-bar-row">
+            <div class="skill-bar-top"><span class="skill-name">Full-Stack &amp; APIs</span><span class="skill-pct">82%</span></div>
+            <div class="skill-track"><div class="skill-fill" style="width:82%"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education only (no certifications) -->
     <section id="education">
       <div class="section-panel">
-        <div class="eyebrow c-coral">Foundation</div>
+        <div class="eyebrow c-sky">Foundation</div>
         <h2>Education</h2>
         <div class="edu">
           <div class="edu-date">2017 — Sept 2023</div>
