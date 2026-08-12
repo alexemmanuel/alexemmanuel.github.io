@@ -638,14 +638,14 @@
   .contact-card{
     background: linear-gradient(135deg, #122826, #161F2C);
     border-radius: 18px;
-    padding: 42px 34px;
+    padding: 42px 40px;
     color: var(--ink);
     border: 1px solid var(--accent-teal);
   }
   .contact-card h2{ color: var(--ink); margin-bottom: 12px; }
   .contact-card p{ color: var(--ink-soft); max-width: 54ch; margin-bottom: 28px; font-size: 16px; }
 
-  .contact-form { display: flex; flex-direction: column; gap: 18px; margin-bottom: 32px; max-width: 600px; }
+  .contact-form { display: flex; flex-direction: column; gap: 18px; margin-bottom: 32px; max-width: 100%; }
   .form-group { display: flex; flex-direction: column; gap: 6px; }
   .form-group label {
     font-family: var(--mono); font-size: 12px;
@@ -680,13 +680,16 @@
   .contact-stacked-list {
     display: flex; flex-direction: column; gap: 14px;
     padding-top: 20px; border-top: 1px solid var(--line);
+    width: 100%;
   }
   .contact-row {
     display: flex; align-items: center; gap: 16px;
-    padding: 12px 16px; background: var(--bg-panel);
+    padding: 14px 20px; background: var(--bg-panel);
     border: 1px solid var(--line); border-radius: 12px;
     transition: border-color 0.15s ease;
-    max-width: 100%;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
     overflow: visible;
     position: relative;
   }
@@ -711,12 +714,11 @@
 
   .contact-row-val {
     font-family: var(--mono);
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 600;
     color: var(--ink);
     user-select: all;
-    word-break: break-all;
-    overflow-wrap: anywhere;
+    white-space: nowrap;
     min-width: 0;
     flex: 1;
   }
@@ -730,8 +732,18 @@
     position: relative;
     user-select: none;
     transition: color 0.15s ease;
+    white-space: nowrap;
+    flex: 1;
+    min-width: 0;
   }
   .contact-row-action:hover { color: var(--accent-coral); }
+
+  @media (max-width: 480px) {
+    .contact-card { padding: 32px 18px; }
+    .contact-row { padding: 12px 14px; gap: 12px; }
+    .contact-row-val,
+    .contact-row-action { font-size: 12px; }
+  }
 
   .share-menu {
     display: none;
@@ -1309,7 +1321,11 @@
 </footer>
 
 <script>
-  function showPage(pageId) {
+  function showPage(pageId, options) {
+    options = options || {};
+    var valid = { home: true, projects: true, resume: true };
+    if (!valid[pageId]) pageId = 'home';
+
     // Hide all pages
     const pages = document.querySelectorAll('.page-view');
     pages.forEach(page => page.classList.remove('active-page'));
@@ -1330,9 +1346,32 @@
       activeNav.classList.add('nav-active');
     }
 
-    // Scroll back to top smoothly
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Persist page in URL hash so reload stays on the same view
+    if (!options.skipHash) {
+      var newHash = '#' + pageId;
+      if (window.location.hash !== newHash) {
+        history.replaceState(null, '', newHash);
+      }
+    }
+
+    // Scroll back to top smoothly (skip on initial restore if desired)
+    if (!options.skipScroll) {
+      window.scrollTo({ top: 0, behavior: options.instant ? 'auto' : 'smooth' });
+    }
   }
+
+  function restorePageFromHash() {
+    var hash = (window.location.hash || '').replace('#', '').toLowerCase();
+    if (hash === 'projects' || hash === 'resume' || hash === 'home') {
+      showPage(hash, { skipHash: true, instant: true });
+    } else {
+      showPage('home', { skipHash: true, instant: true });
+    }
+  }
+
+  // Restore page on load and when browser back/forward changes the hash
+  window.addEventListener('DOMContentLoaded', restorePageFromHash);
+  window.addEventListener('hashchange', restorePageFromHash);
 
   function toggleMobileNav() {
     var nav = document.getElementById('main-nav');
