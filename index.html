@@ -629,7 +629,8 @@
     border: 1px solid var(--line); border-radius: 12px;
     transition: border-color 0.15s ease;
     max-width: 100%;
-    overflow: hidden;
+    overflow: visible;
+    position: relative;
   }
   .contact-row:hover { border-color: var(--accent-teal); }
   
@@ -678,14 +679,15 @@
     display: none;
     position: absolute;
     left: 0;
-    top: calc(100% + 8px);
+    bottom: calc(100% + 8px);
+    top: auto;
     background: var(--bg-panel-2);
-    border: 1px solid var(--line);
+    border: 1px solid var(--accent-teal);
     border-radius: 10px;
     padding: 6px;
-    z-index: 100;
-    min-width: 140px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    z-index: 200;
+    min-width: 150px;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.55);
   }
   .share-menu.open { display: flex; flex-direction: column; gap: 4px; }
   .share-menu button {
