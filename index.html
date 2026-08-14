@@ -617,6 +617,73 @@
   .case-link::after{ content: '→'; transition: transform .15s ease; }
   .case-link:hover::after{ transform: translateX(3px); }
 
+  /* ---------- Case "How It Was Built" collapsible ---------- */
+  .case-details{
+    margin-top: 18px;
+    border-top: 1px dashed var(--line);
+    padding-top: 14px;
+  }
+  .case-details summary{
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--accent-teal);
+    padding: 4px 0;
+    user-select: none;
+  }
+  .case-details summary::-webkit-details-marker{ display:none; }
+  .case-details summary::before{
+    content: '+';
+    font-size: 15px;
+    line-height: 1;
+    color: var(--accent-teal);
+  }
+  .case-details[open] summary::before{ content: '\2212'; }
+  .case-details-body{
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .case-details-block h5{
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .case-details-block p{
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  .case-details-block ol{
+    padding-left: 18px;
+    margin-top: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .case-details-block ol li{
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  .case-challenge{
+    background: var(--bg-panel-2);
+    border-left: 3px solid var(--accent-coral);
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+  .case-challenge h5{ color: var(--accent-coral); }
+
   /* ---------- Experience ---------- */
   .timeline{ display:flex; flex-direction: column; gap: 28px; }
   .role{ display:grid; grid-template-columns: 160px 1fr; gap: 18px; }
@@ -1328,24 +1395,24 @@
 
         <div class="case">
           <div class="case-top">
-            <h3>NFTForge — Generative AI Art Platform</h3>
+            <h3>NFT Forge — Generative AI Art Platform</h3>
             <span class="case-badge c-teal">LIVE APPLICATION</span>
           </div>
           <ul>
-            <li>Engineered structured text-to-image prompt pipelines that generate consistent multi-character sets and digital artwork directly through modern UI components.</li>
-            <li>Constructed front-end web workflows that handle multi-round prompt adjustments, artwork generation, and direct asset deployment.</li>
+            <li>Powered by Stable Diffusion APIs with a custom Python pipeline (Pillow &amp; OpenCV) for post-processing, trait compositing, and seed variation control.</li>
+            <li>Asynchronous worker queue (Celery &amp; Redis) handles heavy model inference and batch rendering, with automated Web3 metadata generation before assets hit storage.</li>
           </ul>
           
           <div class="tech-frameworks">
             <span class="tech-label">Frameworks:</span>
-            <span class="tech-pill">TypeScript</span>
-            <span class="tech-pill">React</span>
-            <span class="tech-pill">Lovable</span>
-            <span class="tech-pill">Image Gen API</span>
-            <span class="tech-pill">Tailwind CSS</span>
+            <span class="tech-pill">Stable Diffusion API</span>
+            <span class="tech-pill">Python (FastAPI)</span>
+            <span class="tech-pill">Celery / Redis</span>
+            <span class="tech-pill">Node.js / React</span>
+            <span class="tech-pill">Supabase</span>
           </div>
 
-          <div class="case-impact"><strong>Key Outcome</strong>Automates high-quality generative art production through guided prompt templates, letting creators generate thematic digital assets without technical manual effort.</div>
+          <div class="case-impact"><strong>Key Outcome</strong>Full-stack AI systems engineering end-to-end — from prompt frameworks and batch rendering scripts to the user interface and database sync — solving visual consistency across batches through deterministic seed locking and ControlNet conditioning.</div>
           
           <div class="case-proof">
             <div class="case-proof-label">Application Proof</div>
@@ -1356,30 +1423,61 @@
             </div>
           </div>
           <div class="case-links">
-            <a class="case-link c-teal" href="https://lovable.dev/projects/62693983-e624-4f8d-959a-31686f661516" target="_blank" rel="noopener">Live Prototype</a>
+            <a class="case-link c-teal" href="https://lovable.dev/projects/62693973-e624-4f7d-959a-31686f661516" target="_blank" rel="noopener">Live Prototype</a>
             <a class="case-link c-sky" href="https://github.com/alexemmanuel/nftgen" target="_blank" rel="noopener">Source Code</a>
           </div>
+
+          <details class="case-details">
+            <summary>How It Was Built</summary>
+            <div class="case-details-body">
+              <div class="case-details-block">
+                <h5>Image Generation &amp; Processing</h5>
+                <p>Powered by Stable Diffusion model APIs for base image generation, combined with a custom Python pipeline using Pillow and OpenCV for image post-processing, trait compositing, and seed variation control.</p>
+              </div>
+              <div class="case-details-block">
+                <h5>Language &amp; Framework Stack</h5>
+                <p>Python (FastAPI) for the image generation pipeline and batch rendering backend; Node.js / React with Supabase for user management, asset metadata handling, and database storage.</p>
+              </div>
+              <div class="case-details-block">
+                <h5>Role: Full-Stack AI Systems Engineer</h5>
+                <p>Designed and implemented the system end-to-end, from prompt engineering frameworks and batch rendering scripts to the full-stack user interface and database sync.</p>
+              </div>
+              <div class="case-details-block">
+                <h5>Technical Decisions</h5>
+                <ol>
+                  <li><strong>Asynchronous Worker Queue</strong> — Implemented background task workers (Celery &amp; Redis) to handle heavy model inference and batch image rendering without blocking HTTP thread execution.</li>
+                  <li><strong>Automated Metadata Extraction</strong> — Built a pipeline step that auto-generates compliant Web3 metadata JSON schemas directly from batch render outputs before pushing assets to storage.</li>
+                </ol>
+              </div>
+              <div class="case-details-block case-challenge">
+                <h5>Key Challenge Solved — Visual Consistency Across Batches</h5>
+                <p><strong>Challenge:</strong> Maintaining coherent art style, line weight, and feature alignment across high-volume batch generations.</p>
+                <p><strong>Solution:</strong> Used deterministic seed locking coupled with ControlNet conditioning and dynamic negative prompt injection to lock key stylistic traits across randomized asset outputs.</p>
+              </div>
+            </div>
+          </details>
         </div>
 
         <div class="case">
           <div class="case-top">
-            <h3>Debate — AI-Moderated Structured Argument Platform</h3>
+            <h3>Debate &amp; Poetry Arena — Dual-LLM Debate Platform</h3>
             <span class="case-badge c-teal">LIVE APPLICATION</span>
           </div>
           <ul>
-            <li>Designed specialized system prompts that parse user arguments in real time to detect logical fallacies and maintain reasoned dialogue.</li>
-            <li>Implemented interactive UI components that feature AI fallacy tags, community voting panels, and argument scoring mechanics.</li>
+            <li>Watch or host live, upcoming, past, and local debates — register by setting the topic, time, and scoring preferences in a few steps.</li>
+            <li>Powered by a dual-LLM debate engine (Claude 3.5 Sonnet vs. GPT-4o) with real-time guardrails, plus live poetry challenges for spoken-word performers.</li>
           </ul>
           
           <div class="tech-frameworks">
             <span class="tech-label">Frameworks:</span>
-            <span class="tech-pill">Claude LLM API</span>
-            <span class="tech-pill">TypeScript</span>
-            <span class="tech-pill">Node.js</span>
-            <span class="tech-pill">Supabase</span>
+            <span class="tech-pill">Claude 3.5 Sonnet</span>
+            <span class="tech-pill">GPT-4o</span>
+            <span class="tech-pill">Python (FastAPI)</span>
+            <span class="tech-pill">WebSockets</span>
+            <span class="tech-pill">React / Next.js</span>
           </div>
 
-          <div class="case-impact"><strong>Key Outcome</strong>Demonstrates practical LLM integration within web applications, transforming continuous text into structured, moderated community discussions.</div>
+          <div class="case-impact"><strong>Key Outcome</strong>Combines a dual-LLM debate engine with a live event platform — turning debate and poetry into accessible, schedulable, spectator-friendly content instead of one-off text exchanges.</div>
           
           <div class="case-proof">
             <div class="case-proof-label">Application Proof</div>
@@ -1392,26 +1490,65 @@
           <div class="case-links">
             <a class="case-link c-teal" href="https://thedebate.lovable.app/" target="_blank" rel="noopener">Live App</a>
           </div>
+
+          <details class="case-details">
+            <summary>How It Was Built</summary>
+            <div class="case-details-body">
+              <div class="case-details-block">
+                <h5>LLM Engine &amp; APIs</h5>
+                <p>Powered by Anthropic Claude 3.5 Sonnet (selected for complex reasoning and structured rhythmic phrasing in poetry) working alongside OpenAI GPT-4o (configured as a fast, opposing debate persona).</p>
+              </div>
+              <div class="case-details-block">
+                <h5>Agent Orchestration &amp; Communication</h5>
+                <p>Built using a custom Python agentic workflow using state graphs rather than heavy third-party agent frameworks. The system coordinates turn-taking, dynamic response injection, and context passing sequentially via event-driven state nodes.</p>
+              </div>
+              <div class="case-details-block">
+                <h5>Frontend / Backend Stack</h5>
+                <p>React / Next.js frontend with Tailwind CSS for dynamic turn visualization; Python (FastAPI) backend utilizing WebSockets for low-latency streaming of agent outputs.</p>
+              </div>
+              <div class="case-details-block">
+                <h5>Role: Lead AI Architect &amp; Full-Stack Developer</h5>
+                <p>Formulated the multi-agent orchestration architecture, prompt management system, real-time guardrails, and dynamic UI state sync.</p>
+              </div>
+              <div class="case-details-block">
+                <h5>Technical Decisions</h5>
+                <ol>
+                  <li><strong>Sliding Context Window with Summarization</strong> — Preserved agent performance and lowered token costs by maintaining a rolling memory window that dynamically summarizes past rebuttal turns into compact system context.</li>
+                  <li><strong>Intermediary Guardrail Node</strong> — Added a lightweight validation pass between turns to verify output format, catch repetitive phrasing, and enforce word-count boundaries before rendering responses to the client.</li>
+                </ol>
+              </div>
+              <div class="case-details-block case-challenge">
+                <h5>Key Challenge Solved — Debate &amp; Poetry Accessibility</h5>
+                <p><strong>Challenge:</strong> Debates — live, upcoming, past, or local — and spoken-word poetry were scattered and hard to discover, leaving audiences with little consistent way to find and engage with them, and limiting how entertaining and far-reaching debate and poetry could actually be.</p>
+                <p><strong>Solution:</strong> Built a platform where users log in, register for a debate by setting the time, topic, and scoring preferences, and can then watch live, upcoming, former, or local debates in one place — turning debate into an accessible, spectator-friendly experience. Extended the same platform to poetry with live poetry challenges, letting poets post and perform live online alongside the debate content.</p>
+              </div>
+              <div class="case-details-block">
+                <h5>Key Design Decision — Keeping Agents On-Topic &amp; Distinct</h5>
+                <p>Designed structural system prompts featuring explicit persona rules and objective constraints (e.g., <em>"Address point B made by Opponent, limit rebuttal to two stanzas, and do not repeat arguments from Turn 1"</em>). This prevented agents from losing topic context or slipping into passive agreement loops.</p>
+              </div>
+            </div>
+          </details>
         </div>
 
         <div class="case">
           <div class="case-top">
-            <h3>Lazy App — Multi-Service Aggregator Software</h3>
+            <h3>The Lazy App — Multi-Service Aggregator</h3>
             <span class="case-badge c-sky">PROTOTYPE</span>
           </div>
           <ul>
-            <li>Architected application logic for a multi-utility aggregator app, incorporating automated service comparison workflows and QR-based item lookup.</li>
-            <li>Integrated prompt-assisted meal planning features ("Lazy Cook") that take available kitchen ingredients and construct step-by-step recipes on demand.</li>
+            <li>Cross-references apartments, travel, delivery, dispatch, and professional services in one dashboard — matched to the user's own taste and budget.</li>
+            <li>Every listing shows its real service provider; selecting one redirects out to that provider's page to complete the actual booking or transaction.</li>
           </ul>
           
           <div class="tech-frameworks">
             <span class="tech-label">Frameworks:</span>
-            <span class="tech-pill">React</span>
-            <span class="tech-pill">Structured Prompting</span>
-            <span class="tech-pill">Web APIs</span>
+            <span class="tech-pill">React / Node.js</span>
+            <span class="tech-pill">Supabase (PostgreSQL)</span>
+            <span class="tech-pill">Claude Artifacts</span>
+            <span class="tech-pill">Serverless / Edge</span>
           </div>
 
-          <div class="case-impact"><strong>Key Outcome</strong>Combines everyday web utility logic with generative AI assistance to create a cohesive multi-tool software application.</div>
+          <div class="case-impact"><strong>Key Outcome</strong>Solves fragmented service access — one dashboard replaces visiting multiple separate apps and sites, with an API normalization layer and SWR caching keeping it fast and cheap to run.</div>
           
           <div class="case-proof">
             <div class="case-proof-label">Application Proof</div>
@@ -1421,6 +1558,37 @@
               <img src="proof/lazyapp-3.jpg" alt="Lazy App service comparison view" loading="lazy">
             </div>
           </div>
+
+          <details class="case-details">
+            <summary>How It Was Built</summary>
+            <div class="case-details-body">
+              <div class="case-details-block">
+                <h5>Tools &amp; Stack</h5>
+                <p>Built with a React / Node.js frontend, using Supabase (PostgreSQL + Auth) as the backend database, rapidly prototyped by generating and refining modular UI components via Claude Artifacts.</p>
+              </div>
+              <div class="case-details-block">
+                <h5>Integrations</h5>
+                <p>Integrated third-party REST APIs into a unified middleware layer to aggregate, parse, and render service data within a single user dashboard. Spans multiple categories — apartments, travel, delivery, dispatch, and professional services — letting users cross-reference options against their own taste and budget in one place. Each result surfaces its actual service provider, and selecting one redirects the user to that provider's site to complete the booking or transaction.</p>
+              </div>
+              <div class="case-details-block">
+                <h5>Role: Solo Full-Stack Developer</h5>
+                <p>Managed the entire scope from API integration design and data transformation to UI components and serverless deployment.</p>
+              </div>
+              <div class="case-details-block">
+                <h5>Technical Decisions</h5>
+                <ol>
+                  <li><strong>Unified API Normalization Layer</strong> — Built a client-side adapter pattern that transforms inconsistent third-party JSON responses into a single internal schema before passing data to UI components.</li>
+                  <li><strong>Stale-While-Revalidate (SWR) Caching</strong> — Utilized aggressive client caching strategies to minimize unnecessary third-party API calls, drastically improving load speed and avoiding API rate limits.</li>
+                  <li><strong>Zero-Compute Serverless Architecture</strong> — Kept infrastructure overhead near zero by deploying frontend assets to edge locations and relying on serverless edge functions for API routing.</li>
+                </ol>
+              </div>
+              <div class="case-details-block case-challenge">
+                <h5>Key Challenge Solved — Fragmented Service Access</h5>
+                <p><strong>Challenge:</strong> Users had to visit multiple separate websites and apps individually just to find and use the tools or services they needed — apartments, travel, delivery, dispatch, professional services — creating friction and wasted time across a fragmented set of destinations.</p>
+                <p><strong>Solution:</strong> Built a single aggregator app that houses the functionality of multiple third-party services in one unified dashboard, letting users cross-reference options across categories against their own taste and budget to surface the best alternative. Each listing indicates its actual service provider, and clicking through redirects the user to that provider's page to complete the booking — the app handles discovery and comparison, not the transaction itself.</p>
+              </div>
+            </div>
+          </details>
         </div>
 
         <div class="case">
