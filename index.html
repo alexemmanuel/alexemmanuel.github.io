@@ -1593,22 +1593,23 @@
 
         <div class="case">
           <div class="case-top">
-            <h3>Chain Story — Collaborative AI Storytelling Platform</h3>
-            <span class="case-badge c-coral">IN DEVELOPMENT</span>
+            <h3>Chain Stories — Collaborative Story-to-Screen Platform</h3>
+            <span class="case-badge c-coral">PROTOTYPE</span>
           </div>
           <ul>
-            <li>Engineered turn-based story contribution logic where writers collaborate line-by-line under contextual guidelines.</li>
-            <li>Structured prompt frameworks that summarize ongoing narratives, enforce genre rules, and format text for script export.</li>
+            <li>Turn-based collaborative storytelling — each writer adds exactly one line to a shared "chain," with genre-coded productions framed as a movie (fixed runtime) or an episodic series.</li>
+            <li>An AI Story Analyst (Claude API) scores each submitted line 1–10 on genre/tone fit before it's committed, then a full-screen "watch mode" player replays the finished story like a film.</li>
           </ul>
           
           <div class="tech-frameworks">
             <span class="tech-label">Frameworks:</span>
-            <span class="tech-pill">Claude Artifacts</span>
-            <span class="tech-pill">Prompt Logic</span>
-            <span class="tech-pill">JavaScript</span>
+            <span class="tech-pill">React</span>
+            <span class="tech-pill">Claude API</span>
+            <span class="tech-pill">Lucide Icons</span>
+            <span class="tech-pill">window.storage</span>
           </div>
 
-          <div class="case-impact"><strong>Key Outcome</strong>Applies contextual LLM parsing to keep multi-user creative writing projects structured and focused.</div>
+          <div class="case-impact"><strong>Key Outcome</strong>Turns collaborative writing into a structured, watchable production — with an AI quality gate that keeps rotating authors on-genre without taking over authorial control.</div>
           
           <div class="case-proof">
             <div class="case-proof-label">Application Proof</div>
@@ -1618,9 +1619,47 @@
               <img src="proof/chainstory-3.jpg" alt="Chain Story export screen" loading="lazy">
             </div>
           </div>
-          <div class="case-links">
-            <a class="case-link c-coral" href="https://claude.ai/public/artifacts/5fce0878-9875-4b34-a908-0036132dd52a" target="_blank" rel="noopener">Live Prototype</a>
-          </div>
+
+          <details class="case-details">
+            <summary>How It Was Built</summary>
+            <div class="case-details-body">
+              <div class="case-details-block">
+                <h5>Core Concept &amp; Mechanics</h5>
+                <p>A complete React web app for collaborative, one-line-at-a-time storytelling that turns shared writing into "movies" or TV-style series you can watch. Users take turns adding exactly one line to a shared story (a "chain" or "production"); no single writer controls the whole plot. When the accumulated lines reach a chosen runtime — 60–180 minutes for a movie, or 30-minute episodes for a series — the story is marked finished and becomes watchable as a cinematic text sequence.</p>
+              </div>
+              <div class="case-details-block">
+                <h5>Tools &amp; Stack</h5>
+                <p>Built with React (hooks, functional components), Lucide icons, and custom CSS for a paper/ink aesthetic plus a dark "cinema" mode.</p>
+              </div>
+              <div class="case-details-block">
+                <h5>Data Persistence</h5>
+                <p>Data is persisted via a browser <code>window.storage</code> API, using local and shared demo keys for chains, writers, likes, and related state.</p>
+              </div>
+              <div class="case-details-block">
+                <h5>Key Features</h5>
+                <ol>
+                  <li><strong>Formats</strong> — Movie (fixed runtime cap) or Series (seasons/episodes with archives).</li>
+                  <li><strong>Genres</strong> — Mystery, Romance, Horror, Action, Adventure, Absurd, Sci-fi, Fable, each with its own accent color.</li>
+                  <li><strong>Turn Rules</strong> — An optional "practice/solo" mode allows the same person to write consecutive lines; otherwise the same writer can't go twice in a row. Lines are capped at 180 characters, and a random "twist word" is suggested for each turn.</li>
+                  <li><strong>AI Story Analyst</strong> — Calls the Claude (Anthropic) API to score a submitted line 1–10, check genre/tone fit, and return a short editorial verdict before the line is committed.</li>
+                  <li><strong>Watch Mode</strong> — A full-screen cinematic player displays lines one by one with timed pacing, a progress scrubber, skip controls, a like button, and a "The End" screen. Watches and likes feed into writer stats.</li>
+                  <li><strong>Offline Download</strong> — Premium users can download a self-contained HTML "reel" that replays the story offline (not a real video file).</li>
+                  <li><strong>Experimental AI Trailer</strong> — UI to generate a short video trailer via a user-deployed backend; points at <code>localhost:8000</code> by default and does nothing out of the box.</li>
+                  <li><strong>Writer Profiles &amp; Economy</strong> — Shared demo data tracks lines written, active days, watches, likes, visibility score, and credits. Users can "cash out" credits (demo only). A premium plan (demo toggle, $4.99/mo or $39/yr) unlocks downloads and AI trailers; free users can still read and watch everything.</li>
+                  <li><strong>Leaderboard</strong> — Ranks writers by a visibility score based on activity and engagement on stories containing their lines. Premium writers get a small "CS" badge.</li>
+                </ol>
+              </div>
+              <div class="case-details-block case-challenge">
+                <h5>Key Challenge Solved — Narrative Quality Without Centralized Authorship</h5>
+                <p><strong>Challenge:</strong> With no single writer controlling the plot and lines contributed one at a time by rotating authors, any submitted line could break genre tone, pacing, or narrative coherence — a structural risk of the collaborative, turn-based format itself.</p>
+                <p><strong>Solution:</strong> Built an AI Story Analyst that calls the Claude API to score each submitted line against genre/tone fit and return a short editorial verdict before it's committed — giving writers a quality signal in the moment without ever taking authorial control away from the human submitting the line.</p>
+              </div>
+              <div class="case-details-block">
+                <h5>Scope Note</h5>
+                <p>No real payments, real video generation, or production backend are included — these are explicitly marked as demos or as integrations the user must wire up themselves (e.g., the AI trailer feature requires a self-hosted backend and does nothing out of the box).</p>
+              </div>
+            </div>
+          </details>
         </div>
 
       </div>
