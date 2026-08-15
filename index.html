@@ -1343,8 +1343,8 @@
             </span>
           </div>
 
-          <div class="contact-row" style="cursor: pointer;" onclick="showPage('resume')" title="View Resume / Download CV">
-            <a href="javascript:void(0)" onclick="showPage('resume'); event.stopPropagation();" class="contact-icon-badge i-sky" title="View Resume">
+          <div class="contact-row" style="cursor: pointer;" onclick="goToCvDownload()" title="View Resume / Download CV">
+            <a href="javascript:void(0)" onclick="goToCvDownload(); event.stopPropagation();" class="contact-icon-badge i-sky" title="Download CV">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M10 12h1v3"/><path d="M10 12h2.5a1.5 1.5 0 0 1 0 3H10"/><path d="M14 12h1.5a1.5 1.5 0 0 1 0 3H14v-3z"/></svg>
             </a>
             <span class="contact-row-val" style="color: var(--accent-teal); cursor: pointer;">DOWNLOAD CV</span>
@@ -1711,12 +1711,12 @@
     </section>
 
     <!-- Download CV -->
-    <section>
+    <section id="download-cv">
       <div class="section-panel accent-teal">
         <div class="eyebrow c-teal">Documents</div>
         <h2>Download My Resume</h2>
         <p style="color: var(--ink-soft); margin-bottom: 18px; max-width: 56ch;">Get a detailed overview of my professional experience, skills, and achievements.</p>
-        <div class="cv-download-block">
+        <div class="cv-download-block" id="cv-download-block">
           <h3>Engineer CV</h3>
           <p>ATS-optimized resume highlighting AI systems engineering, prompt architecture, LLM workflows, and application development experience. Formatted for clear parsing and keyword alignment in Applicant Tracking Systems.</p>
           <div class="cv-badges">
@@ -1936,9 +1936,30 @@
     }
   }
 
+  function goToCvDownload() {
+    showPage('resume', { skipScroll: true });
+    // Wait for the resume page to paint, then scroll to the CV download block
+    requestAnimationFrame(function() {
+      setTimeout(function() {
+        var el = document.getElementById('download-cv') || document.getElementById('cv-download-block');
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }, 80);
+    });
+  }
+
   function restorePageFromHash() {
     var hash = (window.location.hash || '').replace('#', '').toLowerCase();
-    if (hash === 'projects' || hash === 'resume' || hash === 'home') {
+    if (hash === 'download-cv' || hash === 'resume-cv' || hash === 'cv') {
+      showPage('resume', { skipHash: true, skipScroll: true, instant: true });
+      setTimeout(function() {
+        var el = document.getElementById('download-cv') || document.getElementById('cv-download-block');
+        if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
+      }, 50);
+    } else if (hash === 'projects' || hash === 'resume' || hash === 'home') {
       showPage(hash, { skipHash: true, instant: true });
     } else {
       showPage('home', { skipHash: true, instant: true });
