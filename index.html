@@ -693,154 +693,246 @@
   .role-org{ font-size: 14px; color: var(--accent-coral); font-weight: 600; margin-bottom: 10px; }
   .role p{ font-size: 15px; color: var(--ink-soft); }
 
-  /* ---------- Education ---------- */
-  .edu{ display:grid; grid-template-columns: 160px 1fr; gap: 18px; }
-  @media (max-width: 680px){ .edu{ grid-template-columns: 1fr; gap: 6px; } }
-  .edu-date{ font-family: var(--mono); font-size: 13px; font-weight: bold; color: var(--accent-sky); padding-top: 2px; }
-  .edu-title{ font-weight: bold; font-size: 16px; color: var(--ink); margin-bottom: 4px; }
-  .edu-org{ font-size: 14px; color: var(--accent-coral); font-weight: 600; margin-bottom: 14px; }
-  .edu p{ font-size: 14px; color: var(--ink-soft); }
-
-  .edu-highlights {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 4px;
+  
+  /* Light theme overrides */
+  [data-theme="light"] {
+    --bg: #F4F6FA;
+    --bg-panel: #FFFFFF;
+    --bg-panel-2: #EEF1F6;
+    --ink: #12151C;
+    --ink-soft: #5A6578;
+    --line: rgba(18,21,28,.12);
+    --teal-tint: rgba(15,140,130,.12);
+    --coral-tint: rgba(220,80,60,.12);
+    --sky-tint: rgba(50,100,200,.12);
+    --purple-tint: rgba(120,90,180,.12);
   }
-  .edu-block {
-    border-radius: 12px;
-    padding: 14px 16px;
+  [data-theme="light"] body { background: var(--bg); color: var(--ink); }
+  [data-theme="light"] .btn-primary { color: #06201C; }
+  [data-theme="light"] .hero-portrait { box-shadow: 8px 8px 0 var(--accent-coral); }
+  [data-theme="light"] .contact-card,
+  [data-theme="light"] .resume-cta,
+  [data-theme="light"] .cv-download-block {
+    background: linear-gradient(135deg, #e8f5f3, #eef2f8);
+  }
+  [data-theme="light"] .cred-gallery-overlay {
+    background: rgba(244, 246, 250, 0.88);
+  }
+  [data-theme="light"] .cred-slide-frame img { background: #e8ecf2; }
+
+  .theme-toggle {
+    margin-left: 8px;
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    background: var(--bg-panel-2);
+    color: var(--ink);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: border-color .15s ease, background .15s ease, transform .15s ease;
+  }
+  .theme-toggle:hover {
+    border-color: var(--accent-teal);
+    background: var(--teal-tint);
+    transform: translateY(-1px);
+  }
+  .theme-toggle svg { width: 20px; height: 20px; }
+
+  /* Key Recognitions frame (separate from Education) */
+  .recog-frame {
+    margin-top: 28px;
+    background: var(--bg-panel);
+    border: 1px solid rgba(240, 185, 92, 0.35);
+    border-radius: 16px;
+    padding: 28px 24px;
+    box-shadow: 0 0 0 1px rgba(240,185,92,0.08);
+  }
+  .recog-frame .eyebrow.c-gold {
+    color: var(--gold);
+    background: rgba(240,185,92,0.16);
+  }
+  .recog-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 8px;
+  }
+  @media (max-width: 640px) {
+    .recog-split { grid-template-columns: 1fr; }
+  }
+  .recog-col {
+    border-radius: 14px;
+    padding: 18px 16px;
     border: 1px solid var(--line);
     background: var(--bg-panel-2);
   }
-  .edu-block.recognition {
-    border-color: rgba(47, 211, 194, 0.45);
-    background: linear-gradient(135deg, rgba(47, 211, 194, 0.10), var(--bg-panel-2));
+  .recog-col.awards-col {
+    border-color: rgba(240,185,92,0.5);
+    background: linear-gradient(160deg, rgba(240,185,92,0.12), var(--bg-panel-2));
   }
-  .edu-block.awards {
-    border-color: rgba(240, 185, 92, 0.45);
-    background: linear-gradient(135deg, rgba(240, 185, 92, 0.10), var(--bg-panel-2));
+  .recog-col.certs-col {
+    border-color: rgba(108,160,255,0.5);
+    background: linear-gradient(160deg, rgba(108,160,255,0.12), var(--bg-panel-2));
   }
-  .edu-block.certs {
-    border-color: rgba(108, 160, 255, 0.45);
-    background: linear-gradient(135deg, rgba(108, 160, 255, 0.10), var(--bg-panel-2));
-  }
-  .edu-block-label {
+  .recog-col-label {
     font-family: var(--mono);
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    margin-bottom: 8px;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
+    margin-bottom: 12px;
   }
-  .edu-block.recognition .edu-block-label { color: var(--accent-teal); }
-  .edu-block.awards .edu-block-label { color: var(--gold); }
-  .edu-block.certs .edu-block-label { color: var(--accent-sky); }
-  .edu-block-items {
+  .recog-col.awards-col .recog-col-label { color: var(--gold); }
+  .recog-col.certs-col .recog-col-label { color: var(--accent-sky); }
+  .recog-col ul {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 0 0 14px;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
   }
-  .edu-block-items li {
+  .recog-col li {
     font-size: 14px;
     color: var(--ink);
     padding-left: 16px;
     position: relative;
-    line-height: 1.45;
   }
-  .edu-block-items li::before {
+  .recog-col.awards-col li::before {
     content: "▸";
     position: absolute;
     left: 0;
+    color: var(--gold);
     font-weight: 700;
   }
-  .edu-block.recognition .edu-block-items li::before { color: var(--accent-teal); }
-  .edu-block.awards .edu-block-items li::before { color: var(--gold); }
-  .edu-block.certs .edu-block-items li::before { color: var(--accent-sky); }
-  .edu-block-empty {
-    font-size: 13px;
-    color: var(--ink-soft);
-    font-style: italic;
+  .recog-col.certs-col li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--accent-sky);
+    font-weight: 700;
   }
-  .edu-gallery-btn {
-    margin-top: 6px;
-    flex: none;
-    width: auto;
-    align-self: flex-start;
-    padding: 12px 20px;
-    font-size: 12px;
+  .cred-dl-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
   }
-  .edu-gallery-hint {
-    font-size: 12px;
-    color: var(--ink-soft);
-    margin: 0;
+  .cred-dl-btn {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+    background: var(--bg-panel);
+    color: var(--accent-teal);
+    cursor: pointer;
+    transition: border-color .15s, background .15s;
+  }
+  .cred-dl-btn:hover {
+    border-color: var(--accent-teal);
+    background: var(--teal-tint);
+  }
+  a.cred-dl-btn {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
   }
 
-  /* Credentials gallery modal */
+  /* Protected credential images — discourage casual save */
+  .cred-protected {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
+  .cred-protected img {
+    pointer-events: none;
+    -webkit-user-drag: none;
+  }
+
+
+  /* Credentials gallery modal — polished image stage */
   .cred-gallery-overlay {
     display: none;
     position: fixed;
     inset: 0;
     z-index: 200;
-    background: rgba(6, 10, 16, 0.82);
-    backdrop-filter: blur(6px);
+    background: rgba(4, 8, 14, 0.88);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     align-items: center;
     justify-content: center;
-    padding: 24px;
+    padding: 20px;
+  }
+  [data-theme="light"] .cred-gallery-overlay {
+    background: rgba(244, 246, 250, 0.92);
   }
   .cred-gallery-overlay.open { display: flex; }
   .cred-gallery-panel {
     background: var(--bg-panel);
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    max-width: 640px;
+    border: 1px solid rgba(47, 211, 194, 0.28);
+    border-radius: 20px;
+    max-width: 720px;
     width: 100%;
-    max-height: 90vh;
+    max-height: 92vh;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    box-shadow:
+      0 28px 80px rgba(0, 0, 0, 0.55),
+      0 0 0 1px rgba(255, 255, 255, 0.04),
+      0 0 40px rgba(47, 211, 194, 0.08);
+    animation: galleryIn 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  @keyframes galleryIn {
+    from { opacity: 0; transform: translateY(16px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
   }
   .cred-gallery-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 16px 20px;
+    padding: 18px 22px;
     border-bottom: 1px solid var(--line);
     gap: 12px;
+    background: linear-gradient(105deg, rgba(47, 211, 194, 0.12), transparent 55%);
   }
   .cred-gallery-header h3 {
     font-family: var(--serif);
-    font-size: 20px;
+    font-size: 22px;
+    font-weight: 700;
     color: var(--ink);
     margin: 0;
+    letter-spacing: -0.01em;
   }
   .cred-gallery-close {
-    background: transparent;
+    background: var(--bg-panel-2);
     border: 1px solid var(--line);
     color: var(--ink-soft);
-    border-radius: 8px;
-    width: 36px;
-    height: 36px;
+    border-radius: 10px;
+    width: 40px;
+    height: 40px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 20px;
     line-height: 1;
+    transition: border-color .15s, color .15s, background .15s;
   }
   .cred-gallery-close:hover {
     border-color: var(--accent-teal);
     color: var(--accent-teal);
+    background: var(--teal-tint);
   }
   .cred-gallery-tabs {
     display: flex;
     gap: 8px;
-    padding: 12px 16px;
+    padding: 14px 16px;
     border-bottom: 1px solid var(--line);
     flex-wrap: wrap;
+    background: var(--bg-panel-2);
   }
   .cred-gallery-tab {
     font-family: var(--mono);
@@ -848,12 +940,18 @@
     font-weight: 700;
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    padding: 8px 12px;
+    padding: 9px 14px;
     border-radius: 999px;
     border: 1px solid var(--line);
     background: transparent;
     color: var(--ink-soft);
     cursor: pointer;
+    transition: transform .12s ease, border-color .15s, background .15s, color .15s;
+  }
+  .cred-gallery-tab:hover {
+    transform: translateY(-1px);
+    color: var(--ink);
+    border-color: rgba(47, 211, 194, 0.4);
   }
   .cred-gallery-tab.active-rec {
     color: var(--accent-teal);
@@ -863,7 +961,7 @@
   .cred-gallery-tab.active-aw {
     color: var(--gold);
     border-color: var(--gold);
-    background: rgba(240,185,92,0.16);
+    background: rgba(240, 185, 92, 0.18);
   }
   .cred-gallery-tab.active-cert {
     color: var(--accent-sky);
@@ -871,44 +969,82 @@
     background: var(--sky-tint);
   }
   .cred-gallery-body {
-    padding: 20px;
+    padding: 22px;
     overflow-y: auto;
   }
   .cred-slide { display: none; }
-  .cred-slide.active { display: block; }
+  .cred-slide.active {
+    display: block;
+    animation: slideFade 0.28s ease;
+  }
+  @keyframes slideFade {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
   .cred-slide-frame {
+    position: relative;
     aspect-ratio: 4 / 3;
-    border-radius: 12px;
-    border: 1px solid var(--line);
-    background: var(--bg-panel-2);
+    border-radius: 16px;
+    border: 1px solid rgba(47, 211, 194, 0.22);
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(47, 211, 194, 0.14), transparent 50%),
+      radial-gradient(ellipse at 90% 100%, rgba(108, 160, 255, 0.1), transparent 45%),
+      var(--bg-panel-2);
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     margin-bottom: 14px;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.06),
+      0 12px 32px rgba(0, 0, 0, 0.25);
+  }
+  .cred-slide-frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    pointer-events: none;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
   }
   .cred-slide-frame img {
     width: 100%;
     height: 100%;
     object-fit: contain;
     background: #0a0e14;
+    padding: 12px;
+    transition: transform 0.35s ease;
+  }
+  .cred-slide-frame:hover img {
+    transform: scale(1.03);
+  }
+  [data-theme="light"] .cred-slide-frame img {
+    background: #e8ecf2;
   }
   .cred-slide-placeholder {
     text-align: center;
-    padding: 24px;
+    padding: 28px 24px;
     color: var(--ink-soft);
     font-size: 14px;
     max-width: 36ch;
+    line-height: 1.55;
   }
   .cred-slide-placeholder strong {
     display: block;
     color: var(--ink);
-    font-size: 16px;
-    margin-bottom: 8px;
+    font-family: var(--serif);
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  .cred-slide-placeholder code {
+    font-size: 12px;
+    color: var(--accent-teal);
   }
   .cred-slide-meta {
     font-size: 14px;
     color: var(--ink-soft);
+    line-height: 1.55;
+    padding: 2px 4px 10px;
   }
   .cred-slide-meta .cred-tag {
     font-family: var(--mono);
@@ -917,12 +1053,12 @@
     letter-spacing: 0.04em;
     text-transform: uppercase;
     display: inline-block;
-    margin-bottom: 6px;
-    padding: 4px 10px;
+    margin-bottom: 8px;
+    padding: 5px 12px;
     border-radius: 999px;
   }
   .cred-tag.rec { color: var(--accent-teal); background: var(--teal-tint); }
-  .cred-tag.aw { color: var(--gold); background: rgba(240,185,92,0.16); }
+  .cred-tag.aw { color: var(--gold); background: rgba(240, 185, 92, 0.18); }
   .cred-tag.cert { color: var(--accent-sky); background: var(--sky-tint); }
 
   /* ---------- Resume Page (polished layout) ---------- */
@@ -1283,6 +1419,9 @@
     <a onclick="showPage('home'); closeMobileNav();" class="wordmark" title="Return to Home Page">
       EMMANUEL CHIMEZIE
     </a>
+    <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light and dark mode" title="Toggle light / dark mode" onclick="toggleTheme()">
+      <svg id="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 14.5A8.5 8.5 0 1 1 9.5 3 7 7 0 0 0 21 14.5z"/></svg>
+    </button>
     <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" onclick="toggleMobileNav()">
       <span></span>
       <span></span>
@@ -2099,33 +2238,43 @@
           <div>
             <div class="edu-title">B.Eng. Computer Engineering — Second Class Upper</div>
             <div class="edu-org">Oduduwa University, Ipetu Modu, Osun State</div>
-            <div class="edu-highlights">
-              <div class="edu-block recognition">
-                <div class="edu-block-label">Key Recognition</div>
-                <ul class="edu-block-items">
-                  <li>Speaker for Computer Engineering</li>
-                </ul>
+          </div>
+        </div>
+
+        <!-- Key Recognitions frame (separate from Education) -->
+        <div class="recog-frame" id="key-recognitions">
+          <div class="eyebrow c-gold">Key Recognitions</div>
+          <h2 style="margin-bottom: 18px;">Awards &amp; Certifications</h2>
+          <div class="recog-split">
+            <div class="recog-col awards-col">
+              <div class="recog-col-label">Awards</div>
+              <ul>
+                <li>Most Resourceful Student</li>
+              </ul>
+              <div class="cred-dl-row">
+                <a class="cred-dl-btn" href="proof/ar.jpg" download="ar.jpg">Download award file</a>
               </div>
-              <div class="edu-block awards">
-                <div class="edu-block-label">Awards</div>
-                <ul class="edu-block-items">
-                  <li>Most Resourceful Student</li>
-                </ul>
+            </div>
+            <div class="recog-col certs-col">
+              <div class="recog-col-label">Certifications</div>
+              <ul>
+                <li>Speaker for Computer Engineering</li>
+                <li>Mathematics Brain Challenge Winner</li>
+                <li>University degree certificate</li>
+                <li>NYSC</li>
+              </ul>
+              <div class="cred-dl-row">
+                <a class="cred-dl-btn" href="proof/rs.jpg" download="rs.jpg">Download speaker file</a>
+                <a class="cred-dl-btn" href="proof/me.jpg" download="me.jpg">Download math challenge file</a>
+                <a class="cred-dl-btn" href="proof/unicert.jpg" download="unicert.jpg">Download university certificate</a>
+                <a class="cred-dl-btn" href="proof/nysc.jpg" download="nysc.jpg">Download NYSC file</a>
               </div>
-              <div class="edu-block certs">
-                <div class="edu-block-label">Certifications</div>
-                <ul class="edu-block-items">
-                  <li>Speaker for Computer Engineering</li>
-                  <li>Mathematics Brain Challenge Winner</li>
-                </ul>
-              </div>
-              <button type="button" class="btn btn-primary edu-gallery-btn" onclick="openCredentialsGallery()">
-                View credentials gallery
-              </button>
-              <p class="edu-gallery-hint">photos and evidence of Awards and Certifications opens in a simple gallery
-</p>
             </div>
           </div>
+          <button type="button" class="btn btn-primary edu-gallery-btn" style="margin-top: 18px;" onclick="openCredentialsGallery()">
+            View credentials gallery
+          </button>
+          <p class="edu-gallery-hint">View on screen anytime. Downloads are free — files open from the proof folder.</p>
         </div>
       </div>
     </section>
@@ -2148,51 +2297,84 @@
 <div class="cred-gallery-overlay" id="cred-gallery" role="dialog" aria-modal="true" aria-label="Credentials gallery" onclick="if(event.target===this) closeCredentialsGallery()">
   <div class="cred-gallery-panel">
     <div class="cred-gallery-header">
-      <h3> Recognitions and Credentials gallery </h3>
+      <h3>Credentials gallery</h3>
       <button type="button" class="cred-gallery-close" onclick="closeCredentialsGallery()" aria-label="Close">×</button>
     </div>
     <div class="cred-gallery-tabs">
-      <button type="button" class="cred-gallery-tab" data-cred="aw" onclick="showCredSlide('aw')">Awards</button>
+      <button type="button" class="cred-gallery-tab active-aw" data-cred="aw" onclick="showCredSlide('aw')">Awards</button>
       <button type="button" class="cred-gallery-tab" data-cred="cert" onclick="showCredSlide('cert')">Certifications</button>
+      <button type="button" class="cred-gallery-tab" data-cred="uni" onclick="showCredSlide('uni')">University certificate</button>
+      <button type="button" class="cred-gallery-tab" data-cred="nysc" onclick="showCredSlide('nysc')">NYSC</button>
     </div>
-    <div class="cred-gallery-body">
-      <div class="cred-slide" id="cred-slide-aw">
-        <div class="cred-slide-frame">
-          <img src="proof/ar.jpg" alt="Most Resourceful Student" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <div class="cred-gallery-body">
+      <div class="cred-slide active" id="cred-slide-aw">
+        <div class="cred-slide-frame cred-protected">
+          <img src="proof/ar.jpg" alt="Most Resourceful Student" draggable="false" oncontextmenu="return false;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
           <div class="cred-slide-placeholder" style="display:none">
             <strong>Most Resourceful Student</strong>
+            Place file at <code>proof/ar.jpg</code>
           </div>
         </div>
         <div class="cred-slide-meta">
-          <div>Most Resourceful Student </div>
+          <span class="cred-tag aw">Awards</span>
+          <div>Most Resourceful Student · view only here · use Download award file for a copy</div>
         </div>
       </div>
       <div class="cred-slide" id="cred-slide-cert">
-        <div class="cred-slide active" id="cred-slide-cert">
-        <div class="cred-slide-frame">
-          <img src="proof/rs.jpg" alt="Speaker for Computer Engineering" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <div class="cred-slide-frame cred-protected">
+          <img src="proof/rs.jpg" alt="Speaker for Computer Engineering" draggable="false" oncontextmenu="return false;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
           <div class="cred-slide-placeholder" style="display:none">
             <strong>Speaker for Computer Engineering</strong>
+            Place file at <code>proof/rs.jpg</code>
           </div>
         </div>
         <div class="cred-slide-meta">
-          <div>Speaker for Computer Engineering </div>
+          <span class="cred-tag cert">Certifications</span>
+          <div>Speaker for Computer Engineering · also see Math challenge below via download list · <code>proof/rs.jpg</code></div>
         </div>
-        </div>
-        <div class="cred-slide-frame">
-          <img src="proof/me.jpg" alt="Mathematics Brain Challenge Winner" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <div class="cred-slide-frame cred-protected" style="margin-top:14px">
+          <img src="proof/me.jpg" alt="Mathematics Brain Challenge Winner" draggable="false" oncontextmenu="return false;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
           <div class="cred-slide-placeholder" style="display:none">
             <strong>Mathematics Brain Challenge Winner</strong>
+            Place file at <code>proof/me.jpg</code>
           </div>
         </div>
         <div class="cred-slide-meta">
-          <div>Mathematics Brain Challenge Winner.</div>
+          <span class="cred-tag cert">Certifications</span>
+          <div>Mathematics Brain Challenge Winner · <code>proof/me.jpg</code></div>
+        </div>
+      </div>
+      <div class="cred-slide" id="cred-slide-uni">
+        <div class="cred-slide-frame cred-protected">
+          <img src="proof/unicert.jpg" alt="University degree certificate" draggable="false" oncontextmenu="return false;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div class="cred-slide-placeholder" style="display:none">
+            <strong>University degree certificate</strong>
+            Place file at <code>proof/unicert.jpg</code>
+          </div>
+        </div>
+        <div class="cred-slide-meta">
+          <span class="cred-tag cert">Certifications</span>
+          <div>B.Eng. Computer Engineering — Oduduwa University · <code>proof/unicert.jpg</code></div>
+        </div>
+      </div>
+
+      <div class="cred-slide" id="cred-slide-nysc">
+        <div class="cred-slide-frame">
+          <img src="proof/nysc.jpg" alt="NYSC" draggable="false" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div class="cred-slide-placeholder" style="display:none">
+            <strong>NYSC</strong>
+            Place file at <code>proof/nysc.jpg</code>
+          </div>
+        </div>
+        <div class="cred-slide-meta">
+          <span class="cred-tag cert">Certifications</span>
+          <div>NYSC · <code>proof/nysc.jpg</code> · <a class="cred-dl-btn" href="proof/nysc.jpg" download="nysc.jpg">Download</a></div>
         </div>
       </div>
     </div>
+    </div>
   </div>
 </div>
-
 <div class="sticky-cv-bar" id="sticky-cv-bar">
   <span>Engineer CV · ATS-ready PDF</span>
   <a class="btn btn-resume" href="CHIMEZIE-CV.pdf" download="CHIMEZIE-CV.pdf">Download CV ↓</a>
@@ -2296,12 +2478,31 @@
   }
 
 
+
+  /* ---------- Theme (light / dark) ---------- */
+  function applyTheme(theme) {
+    var t = theme === 'light' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+    try { localStorage.setItem('portfolio-theme', t); } catch (e) {}
+  }
+  function toggleTheme() {
+    var cur = document.documentElement.getAttribute('data-theme') || 'dark';
+    applyTheme(cur === 'dark' ? 'light' : 'dark');
+  }
+  (function initTheme() {
+    var saved = null;
+    try { saved = localStorage.getItem('portfolio-theme'); } catch (e) {}
+    if (saved === 'light' || saved === 'dark') applyTheme(saved);
+    else applyTheme('dark');
+  })();
+
+  /* ---------- Credentials gallery ---------- */
   function openCredentialsGallery() {
     var el = document.getElementById('cred-gallery');
     if (!el) return;
     el.classList.add('open');
     document.body.style.overflow = 'hidden';
-    showCredSlide('rec');
+    showCredSlide('aw');
   }
   function closeCredentialsGallery() {
     var el = document.getElementById('cred-gallery');
@@ -2313,12 +2514,11 @@
     document.querySelectorAll('.cred-slide').forEach(function(s) {
       s.classList.toggle('active', s.id === 'cred-slide-' + id);
     });
-    document.querySelectorAll('.cred-gallery-tab').forEach(function(t) {
-      t.classList.remove('active-rec', 'active-aw', 'active-cert');
-      if (t.getAttribute('data-cred') === id) {
-        if (id === 'rec') t.classList.add('active-rec');
-        if (id === 'aw') t.classList.add('active-aw');
-        if (id === 'cert') t.classList.add('active-cert');
+    document.querySelectorAll('.cred-gallery-tab').forEach(function(tab) {
+      tab.classList.remove('active-rec', 'active-aw', 'active-cert');
+      if (tab.getAttribute('data-cred') === id) {
+        if (id === 'aw') tab.classList.add('active-aw');
+        else tab.classList.add('active-cert');
       }
     });
   }
