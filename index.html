@@ -617,7 +617,7 @@
   .case-link::after{ content: '→'; transition: transform .15s ease; }
   .case-link:hover::after{ transform: translateX(3px); }
 
-  /* ---------- Case "How It Built" collapsible ---------- */
+  /* ---------- Case "How It Was Built" collapsible ---------- */
   .case-details{
     margin-top: 18px;
     border-top: 1px dashed var(--line);
@@ -698,8 +698,232 @@
   @media (max-width: 680px){ .edu{ grid-template-columns: 1fr; gap: 6px; } }
   .edu-date{ font-family: var(--mono); font-size: 13px; font-weight: bold; color: var(--accent-sky); padding-top: 2px; }
   .edu-title{ font-weight: bold; font-size: 16px; color: var(--ink); margin-bottom: 4px; }
-  .edu-org{ font-size: 14px; color: var(--accent-coral); font-weight: 600; margin-bottom: 8px; }
+  .edu-org{ font-size: 14px; color: var(--accent-coral); font-weight: 600; margin-bottom: 14px; }
   .edu p{ font-size: 14px; color: var(--ink-soft); }
+
+  .edu-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 4px;
+  }
+  .edu-block {
+    border-radius: 12px;
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    background: var(--bg-panel-2);
+  }
+  .edu-block.recognition {
+    border-color: rgba(47, 211, 194, 0.45);
+    background: linear-gradient(135deg, rgba(47, 211, 194, 0.10), var(--bg-panel-2));
+  }
+  .edu-block.awards {
+    border-color: rgba(240, 185, 92, 0.45);
+    background: linear-gradient(135deg, rgba(240, 185, 92, 0.10), var(--bg-panel-2));
+  }
+  .edu-block.certs {
+    border-color: rgba(108, 160, 255, 0.45);
+    background: linear-gradient(135deg, rgba(108, 160, 255, 0.10), var(--bg-panel-2));
+  }
+  .edu-block-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .edu-block.recognition .edu-block-label { color: var(--accent-teal); }
+  .edu-block.awards .edu-block-label { color: var(--gold); }
+  .edu-block.certs .edu-block-label { color: var(--accent-sky); }
+  .edu-block-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .edu-block-items li {
+    font-size: 14px;
+    color: var(--ink);
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.45;
+  }
+  .edu-block-items li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    font-weight: 700;
+  }
+  .edu-block.recognition .edu-block-items li::before { color: var(--accent-teal); }
+  .edu-block.awards .edu-block-items li::before { color: var(--gold); }
+  .edu-block.certs .edu-block-items li::before { color: var(--accent-sky); }
+  .edu-block-empty {
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+  .edu-gallery-btn {
+    margin-top: 6px;
+    flex: none;
+    width: auto;
+    align-self: flex-start;
+    padding: 12px 20px;
+    font-size: 12px;
+  }
+  .edu-gallery-hint {
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* Credentials gallery modal */
+  .cred-gallery-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: rgba(6, 10, 16, 0.82);
+    backdrop-filter: blur(6px);
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .cred-gallery-overlay.open { display: flex; }
+  .cred-gallery-panel {
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    max-width: 640px;
+    width: 100%;
+    max-height: 90vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .cred-gallery-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--line);
+    gap: 12px;
+  }
+  .cred-gallery-header h3 {
+    font-family: var(--serif);
+    font-size: 20px;
+    color: var(--ink);
+    margin: 0;
+  }
+  .cred-gallery-close {
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+    border-radius: 8px;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+  }
+  .cred-gallery-close:hover {
+    border-color: var(--accent-teal);
+    color: var(--accent-teal);
+  }
+  .cred-gallery-tabs {
+    display: flex;
+    gap: 8px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--line);
+    flex-wrap: wrap;
+  }
+  .cred-gallery-tab {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 8px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--ink-soft);
+    cursor: pointer;
+  }
+  .cred-gallery-tab.active-rec {
+    color: var(--accent-teal);
+    border-color: var(--accent-teal);
+    background: var(--teal-tint);
+  }
+  .cred-gallery-tab.active-aw {
+    color: var(--gold);
+    border-color: var(--gold);
+    background: rgba(240,185,92,0.16);
+  }
+  .cred-gallery-tab.active-cert {
+    color: var(--accent-sky);
+    border-color: var(--accent-sky);
+    background: var(--sky-tint);
+  }
+  .cred-gallery-body {
+    padding: 20px;
+    overflow-y: auto;
+  }
+  .cred-slide { display: none; }
+  .cred-slide.active { display: block; }
+  .cred-slide-frame {
+    aspect-ratio: 4 / 3;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    background: var(--bg-panel-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 14px;
+  }
+  .cred-slide-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #0a0e14;
+  }
+  .cred-slide-placeholder {
+    text-align: center;
+    padding: 24px;
+    color: var(--ink-soft);
+    font-size: 14px;
+    max-width: 36ch;
+  }
+  .cred-slide-placeholder strong {
+    display: block;
+    color: var(--ink);
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  .cred-slide-meta {
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .cred-slide-meta .cred-tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 6px;
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+  .cred-tag.rec { color: var(--accent-teal); background: var(--teal-tint); }
+  .cred-tag.aw { color: var(--gold); background: rgba(240,185,92,0.16); }
+  .cred-tag.cert { color: var(--accent-sky); background: var(--sky-tint); }
 
   /* ---------- Resume Page (polished layout) ---------- */
   .resume-avail {
@@ -1271,6 +1495,7 @@
             <div class="matrix-items">
               <span class="chip c-coral">Vibe Coding Workflows</span>
               <span class="chip c-coral">Claude Artifacts &amp; Rapid Builders</span>
+              <span class="chip c-coral">Grok &amp; xAI Workflows</span>
               <span class="chip c-coral">Lovable Prototyping</span>
               <span class="chip c-coral">Generative Media Pipelines</span>
             </div>
@@ -1852,6 +2077,7 @@
         </div>
         <div class="tools-row">
           <span class="tool-chip">Claude</span>
+          <span class="tool-chip">Grok</span>
           <span class="tool-chip">TypeScript</span>
           <span class="tool-chip">React</span>
           <span class="tool-chip">Node.js</span>
@@ -1873,7 +2099,31 @@
           <div>
             <div class="edu-title">B.Eng. Computer Engineering — Second Class Upper</div>
             <div class="edu-org">Oduduwa University, Ipetu Modu, Osun State</div>
-            <p>Key Recognition: Speaker for Computer Engineering; Most Resourceful Student Award; Mathematics Challenge Winner.</p>
+            <div class="edu-highlights">
+              <div class="edu-block recognition">
+                <div class="edu-block-label">Key Recognition</div>
+                <ul class="edu-block-items">
+                  <li>Speaker for Computer Engineering</li>
+                </ul>
+              </div>
+              <div class="edu-block awards">
+                <div class="edu-block-label">Awards</div>
+                <ul class="edu-block-items">
+                  <li>Most Resourceful Student</li>
+                </ul>
+              </div>
+              <div class="edu-block certs">
+                <div class="edu-block-label">Certifications</div>
+                <ul class="edu-block-items">
+                  <li>Speaker for Computer Engineering</li>
+                  <li>Mathematics Brain Challenge Winner</li>
+                </ul>
+              </div>
+              <button type="button" class="btn btn-primary edu-gallery-btn" onclick="openCredentialsGallery()">
+                View credentials gallery
+              </button>
+              <p class="edu-gallery-hint">Photos of recognition, awards, and certificates open in a simple gallery.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -1890,6 +2140,63 @@
 
   </div>
 
+</div>
+
+
+<!-- Credentials Gallery -->
+<div class="cred-gallery-overlay" id="cred-gallery" role="dialog" aria-modal="true" aria-label="Credentials gallery" onclick="if(event.target===this) closeCredentialsGallery()">
+  <div class="cred-gallery-panel">
+    <div class="cred-gallery-header">
+      <h3>Credentials gallery</h3>
+      <button type="button" class="cred-gallery-close" onclick="closeCredentialsGallery()" aria-label="Close">×</button>
+    </div>
+    <div class="cred-gallery-tabs">
+      <button type="button" class="cred-gallery-tab active-rec" data-cred="rec" onclick="showCredSlide('rec')">Key Recognition</button>
+      <button type="button" class="cred-gallery-tab" data-cred="aw" onclick="showCredSlide('aw')">Awards</button>
+      <button type="button" class="cred-gallery-tab" data-cred="cert" onclick="showCredSlide('cert')">Certifications</button>
+    </div>
+    <div class="cred-gallery-body">
+      <div class="cred-slide active" id="cred-slide-rec">
+        <div class="cred-slide-frame">
+          <img src="proof/rs.jpg" alt="Speaker for Computer Engineering" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div class="cred-slide-placeholder" style="display:none">
+            <strong>Speaker for Computer Engineering</strong>
+            Place your file at <code>proof/rs.jpg</code> to show it here.
+          </div>
+        </div>
+        <div class="cred-slide-meta">
+          <span class="cred-tag rec">Key Recognition</span>
+          <div>Speaker for Computer Engineering (<code>proof/rs.jpg</code>).</div>
+        </div>
+      </div>
+      <div class="cred-slide" id="cred-slide-aw">
+        <div class="cred-slide-frame">
+          <img src="proof/ar.jpg" alt="Most Resourceful Student" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div class="cred-slide-placeholder" style="display:none">
+            <strong>Most Resourceful Student</strong>
+            Place your file at <code>proof/ar.jpg</code> to show it here.
+          </div>
+        </div>
+        <div class="cred-slide-meta">
+          <span class="cred-tag aw">Award</span>
+          <div>Most Resourceful Student (<code>proof/ar.jpg</code>).</div>
+        </div>
+      </div>
+      <div class="cred-slide" id="cred-slide-cert">
+        <div class="cred-slide-frame">
+          <img src="proof/me.jpg" alt="Mathematics Brain Challenge Winner" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div class="cred-slide-placeholder" style="display:none">
+            <strong>Mathematics Brain Challenge Winner</strong>
+            Place your file at <code>proof/me.jpg</code> to show it here.
+          </div>
+        </div>
+        <div class="cred-slide-meta">
+          <span class="cred-tag cert">Certification</span>
+          <div>Mathematics Brain Challenge Winner (<code>proof/me.jpg</code>). Speaker credential also under Key Recognition (<code>proof/rs.jpg</code>).</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="sticky-cv-bar" id="sticky-cv-bar">
@@ -1993,6 +2300,37 @@
       btn.setAttribute('aria-label', 'Open menu');
     }
   }
+
+
+  function openCredentialsGallery() {
+    var el = document.getElementById('cred-gallery');
+    if (!el) return;
+    el.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    showCredSlide('rec');
+  }
+  function closeCredentialsGallery() {
+    var el = document.getElementById('cred-gallery');
+    if (!el) return;
+    el.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function showCredSlide(id) {
+    document.querySelectorAll('.cred-slide').forEach(function(s) {
+      s.classList.toggle('active', s.id === 'cred-slide-' + id);
+    });
+    document.querySelectorAll('.cred-gallery-tab').forEach(function(t) {
+      t.classList.remove('active-rec', 'active-aw', 'active-cert');
+      if (t.getAttribute('data-cred') === id) {
+        if (id === 'rec') t.classList.add('active-rec');
+        if (id === 'aw') t.classList.add('active-aw');
+        if (id === 'cert') t.classList.add('active-cert');
+      }
+    });
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeCredentialsGallery();
+  });
 
   // Hero Headline Text Swapper
   (function() {
@@ -2154,4 +2492,4 @@
 </script>
 
 </body>
-</html>
+  </html>
