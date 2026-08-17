@@ -447,13 +447,14 @@
   /* ---------- Radar Chart & Technical Expertise ---------- */
   .radar-container {
     width: 100%;
-    max-width: 580px;
+    max-width: 640px;
     margin: 0 auto 36px auto;
     background: var(--bg-panel-2);
     border: 1px solid var(--line);
     border-radius: 16px;
-    padding: 24px 16px 16px;
+    padding: 28px 20px 20px;
     text-align: center;
+    overflow: visible;
   }
   .radar-title {
     font-family: var(--serif);
@@ -464,6 +465,75 @@
   }
 
   .radar-svg { width: 100%; height: auto; overflow: visible; }
+
+  /* Radar labels adapt to theme */
+  .radar-svg .radar-axis-label {
+    fill: #E8EDF5;
+    paint-order: stroke fill;
+    stroke: rgba(13, 17, 24, 0.85);
+    stroke-width: 3px;
+    stroke-linejoin: round;
+  }
+  .radar-svg .radar-tip-title {
+    fill: #F2F5FA;
+    paint-order: stroke fill;
+    stroke: rgba(13, 17, 24, 0.9);
+    stroke-width: 3px;
+    stroke-linejoin: round;
+  }
+  .radar-svg .radar-tip-sub {
+    fill: var(--accent-teal);
+  }
+  .radar-svg .radar-grid-line {
+    stroke: rgba(255, 255, 255, 0.14);
+  }
+  .radar-svg .radar-grid-ring {
+    stroke: rgba(255, 255, 255, 0.14);
+  }
+  [data-theme="light"] .radar-svg .radar-axis-label {
+    fill: #0A0E16;
+    stroke: #FFFFFF;
+    stroke-width: 5px;
+    paint-order: stroke fill;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+  }
+  [data-theme="light"] .radar-container {
+    padding: 28px 12px 20px;
+  }
+  [data-theme="light"] .radar-svg {
+    overflow: visible;
+  }
+  /* Tooltip titles sit on dark cards — keep light text in light mode too */
+  [data-theme="light"] .radar-svg .radar-tip-title {
+    fill: #F2F5FA;
+    stroke: rgba(13, 17, 24, 0.9);
+    stroke-width: 3px;
+  }
+  [data-theme="light"] .radar-svg .radar-grid-line,
+  [data-theme="light"] .radar-svg .radar-grid-ring {
+    stroke: rgba(18, 21, 28, 0.22);
+  }
+  [data-theme="light"] .radar-node:hover circle {
+    fill: #12151C;
+  }
+  [data-theme="light"] .radar-container {
+    overflow: visible;
+  }
+  .radar-container {
+    overflow: visible;
+  }
+  .radar-svg {
+    overflow: visible;
+  }
+  [data-theme="light"] .radar-container {
+    background: #F7F9FC;
+    border-color: rgba(18, 21, 28, 0.12);
+  }
+  [data-theme="light"] .radar-title {
+    color: #12151C;
+  }
+
   .radar-node { cursor: pointer; pointer-events: all; }
   .radar-node circle { transition: r 0.2s ease, fill 0.2s ease; }
   .radar-node:hover circle { r: 8; fill: #FFFFFF; }
@@ -1155,35 +1225,41 @@
   }
 
 
-  /* Back to top — base of each tab */
-  .back-to-top {
-    display: flex;
-    justify-content: center;
-    padding: 28px 0 12px;
-    margin-top: 8px;
-  }
-  .back-to-top button {
+  /* Single fixed back-to-top — one for the whole app */
+  .back-to-top-fixed {
+    position: fixed;
+    right: 18px;
+    bottom: 22px;
+    z-index: 90;
     width: 44px;
     height: 44px;
     border-radius: 50%;
     border: 1px solid var(--line);
-    background: var(--bg-panel-2);
+    background: var(--bg-panel);
     color: var(--ink-soft);
     cursor: pointer;
-    display: inline-flex;
+    display: none;
     align-items: center;
     justify-content: center;
-    transition: border-color .15s ease, color .15s ease, background .15s ease, transform .15s ease;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    transition: border-color .15s ease, color .15s ease, background .15s ease, transform .15s ease, bottom .15s ease;
   }
-  .back-to-top button:hover {
+  .back-to-top-fixed.visible {
+    display: inline-flex;
+  }
+  .back-to-top-fixed:hover {
     border-color: var(--accent-teal);
     color: var(--accent-teal);
     background: var(--teal-tint);
     transform: translateY(-2px);
   }
-  .back-to-top button svg {
+  .back-to-top-fixed svg {
     width: 20px;
     height: 20px;
+  }
+  /* Lift above sticky CV bar when that bar is showing */
+  body.has-sticky-cv .back-to-top-fixed {
+    bottom: 78px;
   }
 
   /* ---------- Resume Page (polished layout) ---------- */
@@ -1629,7 +1705,7 @@
         <div class="radar-container">
           <div class="radar-title">Technical Skills Proficiency</div>
 
-          <svg class="radar-svg" viewBox="0 0 560 420" xmlns="http://www.w3.org/2000/svg">
+          <svg class="radar-svg" viewBox="-70 -40 700 510" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="radarFill" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stop-color="#FF6F59" stop-opacity="0.45" />
@@ -1642,23 +1718,23 @@
             </defs>
 
             <polygon points="280,85 388,148 388,272 280,335 172,272 172,148" fill="none" stroke="#2FD3C2" stroke-opacity="0.3" stroke-width="1.5"/>
-            <polygon points="280,110 366,160 366,260 280,310 194,260 194,160" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
-            <polygon points="280,135 344,172 344,248 280,285 216,248 216,172" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
-            <polygon points="280,160 322,185 322,235 280,260 238,235 238,185" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+            <polygon points="280,110 366,160 366,260 280,310 194,260 194,160" fill="none" class="radar-grid-line" stroke="currentColor" stroke-width="1"/>
+            <polygon points="280,135 344,172 344,248 280,285 216,248 216,172" fill="none" class="radar-grid-line" stroke="currentColor" stroke-width="1"/>
+            <polygon points="280,160 322,185 322,235 280,260 238,235 238,185" fill="none" class="radar-grid-line" stroke="currentColor" stroke-width="1"/>
             
-            <line x1="280" y1="210" x2="280" y2="85" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-            <line x1="280" y1="210" x2="388" y2="148" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-            <line x1="280" y1="210" x2="388" y2="272" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-            <line x1="280" y1="210" x2="280" y2="335" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-            <line x1="280" y1="210" x2="172" y2="272" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-            <line x1="280" y1="210" x2="172" y2="148" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+            <line x1="280" y1="210" x2="280" y2="85" class="radar-grid-ring" stroke="currentColor" stroke-width="1"/>
+            <line x1="280" y1="210" x2="388" y2="148" class="radar-grid-ring" stroke="currentColor" stroke-width="1"/>
+            <line x1="280" y1="210" x2="388" y2="272" class="radar-grid-ring" stroke="currentColor" stroke-width="1"/>
+            <line x1="280" y1="210" x2="280" y2="335" class="radar-grid-ring" stroke="currentColor" stroke-width="1"/>
+            <line x1="280" y1="210" x2="172" y2="272" class="radar-grid-ring" stroke="currentColor" stroke-width="1"/>
+            <line x1="280" y1="210" x2="172" y2="148" class="radar-grid-ring" stroke="currentColor" stroke-width="1"/>
 
-            <text x="280" y="65" fill="#EDF0F5" font-family="IBM Plex Mono" font-size="16" font-weight="600" text-anchor="middle">Prompt Architecture</text>
-            <text x="402" y="142" fill="#EDF0F5" font-family="IBM Plex Mono" font-size="15" font-weight="600" text-anchor="start">App Development</text>
-            <text x="402" y="280" fill="#EDF0F5" font-family="IBM Plex Mono" font-size="15" font-weight="600" text-anchor="start">LLM Workflows</text>
-            <text x="280" y="358" fill="#EDF0F5" font-family="IBM Plex Mono" font-size="16" font-weight="600" text-anchor="middle">System Architecture</text>
-            <text x="158" y="280" fill="#EDF0F5" font-family="IBM Plex Mono" font-size="15" font-weight="600" text-anchor="end">Generative Pipelines</text>
-            <text x="158" y="142" fill="#EDF0F5" font-family="IBM Plex Mono" font-size="15" font-weight="600" text-anchor="end">Full-Stack &amp; APIs</text>
+            <text class="radar-axis-label" x="280" y="58" font-family="IBM Plex Mono" font-size="16" font-weight="600" text-anchor="middle">Prompt Architecture</text>
+            <text class="radar-axis-label" x="398" y="142" font-family="IBM Plex Mono" font-size="15" font-weight="600" text-anchor="start">App Development</text>
+            <text class="radar-axis-label" x="398" y="280" font-family="IBM Plex Mono" font-size="15" font-weight="600" text-anchor="start">LLM Workflows</text>
+            <text class="radar-axis-label" x="280" y="365" font-family="IBM Plex Mono" font-size="16" font-weight="600" text-anchor="middle">System Architecture</text>
+            <text class="radar-axis-label" x="162" y="280" font-family="IBM Plex Mono" font-size="15" font-weight="600" text-anchor="end">Generative Pipelines</text>
+            <text class="radar-axis-label" x="162" y="142" font-family="IBM Plex Mono" font-size="15" font-weight="600" text-anchor="end">Full-Stack &amp; APIs</text>
 
             <polygon points="280,91 377,154 379,268 280,316 185,265 191,159" fill="url(#radarFill)" stroke="#FF6F59" stroke-width="2.5" filter="url(#glow)"/>
 
@@ -1666,7 +1742,7 @@
               <circle cx="280" cy="91" r="8" fill="#FF6F59" stroke="#0D1118" stroke-width="2" />
               <g class="radar-tooltip-card">
                 <rect x="185" y="12" width="190" height="46" rx="8" fill="#1C232D" stroke="#FF6F59" stroke-width="1" />
-                <text x="195" y="28" fill="#EDF0F5" font-family="Inter" font-size="14" font-weight="bold">Prompt Architecture: 95%</text>
+                <text class="radar-tip-title" x="195" y="28" font-family="Inter" font-size="14" font-weight="bold">Prompt Architecture: 95%</text>
                 <text x="195" y="44" fill="#2FD3C2" font-family="IBM Plex Mono" font-size="12">System Prompts, Logic Chains</text>
               </g>
             </g>
@@ -1675,7 +1751,7 @@
               <circle cx="377" cy="154" r="8" fill="#FF6F59" stroke="#0D1118" stroke-width="2" />
               <g class="radar-tooltip-card">
                 <rect x="340" y="80" width="195" height="46" rx="8" fill="#1C232D" stroke="#FF6F59" stroke-width="1" />
-                <text x="350" y="96" fill="#EDF0F5" font-family="Inter" font-size="14" font-weight="bold">App Development: 90%</text>
+                <text class="radar-tip-title" x="350" y="96" font-family="Inter" font-size="14" font-weight="bold">App Development: 90%</text>
                 <text x="350" y="112" fill="#2FD3C2" font-family="IBM Plex Mono" font-size="12">React, TypeScript, Next.js</text>
               </g>
             </g>
@@ -1684,7 +1760,7 @@
               <circle cx="379" cy="268" r="8" fill="#FF6F59" stroke="#0D1118" stroke-width="2" />
               <g class="radar-tooltip-card">
                 <rect x="340" y="290" width="195" height="46" rx="8" fill="#1C232D" stroke="#FF6F59" stroke-width="1" />
-                <text x="350" y="306" fill="#EDF0F5" font-family="Inter" font-size="14" font-weight="bold">LLM Workflows: 92%</text>
+                <text class="radar-tip-title" x="350" y="306" font-family="Inter" font-size="14" font-weight="bold">LLM Workflows: 92%</text>
                 <text x="350" y="322" fill="#2FD3C2" font-family="IBM Plex Mono" font-size="12">Claude API, Logic Guardrails</text>
               </g>
             </g>
@@ -1693,7 +1769,7 @@
               <circle cx="280" cy="316" r="8" fill="#FF6F59" stroke="#0D1118" stroke-width="2" />
               <g class="radar-tooltip-card">
                 <rect x="185" y="362" width="190" height="46" rx="8" fill="#1C232D" stroke="#FF6F59" stroke-width="1" />
-                <text x="195" y="378" fill="#EDF0F5" font-family="Inter" font-size="14" font-weight="bold">System Architecture: 85%</text>
+                <text class="radar-tip-title" x="195" y="378" font-family="Inter" font-size="14" font-weight="bold">System Architecture: 85%</text>
                 <text x="195" y="394" fill="#2FD3C2" font-family="IBM Plex Mono" font-size="12">Computer Eng, UI/UX Logic</text>
               </g>
             </g>
@@ -1702,7 +1778,7 @@
               <circle cx="185" cy="265" r="8" fill="#FF6F59" stroke="#0D1118" stroke-width="2" />
               <g class="radar-tooltip-card">
                 <rect x="20" y="290" width="195" height="46" rx="8" fill="#1C232D" stroke="#FF6F59" stroke-width="1" />
-                <text x="30" y="306" fill="#EDF0F5" font-family="Inter" font-size="14" font-weight="bold">Generative Media: 88%</text>
+                <text class="radar-tip-title" x="30" y="306" font-family="Inter" font-size="14" font-weight="bold">Generative Media: 88%</text>
                 <text x="30" y="322" fill="#2FD3C2" font-family="IBM Plex Mono" font-size="12">Image Gen APIs, Asset Pipelines</text>
               </g>
             </g>
@@ -1711,7 +1787,7 @@
               <circle cx="191" cy="159" r="8" fill="#FF6F59" stroke="#0D1118" stroke-width="2" />
               <g class="radar-tooltip-card">
                 <rect x="20" y="80" width="195" height="46" rx="8" fill="#1C232D" stroke="#FF6F59" stroke-width="1" />
-                <text x="30" y="96" fill="#EDF0F5" font-family="Inter" font-size="14" font-weight="bold">Full-Stack &amp; APIs: 82%</text>
+                <text class="radar-tip-title" x="30" y="96" font-family="Inter" font-size="14" font-weight="bold">Full-Stack &amp; APIs: 82%</text>
                 <text x="30" y="112" fill="#2FD3C2" font-family="IBM Plex Mono" font-size="12">Node.js, Supabase, Web APIs</text>
               </g>
             </g>
@@ -1868,15 +1944,7 @@
         </div>
       </div>
     </section>
-
-  
-    <div class="back-to-top">
-      <button type="button" onclick="scrollAppTop()" aria-label="Back to top" title="Back to top">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
-      </button>
-    </div>
-
-  </div>
+</div>
 
 
   <div id="page-projects" class="page-view">
@@ -2165,15 +2233,7 @@
 
       </div>
     </section>
-
-  
-    <div class="back-to-top">
-      <button type="button" onclick="scrollAppTop()" aria-label="Back to top" title="Back to top">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
-      </button>
-    </div>
-
-  </div>
+</div>
 
 
   <div id="page-resume" class="page-view">
@@ -2419,15 +2479,7 @@
     </section>
 
   </div>
-
-
-    <div class="back-to-top">
-      <button type="button" onclick="scrollAppTop()" aria-label="Back to top" title="Back to top">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
-      </button>
-    </div>
-
-  </div>
+</div>
 
 
 <!-- Credentials Gallery -->
@@ -2520,15 +2572,30 @@
   <a class="btn btn-resume" href="CHIMEZIE-CV.pdf" download="CHIMEZIE-CV.pdf">Download CV ↓</a>
 </div>
 
+
+<button type="button" class="back-to-top-fixed" id="back-to-top-fixed" onclick="scrollAppTop()" aria-label="Back to top" title="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
+</button>
+
 <footer>
   © 2026 EMMANUEL CHIMEZIE · Abuja, Nigeria
 </footer>
 
 <script>
 
+
   function scrollAppTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+  function updateBackToTop() {
+    var btn = document.getElementById('back-to-top-fixed');
+    if (!btn) return;
+    if (window.scrollY > 280) btn.classList.add('visible');
+    else btn.classList.remove('visible');
+  }
+  window.addEventListener('scroll', updateBackToTop, { passive: true });
+  window.addEventListener('DOMContentLoaded', updateBackToTop);
+
 
   function showPage(pageId, options) {
     options = options || {};
@@ -2802,9 +2869,11 @@
     }
     if (show) {
       bar.classList.add('visible');
+      document.body.classList.add('has-sticky-cv');
       document.body.style.paddingBottom = '64px';
     } else {
       bar.classList.remove('visible');
+      document.body.classList.remove('has-sticky-cv');
       document.body.style.paddingBottom = '';
     }
   }
@@ -2831,4 +2900,4 @@
 </script>
 
 </body>
-      </html>
+</html>
