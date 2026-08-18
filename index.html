@@ -2332,19 +2332,26 @@
 
   /* Scroll-appear (elements enter as you view them) */
   .reveal {
-    opacity: 0 !important;
-    transform: translateY(28px) !important;
-    filter: blur(4px);
+    opacity: 0;
+    transform: translateY(28px);
     transition:
       opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
-      transform 0.85s cubic-bezier(0.22, 1, 0.36, 1),
-      filter 0.85s cubic-bezier(0.22, 1, 0.36, 1) !important;
-    will-change: opacity, transform, filter;
+      transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
   }
   .reveal.in {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
-    filter: blur(0);
+    opacity: 1;
+    transform: translateY(0);
+  }
+  /* If JS fails, still show content after a moment */
+  @keyframes revealFailsafe {
+    to { opacity: 1; transform: none; }
+  }
+  .reveal {
+    animation: revealFailsafe 0.01s 2.5s forwards;
+  }
+  .reveal.in {
+    animation: none;
   }
   .reveal.delay-1 { transition-delay: 0.08s; }
   .reveal.delay-2 { transition-delay: 0.16s; }
@@ -3471,26 +3478,39 @@
   /* Scroll reveals — items appear only as they enter the viewport */
   var revealObserver = null;
   function initReveals() {
-    var nodes = document.querySelectorAll('.reveal:not(.in)');
-    if (!nodes.length) return;
-    if (typeof IntersectionObserver === 'undefined') {
-      nodes.forEach(function(n){ n.classList.add('in'); });
-      return;
+    try {
+      var nodes = document.querySelectorAll('.reveal:not(.in)');
+      if (!nodes.length) return;
+      if (typeof IntersectionObserver === 'undefined') {
+        nodes.forEach(function(n){ n.classList.add('in'); });
+        return;
+      }
+      if (revealObserver) revealObserver.disconnect();
+      revealObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            revealObserver.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.01, rootMargin: '0px 0px -5% 0px' });
+      nodes.forEach(function(n){ revealObserver.observe(n); });
+      // Failsafe: force visible anything still hidden
+      setTimeout(function() {
+        document.querySelectorAll('.reveal:not(.in)').forEach(function(n) {
+          var page = n.closest('.page-view');
+          if (!page || page.classList.contains('active-page')) n.classList.add('in');
+        });
+      }, 2000);
+    } catch (err) {
+      document.querySelectorAll('.reveal').forEach(function(n){ n.classList.add('in'); });
     }
-    if (revealObserver) revealObserver.disconnect();
-    revealObserver = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        if (e.isIntersecting) {
-          e.target.classList.add('in');
-          revealObserver.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.08, rootMargin: '0px 0px -8% 0px' });
-    nodes.forEach(function(n){ revealObserver.observe(n); });
   }
-  initReveals();
-  // Re-run when switching tabs so resume/projects sections animate too
-  var _showPageForReveal = null;
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initReveals);
+  } else {
+    initReveals();
+  }
 
 
   function scrollToHomeMain() {
