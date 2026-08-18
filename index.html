@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -128,18 +128,18 @@
   }
   .ambient-orb.o1 {
     width: 420px; height: 420px;
-    background: radial-gradient(circle, rgba(47,211,194,0.55), transparent 70%);
+    background: radial-gradient(circle, rgba(212,184,134,0.4), transparent 70%);
     top: -120px; left: -80px;
   }
   .ambient-orb.o2 {
     width: 380px; height: 380px;
-    background: radial-gradient(circle, rgba(255,111,89,0.4), transparent 70%);
+    background: radial-gradient(circle, rgba(180,150,100,0.28), transparent 70%);
     bottom: 10%; right: -100px;
     animation-delay: -6s;
   }
   .ambient-orb.o3 {
     width: 300px; height: 300px;
-    background: radial-gradient(circle, rgba(108,160,255,0.35), transparent 70%);
+    background: radial-gradient(circle, rgba(232,213,181,0.22), transparent 70%);
     top: 42%; left: 35%;
     animation-delay: -11s;
   }
@@ -156,6 +156,7 @@
     position: relative;
     z-index: 1;
   }
+  body > .ambient-root { z-index: 0; }
   body > header { z-index: 50; }
   body > .back-to-top-fixed { z-index: 90; }
   body > .sticky-cv-bar { z-index: 80; }
@@ -174,12 +175,9 @@
   }
 
   .wordmark {
-    background: linear-gradient(105deg, var(--ink) 30%, var(--accent-teal) 50%, var(--ink) 70%);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: markShine 8s linear infinite;
+    color: var(--gold);
+    -webkit-text-fill-color: var(--gold);
+    background: none;
   }
   @keyframes markShine {
     0% { background-position: 0% center; }
@@ -214,16 +212,10 @@
   .case:hover::before { opacity: 1; }
 
   .hero h1 {
-    background: linear-gradient(180deg, #fff 0%, #c5d0e0 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--ink);
   }
   [data-theme="light"] .hero h1 {
-    background: linear-gradient(180deg, #12151C 0%, #3a4558 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--ink);
   }
 
   .hero-portrait {
@@ -250,9 +242,13 @@
   .btn:hover::after { left: 140%; }
 
   .reveal {
+    opacity: 1;
+    transform: none;
+    transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1);
+  }
+  .js-animate .reveal:not(.in) {
     opacity: 0;
     transform: translateY(18px);
-    transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1);
   }
   .reveal.in {
     opacity: 1;
@@ -1836,7 +1832,9 @@
     background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--gold);
+    -webkit-text-fill-color: var(--gold);
+    background: none;
   }
 
   nav a {
@@ -2386,8 +2384,32 @@
   }
 
 </style>
+
+<script>
+  (function(){
+    try {
+      var s = localStorage.getItem('portfolio-theme');
+      if (s === 'light' || s === 'dark') {
+        document.documentElement.setAttribute('data-theme', s);
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
 </head>
 <body>
+
+<div class="ambient-root" aria-hidden="true">
+  <canvas id="ambient-canvas"></canvas>
+  <div class="ambient-orb o1"></div>
+  <div class="ambient-orb o2"></div>
+  <div class="ambient-orb o3"></div>
+  <div class="ambient-noise"></div>
+</div>
+
 
 <header>
   <div class="header-inner">
@@ -2462,7 +2484,7 @@
         </div>
         
         <div class="hero-portrait reveal delay-2">
-          <img src="potriat.png" alt="Portrait of Chimezie Emmanuel Uzochukwu">
+          <img src="potriat.png" alt="Portrait of Chimezie Emmanuel Uzochukwu" onerror="this.style.opacity='0.3'; this.alt='Portrait (add potriat.png)';">
         </div>
       </div>
     </section>
@@ -2777,9 +2799,9 @@
           <div class="case-proof">
             <div class="case-proof-label">Application Proof</div>
             <div class="case-proof-row">
-              <img src="proof/chainstory-1.jpg" alt="Chain Story new story screen" loading="lazy">
-              <img src="proof/chainstory-2.jpg" alt="Chain Story active line entry" loading="lazy">
-              <img src="proof/chainstory-3.jpg" alt="Chain Story export screen" loading="lazy">
+              <img src="proof/chainstory-1.jpg" alt="Chain Story new story screen" loading="lazy" onerror="this.style.opacity=0.25; this.alt='Image missing';">
+              <img src="proof/chainstory-2.jpg" alt="Chain Story active line entry" loading="lazy" onerror="this.style.opacity=0.25; this.alt='Image missing';">
+              <img src="proof/chainstory-3.jpg" alt="Chain Story export screen" loading="lazy" onerror="this.style.opacity=0.25; this.alt='Image missing';">
             </div>
           </div>
 
@@ -2853,9 +2875,9 @@
           <div class="case-proof">
             <div class="case-proof-label">Application Proof</div>
             <div class="case-proof-row">
-              <img src="proof/lazyapp-1.jpg" alt="Lazy App ingredient input screen" loading="lazy">
-              <img src="proof/lazyapp-2.jpg" alt="Lazy App generated recipe output" loading="lazy">
-              <img src="proof/lazyapp-3.jpg" alt="Lazy App service comparison view" loading="lazy">
+              <img src="proof/lazyapp-1.jpg" alt="Lazy App ingredient input screen" loading="lazy" onerror="this.style.opacity=0.25; this.alt='Image missing';">
+              <img src="proof/lazyapp-2.jpg" alt="Lazy App generated recipe output" loading="lazy" onerror="this.style.opacity=0.25; this.alt='Image missing';">
+              <img src="proof/lazyapp-3.jpg" alt="Lazy App service comparison view" loading="lazy" onerror="this.style.opacity=0.25; this.alt='Image missing';">
             </div>
           </div>
 
@@ -2915,9 +2937,9 @@
           <div class="case-proof">
             <div class="case-proof-label">Application Proof</div>
             <div class="case-proof-row">
-              <img src="proof/debate-1.jpg" alt="Debate application arena overview" loading="lazy">
-              <img src="proof/debate-2.jpg" alt="AI fallacy analysis breakdown" loading="lazy">
-              <img src="proof/debate-3.jpg" alt="Debate topic list" loading="lazy">
+              <img src="proof/debate-1.jpg" alt="Debate application arena overview" loading="lazy" onerror="this.style.opacity=0.25; this.alt='Image missing';">
+              <img src="proof/debate-2.jpg" alt="AI fallacy analysis breakdown" loading="lazy" onerror="this.style.opacity=0.25; this.alt='Image missing';">
+              <img src="proof/debate-3.jpg" alt="Debate topic list" loading="lazy" onerror="this.style.opacity=0.25; this.alt='Image missing';">
             </div>
           </div>
           <div class="case-links">
@@ -2987,9 +3009,9 @@
           <div class="case-proof">
             <div class="case-proof-label">Application Proof</div>
             <div class="case-proof-row">
-              <img src="proof/nftforge-1.jpg" alt="NFTForge landing interface" loading="lazy">
-              <img src="proof/nftforge-2.jpg" alt="NFTForge prompt generator" loading="lazy">
-              <img src="proof/nftforge-3.jpg" alt="NFTForge generated output" loading="lazy">
+              <img src="proof/nftforge-1.jpg" alt="NFTForge landing interface" loading="lazy" onerror="this.style.opacity=0.25; this.alt='Image missing';">
+              <img src="proof/nftforge-2.jpg" alt="NFTForge prompt generator" loading="lazy" onerror="this.style.opacity=0.25; this.alt='Image missing';">
+              <img src="proof/nftforge-3.jpg" alt="NFTForge generated output" loading="lazy" onerror="this.style.opacity=0.25; this.alt='Image missing';">
             </div>
           </div>
           <div class="case-links">
@@ -3506,10 +3528,15 @@
       document.querySelectorAll('.reveal').forEach(function(n){ n.classList.add('in'); });
     }
   }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initReveals);
-  } else {
+  function bootReveals() {
     initReveals();
+    // optional motion only after first paint is safe
+    setTimeout(function(){ document.documentElement.classList.add('js-animate'); initReveals(); }, 50);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bootReveals);
+  } else {
+    bootReveals();
   }
 
 
@@ -3520,7 +3547,12 @@
 
   function downloadOfflinePortfolio() {
     try {
-      var html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+      var clone = document.documentElement.cloneNode(true);
+      var base = document.createElement('base');
+      base.href = window.location.href.split('#')[0];
+      var head = clone.querySelector('head');
+      if (head) head.insertBefore(base, head.firstChild);
+      var html = '<!DOCTYPE html>\n' + clone.outerHTML;
       var blob = new Blob([html], { type: 'text/html;charset=utf-8' });
       var url = URL.createObjectURL(blob);
       var a = document.createElement('a');
@@ -3530,6 +3562,7 @@
       a.click();
       document.body.removeChild(a);
       setTimeout(function(){ URL.revokeObjectURL(url); }, 1500);
+      alert('Offline HTML saved. Images/PDF still load from the live site URL when you are online (base href). For fully offline media, keep potriat.png, proof/, and CHIMEZIE-CV.pdf next to the file.');
     } catch (e) {
       alert('Could not prepare offline file. You can still save this page from your browser (Ctrl/Cmd+S).');
     }
@@ -3858,4 +3891,4 @@
 </script>
 
 </body>
-  </html>
+</html>
