@@ -322,6 +322,35 @@
   }
   .wordmark:hover{ opacity: 0.85; }
 
+  /* Theme toggle (moon / sun) */
+  .theme-toggle {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    background: var(--bg-panel-2);
+    color: var(--ink);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: border-color .15s ease, background .15s ease, color .15s ease;
+    margin-left: 4px;
+    padding: 0;
+  }
+  .theme-toggle:hover {
+    border-color: var(--accent-teal);
+    background: var(--teal-tint);
+    color: var(--accent-teal);
+  }
+  .theme-toggle svg {
+    width: 18px;
+    height: 18px;
+    display: block;
+    pointer-events: none;
+  }
+
   /* Hamburger button — hidden on desktop */
   .nav-toggle {
     display: none;
@@ -2436,7 +2465,15 @@
       EMMANUEL
     </a>
     <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light and dark mode" title="Toggle light / dark mode" onclick="toggleTheme()">
-      <svg id="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 14.5A8.5 8.5 0 1 1 9.5 3 7 7 0 0 0 21 14.5z"/></svg>
+      <!-- Moon (shown in dark mode) -->
+      <svg id="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block">
+        <path d="M21 14.5A8.5 8.5 0 1 1 9.5 3 7 7 0 0 0 21 14.5z"/>
+      </svg>
+      <!-- Sun (shown in light mode) -->
+      <svg id="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+        <circle cx="12" cy="12" r="4"/>
+        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+      </svg>
     </button>
     <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" onclick="toggleMobileNav()">
       <span></span>
@@ -3695,10 +3732,23 @@
 
 
   /* ---------- Theme (light / dark) ---------- */
+  function updateThemeIcon(theme) {
+    var moon = document.getElementById('theme-icon-moon');
+    var sun  = document.getElementById('theme-icon-sun');
+    if (!moon || !sun) return;
+    if (theme === 'light') {
+      moon.style.display = 'none';
+      sun.style.display  = 'block';
+    } else {
+      moon.style.display = 'block';
+      sun.style.display  = 'none';
+    }
+  }
   function applyTheme(theme) {
     var t = theme === 'light' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', t);
     try { localStorage.setItem('portfolio-theme', t); } catch (e) {}
+    updateThemeIcon(t);
   }
   function toggleTheme() {
     var cur = document.documentElement.getAttribute('data-theme') || 'dark';
