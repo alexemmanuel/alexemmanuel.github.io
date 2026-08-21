@@ -961,8 +961,7 @@
     padding: 12px 14px;
   }
   .case-challenge h5{ color: var(--accent-coral); }
-
-  /* ---------- Experience ---------- */
+/* ---------- Experience ---------- */
   .timeline{ display:flex; flex-direction: column; gap: 28px; }
   .role{ display:grid; grid-template-columns: 160px 1fr; gap: 18px; }
   @media (max-width: 680px){ .role{ grid-template-columns: 1fr; gap: 6px; } }
@@ -971,50 +970,70 @@
   .role-org{ font-size: 14px; color: var(--accent-coral); font-weight: 600; margin-bottom: 10px; }
   .role p{ font-size: 15px; color: var(--ink-soft); }
 
-  
-  /* Light theme overrides */
-  /* superseded by luxury light palette */
-  [data-theme="light"] body { background: var(--bg); color: var(--ink); }
-  [data-theme="light"] .btn-primary { color: #06201C; }
-  [data-theme="light"] .hero-portrait { box-shadow: 8px 8px 0 var(--accent-coral); }
-  [data-theme="light"] .contact-card,
-  [data-theme="light"] .resume-cta,
-  [data-theme="light"] .cv-download-block {
-    background: linear-gradient(135deg, #e8f5f3, #eef2f8);
+  /* Timeline with vertical rail — fixed so the line never overlaps text */
+  .timeline-rail {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
   }
-  [data-theme="light"] .cred-gallery-overlay {
-    background: rgba(244, 246, 250, 0.88);
+  .timeline-rail::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: var(--line);
   }
-  [data-theme="light"] .cred-slide-frame img { background: #e8ecf2; }
+  .timeline-rail .role {
+    position: relative;
+  }
+  .timeline-rail .role-date {
+    position: relative;
+    padding-left: 22px;
+  }
+  .timeline-rail .role-date::before {
+    content: '';
+    position: absolute;
+    left: 3px;
+    top: 6px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent-teal);
+    box-shadow: 0 0 0 3px var(--teal-tint);
+  }
 
-  .theme-toggle {
-    margin-left: 8px;
-    width: 42px;
-    height: 42px;
-    border-radius: 10px;
-    border: 1px solid var(--line);
-    background: var(--bg-panel-2);
-    color: var(--ink);
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    transition: border-color .15s ease, background .15s ease, transform .15s ease;
+  /* Desktop: line sits between the date column and the content */
+  @media (min-width: 681px) {
+    .timeline-rail::before {
+      left: 167px;
+    }
+    .timeline-rail .role-date {
+      padding-left: 0;
+    }
+    .timeline-rail .role-date::before {
+      left: auto;
+      right: -22px;
+    }
   }
-  .theme-toggle:hover {
-    border-color: var(--accent-teal);
-    background: var(--teal-tint);
-    transform: translateY(-1px);
-  }
-  .theme-toggle svg { width: 20px; height: 20px; }
 
-  /* Key Recognitions frame (separate from Education) */
-  .recog-frame {
-    margin-top: 28px;
-    background: var(--bg-panel);
-    border: 1px solid rgba(240, 185, 92, 0.35);
-    border-radius: 16px;
+  /* Mobile: push ALL text away from the line so nothing overlaps */
+  @media (max-width: 680px) {
+    .timeline-rail::before {
+      left: 4px;
+    }
+    .timeline-rail .role {
+      padding-left: 22px;   /* clears the line for title, bullets, tags */
+    }
+    .timeline-rail .role-date {
+      padding-left: 0;      /* parent already has the padding */
+    }
+    .timeline-rail .role-date::before {
+      left: -18px;          /* keeps the dot sitting on the line */
+    }
+  }
     padding: 28px 24px;
     box-shadow: 0 0 0 1px rgba(240,185,92,0.08);
   }
