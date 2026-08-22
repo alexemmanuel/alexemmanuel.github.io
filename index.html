@@ -2842,30 +2842,34 @@
 
                 <div class="case reveal">
           <div class="case-top">
-            <h3>Chain Stories — Collaborative Story-to-Screen Platform</h3>
-            <span class="case-badge c-coral">PROTOTYPE</span>
+            <h3>Chain Stories — One Line at a Time</h3>
+            <span class="case-badge c-coral">LIVE PROTOTYPE</span>
           </div>
           <ul>
-            <li>Turn-based collaborative storytelling — each writer adds exactly one line (180-char cap) to a shared chain framed as a Movie (60–240 min) or Series (configurable episodes/seasons), with Practice mode, twist words, and The End locked until ~85% of target runtime.</li>
-            <li>Live AI Story Analyst (Claude + local fallback), cinematic Watch mode, Premium invite-only chains with padlocks and join requests, story summaries after 10 lines, unique usernames, register/login with email recovery, and an intelligent Story Guide that answers real product questions (including missing timeline stories) and can offer safe storage repairs.</li>
+            <li>Collaborative storytelling where each person adds exactly one line to a shared chain — “Sign the corner” with a unique lowercase username, then leave a line for the next writer to find. Paper-inspired UI with Timeline and Archives views.</li>
+            <li>Chains inactive for 30+ days move to Archives (or are deleted if under 5 lines). Built as a lightweight React app with a custom paper/ink design system, focused on the simple joy of passing a story forward one strip of paper at a time.</li>
           </ul>
           
           <div class="tech-frameworks">
             <span class="tech-label">Frameworks:</span>
             <span class="tech-pill">React</span>
-            <span class="tech-pill">Claude API</span>
-            <span class="tech-pill">Lucide Icons</span>
-            <span class="tech-pill">window.storage</span>
+            <span class="tech-pill">Vite</span>
+            <span class="tech-pill">Custom CSS (paper theme)</span>
+            <span class="tech-pill">Local / shared storage</span>
           </div>
 
-          <div class="case-impact"><strong>Key Outcome</strong>Turns collaborative writing into structured, watchable film/TV-style productions — with AI quality gates, runtime targets, archive lifecycle, unanimous delete petitions, invite-only Premium access, and auth that only counts visibility on registration (not reloads).</div>
+          <div class="case-impact"><strong>Key Outcome</strong>A calm, paper-like collaborative writing experience — unique author handles, one-line-at-a-time chains, automatic archive lifecycle, and a clear path from “Sign the corner” onboarding into an active timeline of stories others can continue.</div>
           
+          <div class="case-links">
+            <a class="case-link c-teal" href="https://alexemmanuel.github.io/chain-stories/" target="_blank" rel="noopener">Live App</a>
+          </div>
+
           <div class="case-proof">
             <div class="case-proof-label">Application Proof</div>
             <div class="case-proof-row">
-              <img src="proof/chainstory-1.jpg" alt="Chain Story new story screen" loading="lazy" onerror="this.style.opacity=0.25; this.alt='Image missing';">
-              <img src="proof/chainstory-2.jpg" alt="Chain Story active line entry" loading="lazy" onerror="this.style.opacity=0.25; this.alt='Image missing';">
-              <img src="proof/chainstory-3.jpg" alt="Chain Story export screen" loading="lazy" onerror="this.style.opacity=0.25; this.alt='Image missing';">
+              <img src="proof/chainstory-1.jpg" alt="Chain Stories — Sign the corner onboarding" loading="lazy" onerror="this.style.opacity=0.25; this.alt='Image missing';">
+              <img src="proof/chainstory-2.jpg" alt="Chain Stories — Timeline and empty state" loading="lazy" onerror="this.style.opacity=0.25; this.alt='Image missing';">
+              <img src="proof/chainstory-3.jpg" alt="Chain Stories — Active chain / writing view" loading="lazy" onerror="this.style.opacity=0.25; this.alt='Image missing';">
             </div>
           </div>
 
@@ -2874,42 +2878,39 @@
             <div class="case-details-body">
               <div class="case-details-block">
                 <h5>Core Concept &amp; Mechanics</h5>
-                <p>A complete React web app for collaborative, one-line-at-a-time storytelling framed as film and TV production. Writers take turns adding exactly one line; no single author controls the whole plot. Movies target 60–240 minutes; series configure episode length, episodes per season, and seasons. “The End” unlocks at ~85% of estimated watch time.</p>
+                <p>A React web app for collaborative, one-line-at-a-time storytelling. Writers “Sign the corner” with a unique lowercase username (letters only, no spaces, numbers, or symbols), then leave a single line for someone else to find and continue. The experience is framed like strips of paper passed hand to hand — calm, intentional, and deliberately limited to one line per turn.</p>
               </div>
               <div class="case-details-block">
-                <h5>Auth, Privacy &amp; Access</h5>
-                <p>Unique usernames (letters, numbers, underscore only — no spaces/symbols). Register/login with email recovery fields and hashed verification tokens; Google sign-in via Google Identity Services when a client ID is configured. Premium creators can publish invite-only chains: padlocked on the timeline for non-members, join-request flow, and owner approval in Story settings. Visibility increments on registration and real activity only — never on reload or invite-link opens.</p>
+                <h5>Identity &amp; Access</h5>
+                <p>Unique author handles are required and can be changed later. The live prototype focuses on lightweight identity and shared chain state rather than full account systems, keeping the barrier to writing as low as possible.</p>
               </div>
               <div class="case-details-block">
                 <h5>Tools &amp; Stack</h5>
-                <p>React (hooks), Lucide icons, custom paper/ink CSS + cinema mode, Claude for line scoring and the Story Guide, browser <code>window.storage</code> with local profiles and shared chains/registry keys.</p>
+                <p>React + Vite, custom paper/ink CSS design system (warm paper backgrounds, seal-red accent, Fraunces / Source Serif 4 typography), and browser storage for local profiles and shared chains. Deployed on GitHub Pages.</p>
               </div>
               <div class="case-details-block">
-                <h5>Key Features</h5>
+                <h5>Key Features (Live)</h5>
                 <ol>
-                  <li><strong>Formats &amp; runtime</strong> — Movie or Series with progress bar; The End gated at ~85% of target.</li>
-                  <li><strong>AI Story Analyst</strong> — Claude live scores 1–10 + verdict; local heuristic fallback outside the artifact.</li>
-                  <li><strong>Watch mode</strong> — Timed cinematic player, likes, visibility scoring.</li>
-                  <li><strong>Archives</strong> — 30-day inactivity; 5+ lines → archive (48h still on timeline); under 5 → permanent delete.</li>
-                  <li><strong>Delete petition</strong> — Unanimous multi-writer delete; solo immediate.</li>
-                  <li><strong>Invite-only Premium</strong> — Padlock, invite links, join requests, owner approve.</li>
-                  <li><strong>Story summary</strong> — Dropdown synopsis after 10+ lines on accessible chains.</li>
-                  <li><strong>Story Guide</strong> — Intelligent Q&amp;A (why a story is missing, invites, archives) plus optional index repair + reload.</li>
-                  <li><strong>Leaderboard</strong> — Shared writers registry; Premium CS badge; demo credits.</li>
+                  <li><strong>Sign the corner</strong> — Onboarding to pick a unique lowercase author name before writing.</li>
+                  <li><strong>One line at a time</strong> — Each contribution is a single line; the next writer continues the chain.</li>
+                  <li><strong>Timeline</strong> — Active chains visible for others to find and extend.</li>
+                  <li><strong>Archives</strong> — Chains inactive 30+ days move to Archives; under 5 lines may be deleted.</li>
+                  <li><strong>Paper UI</strong> — Soft cream paper surfaces, folded-card feel, and a restrained seal-red accent.</li>
+                  <li><strong>Guide &amp; Board</strong> — Supporting views for orientation and shared activity.</li>
                 </ol>
               </div>
               <div class="case-details-block case-challenge">
-                <h5>Key Challenge Solved — Narrative Quality Without Centralized Authorship</h5>
-                <p><strong>Challenge:</strong> Rotating authors can break genre tone or coherence on any single line.</p>
-                <p><strong>Solution:</strong> AI Story Analyst scores and returns an editorial verdict before commit, without taking authorial control. Outside Claude.ai, a local heuristic keeps the gate available without shipping API keys in the browser.</p>
+                <h5>Key Challenge Solved — Keeping Collaboration Simple and Human</h5>
+                <p><strong>Challenge:</strong> Most collaborative writing tools become complex dashboards or free-form editors that lose the intimacy of passing a story along.</p>
+                <p><strong>Solution:</strong> Strict one-line turns, a paper metaphor, unique author handles, and an automatic archive lifecycle keep the product focused on the act of writing for the next person — not on managing accounts, permissions, or long-form drafts.</p>
               </div>
               <div class="case-details-block">
-                <h5>Why a story may not appear on the timeline</h5>
-                <p>Invite-only (padlocked) for non-members; archived after 30 days inactive; deleted if under 5 lines after 30 days; wrong tab (Active vs Archives); or not yet shared in the same storage context. Invite links and reloads do not grant visibility points.</p>
+                <h5>Live URL</h5>
+                <p><a href="https://alexemmanuel.github.io/chain-stories/" target="_blank" rel="noopener">https://alexemmanuel.github.io/chain-stories/</a></p>
               </div>
               <div class="case-details-block">
                 <h5>Scope Note</h5>
-                <p>Artifact build uses demo email confirmation and optional Google client ID for real GIS sign-in. Production requires a backend for secure email verification (time-limited hashed tokens, SMTP/provider) and server-side Google ID token verification. No real payments or MP4 encoding ship with the app.</p>
+                <p>Current live build prioritizes the core loop (sign → write one line → discover on timeline → archive). Richer product directions (AI line scoring, cinematic Watch mode, invite-only Premium chains, full auth) remain on the roadmap and are described in earlier design notes; they are not all active on the public GitHub Pages deployment.</p>
               </div>
             </div>
           </details>
